@@ -142,7 +142,7 @@ module.exports = (grunt) => {
         tasks: 'test',
       },
       html: {
-        files: root.flatMap((path) => [`${path}/*.html`, `${path}/content/**/*.html`]),
+        files: [`${root}/*.html`, `${root}/content/**/*.html`],
       },
       markdown: {
         files: root.map((path) => path + '/*.md'),
