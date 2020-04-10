@@ -1,0 +1,43 @@
+// Default mixins and settings -----------------
+@import "../template/mixins";
+@import "../template/settings";
+// ---------------------------------------------
+
+$colors: (
+  'yellow': #f3df49,
+  'anthracite': #2e2e2c,
+  'dark-grey': #444441,
+  'grey': #5e5e5a,
+  'light-grey': #7d7d78
+);
+
+// Override theme settings (see ../template/settings.scss)
+$backgroundColor: map-get($colors, 'yellow');
+$heading1Size: 4em;
+$heading2Size: 2em;
+$headingColor: map-get($colors, 'anthracite');
+$headingFont: 'Neutraface 2 Text', Futura, sans-serif;
+$headingFontWeight: bold;
+$headingLetterSpacing: -1px;
+$headingLineHeight: 1.1;
+$headingMargin: 0;
+$linkColor: map-get($colors, 'dark-grey');
+$linkColorHover: lighten($linkColor, 15%);
+$mainColor: map-get($colors, 'anthracite');
+$mainFont: 'Source Sans Pro', Helvetica, sans-serif;
+$selectionBackgroundColor: lighten($linkColor, 25%);
+
+// Theme template ------------------------------
+@import "../template/theme";
+// ---------------------------------------------
+
+.reveal {
+  h2 {
+    color: map-get($colors, 'dark-grey');
+  }
+
+  section {
+    text-align: right;
+    margin-top: 15%;
+  }
+}

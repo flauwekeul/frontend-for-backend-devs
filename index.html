@@ -8,7 +8,7 @@
 
     <link rel="stylesheet" href="css/reset.css" />
     <link rel="stylesheet" href="css/reveal.css" />
-    <link rel="stylesheet" href="css/theme/black.css" />
+    <link id="theme" rel="stylesheet" href="css/theme/black.css" />
 
     <!-- Theme used for syntax highlighting of code -->
     <link rel="stylesheet" href="lib/css/monokai.css" />
@@ -25,7 +25,12 @@
   <body>
     <div class="reveal">
       <div class="slides">
-        <section data-external-replace="content/slides/intro.html"></section>
+        <section data-theme="yellow">
+          <h1>Frontend</h1>
+          <h2>for backend devs</h2>
+        </section>
+
+        <section data-external-replace="content/slides/js-the-history.html"></section>
       </div>
     </div>
 
@@ -44,8 +49,9 @@
           { src: 'plugin/notes/notes.js', async: true },
           {
             src: 'node_modules/reveal_external/external/external.js',
-            condition: () => !!document.querySelector('[data-external],[data-external-replace]'),
+            condition: () => document.querySelector('[data-external],[data-external-replace]'),
           },
+          { src: 'plugin/switch-theme/switch-theme.js', condition: () => document.querySelector('[data-theme]') },
         ],
       })
     </script>
