@@ -1,0 +1,121 @@
+<section>
+  <section data-theme="yellow">
+    <h1>JS</h1>
+    <h2>the language</h2>
+  </section>
+
+  <section>
+    <h3>Type coercion <span class="pager">(1/5)</span></h3>
+    <ul>
+      <li class="fragment">
+        JS allows implicit conversion of types:
+        <pre><code data-trim class="js">
+          '2' * '3'     // 6
+          'a' + 1       // 'a1'
+          true + false  // 1
+        </code></pre>
+      </li>
+      <li class="fragment">
+        <em>Any</em> type in JS can be converted:
+        <pre><code data-trim class="js">
+          {}+[]+{}+[1]  // '0[object Object]1'
+        </code></pre>
+      </li>
+    </ul>
+  </section>
+
+  <section>
+    <h3>Type coercion <span class="pager">(2/5)</span></h3>
+    <ul>
+      <li>
+        Almost all operators trigger type coercion:
+        <pre><code data-trim class="js">
+          1 == '1'  // true
+          1 + '1'   // '11'
+        </code></pre>
+      </li>
+      <li class="fragment">
+        The only exception is <code>===</code> <small>(strict equality operator)</small>:
+        <pre><code data-trim class="js">
+          1 === 1   // true
+          1 === '1' // false
+        </code></pre>
+      </li>
+    </ul>
+  </section>
+
+  <section>
+    <h3>Type coercion <span class="pager">(3/5)</span></h3>
+    <ul>
+      <li>
+        Explicit type coercion is possible too:
+        <pre class="fragment"><code data-trim class="js">
+          String(1)     // '1'
+          String(true)  // 'true'
+          Boolean(1)    // true
+          Boolean('')   // false
+          Number('1')   // 1
+          Number(false) // 0
+        </code></pre>
+      </li>
+      <li class="fragment">
+        But implicit type coercion has its advantages:
+        <div class="row">
+          <pre class="col"><code data-trim class="js">
+            // please don't do this
+            if (Boolean(2)) { … }
+            Boolean(2) || Boolean('a')
+          </code></pre>
+          <pre class="col"><code data-trim class="js">
+            // keep it simple
+            if (2) { … }
+            2 || 'a'
+          </code></pre>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <section>
+    <h3>Type coercion <span class="pager">(4/5)</span></h3>
+    <ul>
+      <li>
+        In JS these values are <em>falsy</em>:
+        <pre><code data-trim data-noescape class="js">
+          Boolean(<mark>''</mark>)        // false
+          Boolean(<mark>0</mark>)         // false
+          Boolean(<mark>NaN</mark>)       // false
+          Boolean(<mark>null</mark>)      // false
+          Boolean(<mark>undefined</mark>) // false
+          Boolean(<mark>false</mark>)     // false
+        </code></pre>
+      </li>
+      <li class="fragment">
+        Everything else is <em>truthy</em>:
+        <pre><code data-trim data-noescape class="js">
+          Boolean(<mark>'a'</mark>)       // true
+          Boolean(<mark>1</mark>)         // true
+          Boolean(<mark>{}</mark>)        // true
+          Boolean(<mark>[]</mark>)        // true
+        </code></pre>
+      </li>
+    </ul>
+  </section>
+
+  <section>
+    <h3>Type coercion <span class="pager">(5/5)</span></h3>
+    <ul>
+      <li>
+        Logical operators don't return booleans, but an operand:
+        <pre class="fragment"><code data-trim data-noescape class="js">
+          0 && 1          // 0
+          0 || 1          // 1
+          <span class="fragment"><span class="es-version" title="Since ES2020" style="position: absolute; transform: translate(-80%, 1.5em) rotate(-30deg);"></span>
+          0 ?? 1          // 0
+          null ?? 1       // 1
+          undefined ?? 1  // 1</span>
+        </code></pre>
+      </li>
+    </ul>
+  </section>
+</section>

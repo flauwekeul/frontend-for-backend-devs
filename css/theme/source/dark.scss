@@ -9,24 +9,38 @@
 @import url(../../lib/font/source-sans-pro/source-sans-pro.css);
 
 // Override theme settings (see ../template/settings.scss)
-$backgroundColor: map-get($colors, 'black');
+$backgroundColor: $black;
 $heading1Size: 2.4em;
 $heading2Size: 1.6em;
 $heading3Size: 1.3em;
 $heading4Size: 1.0em;
-$headingColor: map-get($colors, 'smoke');
+$headingColor: $grey-5;
 $headingTextShadow: none;
-$linkColor: map-get($colors, 'yellow');
-$linkColorHover: mix(black, $linkColor, 30%);
+$linkColor: $grey-4;
+$linkColorHover: $grey-5;
 $mainColor: #fff;
 $mainFont: 'Source Sans Pro', Helvetica, sans-serif;
-$selectionBackgroundColor: map-get($colors, 'yellow');
+$selectionBackgroundColor: $yellow;
+$selectionColor: $backgroundColor;
 
 // Theme template ------------------------------
 @import "../template/theme";
 // ---------------------------------------------
 
 .reveal {
+  a,
+  a:hover {
+    text-shadow:
+      -2px -2px $backgroundColor,
+      -2px 2px $backgroundColor,
+      2px -2px $backgroundColor,
+      2px 2px $backgroundColor;
+    background-size: 1px 1em;
+    box-shadow:
+      inset 0 -0.17em $backgroundColor,
+      inset 0 -0.2em $linkColor;
+  }
+
   ul ul {
     font-size: 0.8em;
   }
@@ -34,5 +48,73 @@ $selectionBackgroundColor: map-get($colors, 'yellow');
   small {
     font-size: 0.7em;
     vertical-align: initial;
+  }
+
+  pre {
+    width: 100%;
+
+    code {
+      padding: 0.6em 0.8em;
+    }
+  }
+
+  mark {
+    background-color: $selectionBackgroundColor;
+    color: $selectionColor;
+
+    > * {
+      color: inherit;
+    }
+  }
+
+  .progress {
+    color: $yellow;
+  }
+
+  .pager {
+    color: $grey-3;
+    font-weight: 300;
+    margin-left: 0.4em;
+  }
+
+  .row {
+    display: flex;
+
+    .col {
+      width: 50% !important;
+    }
+
+    .col:first-child {
+      margin-right: 0.5em;
+    }
+  }
+
+  .es-version {
+    animation: glow 1s infinite alternate-reverse;
+    font-size: 0.6em;
+    font-family: $headingFont;
+    font-weight: 500;
+    line-height: 1;
+    background-color: $yellow;
+    color: $black;
+    padding: 4px 6px 2px;
+    border-radius: 999px;
+
+    &::before {
+      content: attr(title);
+    }
+
+    > * {
+      color: inherit;
+    }
+  }
+}
+
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 2px $yellow;
+  }
+  100% {
+    box-shadow: 0 0 8px $yellow;
   }
 }

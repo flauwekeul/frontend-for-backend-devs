@@ -267,6 +267,6 @@ body {
 .reveal h2 {
   color: #444441; }
 
-.reveal section {
+.reveal section:not(.stack) {
   text-align: right;
   margin-top: 15%; }

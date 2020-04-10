@@ -9,15 +9,15 @@
 @import url(../../lib/font/source-sans-pro/source-sans-pro.css);
 
 // Override theme settings (see ../template/settings.scss)
-$backgroundColor: map-get($colors, 'yellow');
+$backgroundColor: $yellow;
 $heading1Size: 4em;
 $heading2Size: 2em;
-$headingColor: map-get($colors, 'anthracite');
+$headingColor: $grey-0;
 $headingLineHeight: 1.1;
 $headingMargin: 0;
-$linkColor: map-get($colors, 'dark-grey');
+$linkColor: $grey-1;
 $linkColorHover: mix(#fff, $linkColor, 15%);
-$mainColor: map-get($colors, 'anthracite');
+$mainColor: $grey-0;
 $mainFont: 'Source Sans Pro', Helvetica, sans-serif;
 $selectionBackgroundColor: mix(#fff, $linkColor, 25%);
 
@@ -27,10 +27,10 @@ $selectionBackgroundColor: mix(#fff, $linkColor, 25%);
 
 .reveal {
   h2 {
-    color: map-get($colors, 'dark-grey');
+    color: $grey-1;
   }
 
-  section {
+  section:not(.stack) {
     text-align: right;
     margin-top: 15%;
   }
