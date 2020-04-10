@@ -9,29 +9,30 @@
 @import url(../../lib/font/source-sans-pro/source-sans-pro.css);
 
 // Override theme settings (see ../template/settings.scss)
-$backgroundColor: map-get($colors, 'yellow');
-$heading1Size: 4em;
-$heading2Size: 2em;
-$headingColor: map-get($colors, 'anthracite');
-$headingLineHeight: 1.1;
-$headingMargin: 0;
-$linkColor: map-get($colors, 'dark-grey');
-$linkColorHover: mix(#fff, $linkColor, 15%);
-$mainColor: map-get($colors, 'anthracite');
+$backgroundColor: map-get($colors, 'black');
+$heading1Size: 2.4em;
+$heading2Size: 1.6em;
+$heading3Size: 1.3em;
+$heading4Size: 1.0em;
+$headingColor: map-get($colors, 'smoke');
+$headingTextShadow: none;
+$linkColor: map-get($colors, 'yellow');
+$linkColorHover: mix(black, $linkColor, 30%);
+$mainColor: #fff;
 $mainFont: 'Source Sans Pro', Helvetica, sans-serif;
-$selectionBackgroundColor: mix(#fff, $linkColor, 25%);
+$selectionBackgroundColor: map-get($colors, 'yellow');
 
 // Theme template ------------------------------
 @import "../template/theme";
 // ---------------------------------------------
 
 .reveal {
-  h2 {
-    color: map-get($colors, 'dark-grey');
+  ul ul {
+    font-size: 0.8em;
   }
 
-  section {
-    text-align: right;
-    margin-top: 15%;
+  small {
+    font-size: 0.7em;
+    vertical-align: initial;
   }
 }
