@@ -78,20 +78,31 @@ $selectionColor: $backgroundColor;
   }
 
   .row {
+    $gutter: 1em;
     display: flex;
 
     .col {
-      width: 50% !important;
+      width: calc(50% - #{$gutter});
+      margin: {
+        left: $gutter / 2;
+        right: $gutter / 2;
+      }
     }
 
     .col:first-child {
-      margin-right: 0.5em;
+      width: calc(50% - #{$gutter / 2});
+      margin-left: 0;
+    }
+
+    .col:last-child {
+      width: calc(50% - #{$gutter / 2});
+      margin-right: 0;
     }
   }
 
   .es-version {
     animation: glow 1s infinite alternate-reverse;
-    font-size: 0.6em;
+    font-size: 0.7em;
     font-family: $headingFont;
     font-weight: 500;
     line-height: 1;
@@ -99,16 +110,13 @@ $selectionColor: $backgroundColor;
     color: $black;
     padding: 4px 6px 2px;
     border-radius: 999px;
-
-    &::before {
-      content: attr(title);
-    }
-
-    > * {
-      color: inherit;
-    }
   }
 }
+
+.hljs-comment {
+  font-style: normal !important;
+}
+
 
 @keyframes glow {
   0% {

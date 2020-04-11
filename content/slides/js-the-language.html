@@ -5,7 +5,7 @@
   </section>
 
   <section>
-    <h3>Type coercion <span class="pager">(1/5)</span></h3>
+    <h3>Type coercion <span class="pager">(1/4)</span></h3>
     <ul>
       <li class="fragment">
         JS allows implicit conversion of types:
@@ -18,34 +18,39 @@
       <li class="fragment">
         <em>Any</em> type in JS can be converted:
         <pre><code data-trim class="js">
-          {}+[]+{}+[1]  // '0[object Object]1'
+          {}+[]+{}+[1]  // '0[object Object]1' ☹️
         </code></pre>
       </li>
     </ul>
   </section>
 
   <section>
-    <h3>Type coercion <span class="pager">(2/5)</span></h3>
+    <h3>Type coercion <span class="pager">(2/4)</span></h3>
     <ul>
       <li>
-        Almost all operators trigger type coercion:
-        <pre><code data-trim class="js">
-          1 == '1'  // true
+        All operators <small>(except <code>===</code>)</small> trigger type coercion:
+        <pre class="fragment"><code data-trim class="js">
+          1 >= '1'  // true
           1 + '1'   // '11'
+          1 / '1'   // 1
         </code></pre>
       </li>
       <li class="fragment">
-        The only exception is <code>===</code> <small>(strict equality operator)</small>:
-        <pre><code data-trim class="js">
-          1 === 1   // true
-          1 === '1' // false
+        Logical operators don't return booleans, but one of their operands instead:
+        <pre class="fragment"><code data-trim data-noescape class="js">
+          0 && 1          // 0
+          0 || 1          // 1
+          <span class="fragment"><span class="es-version" style="position: absolute; transform: translate(-90%, 1.8em) rotate(-35deg);">Since ES2020</span>
+          0 ?? 1          // 0
+          null ?? 1       // 1
+          undefined ?? 1  // 1</span>
         </code></pre>
       </li>
     </ul>
   </section>
 
   <section>
-    <h3>Type coercion <span class="pager">(3/5)</span></h3>
+    <h3>Type coercion <span class="pager">(3/4)</span></h3>
     <ul>
       <li>
         Explicit type coercion is possible too:
@@ -77,7 +82,7 @@
   </section>
 
   <section>
-    <h3>Type coercion <span class="pager">(4/5)</span></h3>
+    <h3>Type coercion <span class="pager">(4/4)</span></h3>
     <ul>
       <li>
         In JS these values are <em>falsy</em>:
@@ -97,23 +102,6 @@
           Boolean(<mark>1</mark>)         // true
           Boolean(<mark>{}</mark>)        // true
           Boolean(<mark>[]</mark>)        // true
-        </code></pre>
-      </li>
-    </ul>
-  </section>
-
-  <section>
-    <h3>Type coercion <span class="pager">(5/5)</span></h3>
-    <ul>
-      <li>
-        Logical operators don't return booleans, but an operand:
-        <pre class="fragment"><code data-trim data-noescape class="js">
-          0 && 1          // 0
-          0 || 1          // 1
-          <span class="fragment"><span class="es-version" title="Since ES2020" style="position: absolute; transform: translate(-80%, 1.5em) rotate(-30deg);"></span>
-          0 ?? 1          // 0
-          null ?? 1       // 1
-          undefined ?? 1  // 1</span>
         </code></pre>
       </li>
     </ul>

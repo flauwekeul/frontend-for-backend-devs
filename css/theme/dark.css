@@ -138,13 +138,13 @@ body {
   margin: 20px auto;
   text-align: left;
   font-size: 0.55em;
-  font-family: monospace;
+  font-family: "Andale Mono", monospace;
   line-height: 1.2em;
   word-wrap: break-word;
   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15); }
 
 .reveal code {
-  font-family: monospace;
+  font-family: "Andale Mono", monospace;
   text-transform: none; }
 
 .reveal pre code {
@@ -299,13 +299,19 @@ body {
 .reveal .row {
   display: flex; }
   .reveal .row .col {
-    width: 50% !important; }
-  .reveal .row .col:first-child {
+    width: calc(50% - 1em);
+    margin-left: 0.5em;
     margin-right: 0.5em; }
+  .reveal .row .col:first-child {
+    width: calc(50% - 0.5em);
+    margin-left: 0; }
+  .reveal .row .col:last-child {
+    width: calc(50% - 0.5em);
+    margin-right: 0; }
 
 .reveal .es-version {
   animation: glow 1s infinite alternate-reverse;
-  font-size: 0.6em;
+  font-size: 0.7em;
   font-family: "Neutraface 2 Text", Futura, sans-serif;
   font-weight: 500;
   line-height: 1;
@@ -313,10 +319,9 @@ body {
   color: #191919;
   padding: 4px 6px 2px;
   border-radius: 999px; }
-  .reveal .es-version::before {
-    content: attr(title); }
-  .reveal .es-version > * {
-    color: inherit; }
+
+.hljs-comment {
+  font-style: normal !important; }
 
 @keyframes glow {
   0% {

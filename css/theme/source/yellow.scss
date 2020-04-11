@@ -30,7 +30,7 @@ $selectionBackgroundColor: mix(#fff, $linkColor, 25%);
     color: $grey-1;
   }
 
-  section:not(.stack) {
+  &:not(.overview) section:not(.stack) {
     text-align: right;
     margin-top: 15%;
   }

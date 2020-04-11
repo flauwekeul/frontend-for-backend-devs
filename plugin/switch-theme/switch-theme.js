@@ -1,12 +1,27 @@
 // inspired by https://gist.github.com/jbrown123/9445384733c9f289d6e8
 
+const getThemeElement = () => document.getElementsByClassName('theme')[0]
+
 const setTheme = (href) => {
-  document.getElementById('theme').setAttribute('href', href)
+  const link = getThemeElement()
+
+  if (link.getAttribute('href') === href) {
+    return
+  }
+
+  const linkClone = link.cloneNode()
+  linkClone.setAttribute('href', href)
+  // insert the new link element *before* the old one, so that it's targeted when this function is called again
+  link.insertAdjacentElement('beforebegin', linkClone)
+  // wait a little to give browser time to repaint newly loaded styles
+  setTimeout(() => {
+    link.parentNode.removeChild(link)
+  }, 100)
 }
 
 const switchTheme = (event) => {
   if (!switchTheme.defaultTheme) {
-    switchTheme.defaultTheme = document.getElementById('theme').getAttribute('href')
+    switchTheme.defaultTheme = getThemeElement().getAttribute('href')
   }
 
   const { currentSlide } = event
