@@ -275,12 +275,22 @@ body {
 
 .reveal small {
   font-size: 0.7em;
-  vertical-align: initial; }
+  vertical-align: initial;
+  text-decoration: inherit; }
 
 .reveal pre {
   width: 100%; }
   .reveal pre code {
     padding: 0.6em 0.8em; }
+
+.reveal :not(pre) > code {
+  letter-spacing: -.05em;
+  text-decoration: inherit;
+  line-height: 1;
+  vertical-align: baseline;
+  background-color: #2e2e2c;
+  border-radius: 0.1em;
+  padding: 0 0.1em 0.1em; }
 
 .reveal mark {
   background-color: #f3df49;
@@ -310,21 +320,24 @@ body {
     margin-right: 0; }
 
 .reveal .es-version {
-  animation: glow 1s infinite alternate-reverse;
-  font-size: 0.7em;
-  font-family: "Neutraface 2 Text", Futura, sans-serif;
-  font-weight: 500;
+  font-size: 1rem;
+  font-family: "Andale Mono", monospace;
+  font-weight: 600;
   line-height: 1;
-  background-color: #f3df49;
-  color: #191919;
-  padding: 4px 6px 2px;
+  letter-spacing: -.1em;
+  background-color: #444441;
+  color: #f3df49;
+  padding: 2px 4px;
   border-radius: 999px; }
+
+.reveal .glow {
+  animation: glow 1s infinite alternate-reverse; }
 
 .hljs-comment {
   font-style: normal !important; }
 
 @keyframes glow {
   0% {
-    box-shadow: 0 0 2px #f3df49; }
+    box-shadow: 0 0 1px #f3df49; }
   100% {
-    box-shadow: 0 0 8px #f3df49; } }
+    box-shadow: 0 0 10px #f3df49; } }

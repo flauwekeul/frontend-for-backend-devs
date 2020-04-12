@@ -48,6 +48,7 @@ $selectionColor: $backgroundColor;
   small {
     font-size: 0.7em;
     vertical-align: initial;
+    text-decoration: inherit;
   }
 
   pre {
@@ -56,6 +57,16 @@ $selectionColor: $backgroundColor;
     code {
       padding: 0.6em 0.8em;
     }
+  }
+
+  :not(pre) > code {
+    letter-spacing: -.05em;
+    text-decoration: inherit;
+    line-height: 1;
+    vertical-align: baseline;
+    background-color: $grey-0;
+    border-radius: 0.1em;
+    padding: 0 0.1em 0.1em;
   }
 
   mark {
@@ -101,15 +112,19 @@ $selectionColor: $backgroundColor;
   }
 
   .es-version {
-    animation: glow 1s infinite alternate-reverse;
-    font-size: 0.7em;
-    font-family: $headingFont;
-    font-weight: 500;
+    font-size: 1rem;
+    font-family: $codeFont;
+    font-weight: 600;
     line-height: 1;
-    background-color: $yellow;
-    color: $black;
-    padding: 4px 6px 2px;
+    letter-spacing: -.1em;
+    background-color: $grey-1;
+    color: $yellow;
+    padding: 2px 4px;
     border-radius: 999px;
+  }
+
+  .glow {
+    animation: glow 1s infinite alternate-reverse;
   }
 }
 
@@ -117,12 +132,11 @@ $selectionColor: $backgroundColor;
   font-style: normal !important;
 }
 
-
 @keyframes glow {
   0% {
-    box-shadow: 0 0 2px $yellow;
+    box-shadow: 0 0 1px $yellow;
   }
   100% {
-    box-shadow: 0 0 8px $yellow;
+    box-shadow: 0 0 10px $yellow;
   }
 }
