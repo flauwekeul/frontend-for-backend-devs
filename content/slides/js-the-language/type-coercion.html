@@ -4,15 +4,15 @@
     <li class="fragment">
       JS allows implicit conversion of types:
       <pre><code data-trim class="js">
-        '2' * '3'     // 6
-        'a' + 1       // 'a1'
-        true + false  // 1
+        '2' * '3';    // 6
+        'a' + 1;      // 'a1'
+        true + false; // 1
       </code></pre>
     </li>
     <li class="fragment">
       <em>Any</em> type in JS can be converted:
       <pre><code data-trim class="js">
-        {}+[]+{}+[1]  // '0[object Object]1' ☹️
+        {}+[]+{}+[1]; // '0[object Object]1' ☹️
       </code></pre>
     </li>
   </ul>
@@ -24,20 +24,20 @@
     <li>
       All operators <small>(except <code>===</code>)</small> trigger type coercion:
       <pre class="fragment"><code data-trim class="js">
-        1 >= '1'  // true
-        1 + '1'   // '11'
-        1 / '1'   // 1
+        1 >= '1'; // true
+        1 + '1';  // '11'
+        1 / '1';  // 1
       </code></pre>
     </li>
     <li class="fragment">
       Logical operators don't return booleans, but one of their operands instead:
       <pre class="fragment"><code data-trim data-noescape class="js">
-        0 && 1          // 0
-        0 || 1          // 1
+        0 && 1;         // 0
+        0 || 1;         // 1
         <span class="fragment"><span class="es-version glow" style="position: absolute; transform: translate(-120%, 4em) rotate(-35deg);">ES2020</span>
-        0 ?? 1          // 0
-        null ?? 1       // 1
-        undefined ?? 1  // 1</span>
+        0 ?? 1;         // 0
+        null ?? 1;      // 1
+        undefined ?? 1; // 1</span>
       </code></pre>
     </li>
   </ul>
@@ -49,12 +49,12 @@
     <li>
       Explicit type coercion is possible too:
       <pre class="fragment"><code data-trim class="js">
-        String(1)     // '1'
-        String(true)  // 'true'
-        Boolean(1)    // true
-        Boolean('')   // false
-        Number('1')   // 1
-        Number(false) // 0
+        String(1);      // '1'
+        String(true);   // 'true'
+        Boolean(1);     // true
+        Boolean('');    // false
+        Number('1');    // 1
+        Number(false);  // 0
       </code></pre>
     </li>
     <li class="fragment">
@@ -63,12 +63,12 @@
         <pre class="col"><code data-trim class="js">
           // please don't do this
           if (Boolean(2)) { … }
-          Boolean(2) || Boolean('a')
+          Boolean(2) || Boolean('a');
         </code></pre>
         <pre class="col"><code data-trim class="js">
           // keep it simple
           if (2) { … }
-          2 || 'a'
+          2 || 'a';
         </code></pre>
       </div>
     </li>
@@ -81,21 +81,21 @@
     <li>
       In JS these values are <em>falsy</em>:
       <pre><code data-trim data-noescape class="js">
-        Boolean(<mark>''</mark>)        // false
-        Boolean(<mark>0</mark>)         // false
-        Boolean(<mark>NaN</mark>)       // false
-        Boolean(<mark>null</mark>)      // false
-        Boolean(<mark>undefined</mark>) // false
-        Boolean(<mark>false</mark>)     // false
+        Boolean(<mark>''</mark>);         // false
+        Boolean(<mark>0</mark>);          // false
+        Boolean(<mark>NaN</mark>);        // false
+        Boolean(<mark>null</mark>);       // false
+        Boolean(<mark>undefined</mark>);  // false
+        Boolean(<mark>false</mark>);      // false
       </code></pre>
     </li>
     <li class="fragment">
       Everything else is <em>truthy</em>:
       <pre><code data-trim data-noescape class="js">
-        Boolean(<mark>'a'</mark>)       // true
-        Boolean(<mark>1</mark>)         // true
-        Boolean(<mark>{}</mark>)        // true
-        Boolean(<mark>[]</mark>)        // true
+        Boolean(<mark>'a'</mark>);      // true
+        Boolean(<mark>1</mark>);        // true
+        Boolean(<mark>{}</mark>);       // true
+        Boolean(<mark>[]</mark>);       // true
       </code></pre>
     </li>
   </ul>

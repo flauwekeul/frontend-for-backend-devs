@@ -29,3 +29,73 @@
     <li class="fragment" data-fragment-index="4">There's no reason to use <code>var</code> anymore.</li>
   </ul>
 </section>
+
+<section>
+  <h3>Scope <span class="pager">(2/4)</span></h3>
+  <ul>
+    <li>
+      <em>Global scope</em>'s name depends on the environment:
+      <ul class="fragment">
+        <li><code>window</code>: browsers</li>
+        <li><code>self</code>: browsers, web workers</li>
+        <li><code>global</code>: Node.js</li>
+        <li><code>globalThis</code><sup class="es-version">ES2020</sup>: all environments</li>
+      </ul>
+    </li>
+    <li class="fragment">
+      Anything declared in <em>module scope</em> is only available in that module <small>(until it's exported)</small>.
+    </li>
+  </ul>
+</section>
+
+<section>
+  <h3>Scope <span class="pager">(3/4)</span></h3>
+  <ul>
+    <li>
+      Any variable declared between <code>{</code> and <code>}</code> has block scope.
+      <div class="row">
+        <div class="col fragment">
+          <small>Except with <code>var</code>:</small>
+          <pre><code data-trim class="js">
+            { var a = 1 };
+            a;              // 1
+          </code></pre>
+        </div>
+        <div class="col fragment">
+          <small>Don't confuse it with object literals:</small>
+          <pre><code data-trim data-noescape class="js">
+            const o = { const a = 1 };
+            <small style="letter-spacing: -.5px;">// Uncaught SyntaxError: Unexpected identifier</small>
+          </code></pre>
+        </div>
+      </div>
+    </li>
+  </ul>
+</section>
+
+<section>
+  <h3>Scope <span class="pager">(4/4)</span></h3>
+  <ul>
+    <li>
+      <code>const</code> declares a variable that <em>can't</em> be reassigned.
+      <pre><code data-trim data-noescape class="js">
+        const a = 1;
+        a = 2;        <small>// Uncaught TypeError: Assignment to constant variable.</small>
+      </code></pre>
+      <div class="fragment">
+        <small>Not to be confused with immutability! Object properties can still be mutated:</small>
+        <pre><code data-trim class="js">
+          const o = { a: 1 };
+          o.a = 2;      // 2
+        </code></pre>
+      </div>
+    </li>
+    <li class="fragment">
+      <code>let</code> declares a variable that <em>may</em> be reassigned.
+      <pre><code data-trim data-noescape class="js">
+        let a = 1;
+        a = 2;        // 2
+      </code></pre>
+    </li>
+  </ul>
+</section>
