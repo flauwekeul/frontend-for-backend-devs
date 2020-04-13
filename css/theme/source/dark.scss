@@ -61,8 +61,8 @@ $selectionColor: $backgroundColor;
 
   :not(pre) > code {
     letter-spacing: -.05em;
+    font-size: 0.9em;
     text-decoration: inherit;
-    line-height: 1;
     vertical-align: baseline;
     background-color: $grey-0;
     border-radius: 0.1em;
@@ -76,6 +76,10 @@ $selectionColor: $backgroundColor;
     > * {
       color: inherit;
     }
+  }
+
+  .hljs.has-highlights tr:not(.highlight-line) {
+    opacity: 0.2;
   }
 
   .progress {

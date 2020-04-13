@@ -1,0 +1,114 @@
+<section>
+  <h3>Functions <span class="pager">(1/4)</span></h3>
+  <ul>
+    <li class="fragment">
+      The "regular" function:
+      <pre><code data-trim class="js">
+        const a = function derp(param1, param2) {
+          // ...
+        }
+      </code></pre>
+      <span class="fragment"
+        >Use it when you need context <small>(the <code>this</code> keyword)</small>.</span
+      >
+    </li>
+    <li class="fragment">
+      The arrow function<sup class="es-version">ES2015</sup>:
+      <pre><code data-trim class="js">
+        const a = (param1, param2) => {
+          // ...
+        }
+      </code></pre>
+    </li>
+  </ul>
+</section>
+
+<section>
+  <h3>Functions <span class="pager">(2/4)</span></h3>
+  <ul>
+    <li>
+      When you need the return value of an arrow function, you can omit <code>{</code> and <code>}</code>:
+      <div class="row">
+        <pre class="col fragment"><code data-trim class="js">
+          const a = () => {
+            return 1;
+          }
+          a();               // 1
+        </code></pre>
+        <pre class="col fragment"><code data-trim class="js">
+          const a = () => 1
+
+
+          a();               // 1
+        </code></pre>
+      </div>
+    </li>
+    <li class="fragment">
+      If you want to return an object, use parentheses:
+      <pre><code data-trim class="js">
+        const a = () => ({ a: 1 });
+        a();                        // { a: 1 }
+      </code></pre>
+    </li>
+  </ul>
+</section>
+
+<section>
+  <h3>Functions <span class="pager">(3/4)</span></h3>
+  <ul>
+    <li>
+      JS functions are <em>first-class</em>. They can be:
+      <ul>
+        <li class="fragment">
+          stored in a variable
+          <pre><code data-trim data-line-numbers="1|1-2|1-3|all" class="js">
+            const a = () => 1;
+            const b = a;
+            b;                      // () => 1
+            b();                    // 1
+          </code></pre>
+        </li>
+        <li class="fragment">
+          passed as arguments to functions
+          <pre><code data-trim data-line-numbers="1|1-2|all" class="js">
+            const a = () => 1;
+            const b = (fn) => fn();
+            b(a);                   // 1
+          </code></pre>
+        </li>
+        <li class="fragment">
+          returned from functions
+          <pre><code data-trim data-line-numbers="1|1-2|1-3|all" class="js">
+            const a = () => 1;
+            const b = (fn) => fn;
+            b(a);                   // () => 1
+            b(a)();                 // 1
+          </code></pre>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</section>
+
+<section>
+  <h3>Functions <span class="pager">(4/4)</span></h3>
+  <p>
+    A closure is when an inner function has access to its ancestor function(s) scope, even after the ancestor
+    function(s) have returned:
+  </p>
+  <pre class="fragment"><code data-trim data-line-numbers="1-4,10|1-7,9-10|1-10|1-12|all" class="js">
+    const a = 1;
+
+    const parent = () => {
+      const b = 2;
+
+      return () => {
+        const c = 3;
+        return [a, b, c];
+      }
+    }
+
+    const child = parent();
+    child();                // [1, 2, 3]
+  </code></pre>
+</section>
