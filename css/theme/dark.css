@@ -8,7 +8,7 @@ body {
 
 .reveal {
   font-family: "Source Sans Pro", Helvetica, sans-serif;
-  font-size: 40px;
+  font-size: 36px;
   font-weight: normal;
   color: #fff; }
 
@@ -270,8 +270,14 @@ body {
   background-size: 1px 1em;
   box-shadow: inset 0 -0.17em #191919, inset 0 -0.2em #a0a09c; }
 
-.reveal ul ul {
-  font-size: 0.8em; }
+.reveal p {
+  text-align: left;
+  margin: 0; }
+
+.reveal ul {
+  margin-left: 0; }
+  .reveal ul ul {
+    font-size: 0.8em; }
 
 .reveal small {
   font-size: 0.7em;
@@ -279,18 +285,23 @@ body {
   text-decoration: inherit; }
 
 .reveal pre {
-  width: 100%; }
+  width: 100%;
+  margin: 10px auto; }
   .reveal pre code {
+    box-sizing: border-box;
+    height: 100%;
     padding: 0.6em 0.8em; }
 
 .reveal :not(pre) > code {
-  letter-spacing: -.05em;
   font-size: 0.9em;
   text-decoration: inherit;
   vertical-align: baseline;
   background-color: #2e2e2c;
   border-radius: 0.1em;
   padding: 0 0.1em 0.1em; }
+
+.reveal code {
+  letter-spacing: -.05em; }
 
 .reveal mark {
   background-color: #f3df49;
@@ -335,6 +346,12 @@ body {
 
 .reveal .glow {
   animation: glow 1s infinite alternate-reverse; }
+
+.reveal .border-bad {
+  border: 2px solid #dc3545; }
+
+.reveal .border-good {
+  border: 2px solid #28a745; }
 
 .hljs-comment {
   font-style: normal !important; }

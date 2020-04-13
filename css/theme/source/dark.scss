@@ -20,6 +20,7 @@ $linkColor: $grey-4;
 $linkColorHover: $grey-5;
 $mainColor: #fff;
 $mainFont: 'Source Sans Pro', Helvetica, sans-serif;
+$mainFontSize: 36px;
 $selectionBackgroundColor: $yellow;
 $selectionColor: $backgroundColor;
 
@@ -41,8 +42,17 @@ $selectionColor: $backgroundColor;
       inset 0 -0.2em $linkColor;
   }
 
-  ul ul {
-    font-size: 0.8em;
+  p {
+    text-align: left;
+    margin: 0;
+  }
+
+  ul {
+    margin-left: 0;
+
+    ul {
+      font-size: 0.8em;
+    }
   }
 
   small {
@@ -53,20 +63,26 @@ $selectionColor: $backgroundColor;
 
   pre {
     width: 100%;
+    margin: 10px auto;
 
     code {
+      box-sizing: border-box;
+      height: 100%;
       padding: 0.6em 0.8em;
     }
   }
 
   :not(pre) > code {
-    letter-spacing: -.05em;
     font-size: 0.9em;
     text-decoration: inherit;
     vertical-align: baseline;
     background-color: $grey-0;
     border-radius: 0.1em;
     padding: 0 0.1em 0.1em;
+  }
+
+  code {
+    letter-spacing: -.05em;
   }
 
   mark {
@@ -129,6 +145,14 @@ $selectionColor: $backgroundColor;
 
   .glow {
     animation: glow 1s infinite alternate-reverse;
+  }
+
+  .border-bad {
+    border: 2px solid $red;
+  }
+
+  .border-good {
+    border: 2px solid $green;
   }
 }
 

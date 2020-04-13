@@ -30,7 +30,7 @@
       </code></pre>
     </li>
     <li class="fragment">
-      Logical operators don't return booleans, but one of their operands instead:
+      ⚠️ Logical operators don't return booleans, but one of their operands instead:
       <pre class="fragment"><code data-trim data-noescape class="js">
         0 && 1;         // 0
         0 || 1;         // 1
@@ -60,12 +60,12 @@
     <li class="fragment">
       But implicit type coercion has its advantages:
       <div class="row">
-        <pre class="col"><code data-trim class="js">
+        <pre class="col border-bad"><code data-trim class="js">
           // please don't do this
           if (Boolean(2)) { … }
           Boolean(2) || Boolean('a');
         </code></pre>
-        <pre class="col"><code data-trim class="js">
+        <pre class="col border-good"><code data-trim class="js">
           // keep it simple
           if (2) { … }
           2 || 'a';

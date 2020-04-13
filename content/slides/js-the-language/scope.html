@@ -62,7 +62,7 @@
           </code></pre>
         </div>
         <div class="col fragment">
-          <small>Don't confuse it with object literals:</small>
+          <small>⚠️ Don't confuse it with object literals:</small>
           <pre><code data-trim data-noescape class="js">
             const o = { const a = 1 };
             <small style="letter-spacing: -.5px;">// Uncaught SyntaxError: Unexpected identifier</small>
@@ -83,7 +83,7 @@
         a = 2;        <small>// Uncaught TypeError: Assignment to constant variable.</small>
       </code></pre>
       <div class="fragment">
-        <small>Not to be confused with immutability! Object properties can still be mutated:</small>
+        <small>⚠️ Not to be confused with immutability! Object properties can still be mutated:</small>
         <pre><code data-trim class="js">
           const o = { a: 1 };
           o.a = 2;      // 2
