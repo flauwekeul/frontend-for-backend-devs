@@ -155,7 +155,7 @@
     <li class="fragment">
       With function parameters <small>(and default values)</small>:
       <pre><code data-trim class="js">
-        const fn = ({ a, b, c = 3 }) = ({ a, b, c });
+        const fn = ({ a, b, c = 3 }) => ({ a, b, c });
         fn({ a: 1, b: 2 }); // { a: 1, b: 2, c: 3 }
       </code></pre>
     </li>
@@ -214,7 +214,7 @@
         o1 === o2;      // false
 
         // no deep copy:
-        o1.c === o2.c;  // true
+        o1.b === o2.b;  // true
       </code></pre>
       <pre class="col fragment"><code data-trim data-line-numbers="1-10|all" class="js">
         // merge objects
