@@ -38,13 +38,13 @@
           const a = () => {
             return 1;
           }
-          a();               // 1
+          a();  // 1
         </code></pre>
         <pre class="col fragment"><code data-trim class="js">
-          const a = () => 1
+          const a = () => 1;
 
 
-          a();               // 1
+          a();  // 1
         </code></pre>
       </div>
     </li>
@@ -52,7 +52,7 @@
       If you want to return an object, use parentheses:
       <pre><code data-trim class="js">
         const a = () => ({ a: 1 });
-        a();                        // { a: 1 }
+        a();  // { a: 1 }
       </code></pre>
     </li>
   </ul>
@@ -98,22 +98,39 @@
 <section>
   <h3>Closures <span class="pager">(4/4)</span></h3>
   <p>
-    A closure is when an inner function has access to its ancestor function(s) scope, even after the ancestor
+    A closure is when an inner function has access to its surrounding function(s) scope, even after the surrounding
     function(s) have returned:
   </p>
-  <pre class="fragment"><code data-trim data-line-numbers="1-4,10|1-7,9-10|1-10|1-12|all" class="js">
-    const a = 1;
+  <div class="row">
+    <pre class="col fragment"><code data-trim data-line-numbers="1-4,10|1-7,9-10|1-10|1-12|all" class="js">
+      const a = 1;
 
-    const parent = () => {
-      const b = 2;
+      const parent = () => {
+        const b = 2;
 
-      return () => {
-        const c = 3;
-        return [a, b, c];
+        return () => {
+          const c = 3;
+          return [a, b, c];
+        }
       }
-    }
 
-    const child = parent();
-    child();                // [1, 2, 3]
-  </code></pre>
+      const child = parent();
+      child();  // [1, 2, 3]
+    </code></pre>
+    <div class="col fragment">
+      <p>Closures enable:</p>
+      <ul>
+        <li><em>data privacy</em></li>
+        <li class="fragment">
+          <em>partial application</em>:
+          <pre><code data-trim class="js">
+            const add = a => b => a + b;
+            const add1 = add(1);
+
+            add1(2);  // 3
+          </code></pre>
+        </li>
+      </ul>
+    </div>
+  </div>
 </section>
