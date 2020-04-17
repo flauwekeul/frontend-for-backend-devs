@@ -4,7 +4,7 @@
 </section>
 
 <section>
-  <h3>String interpolation <span class="pager">(1/9)</span></h3>
+  <h3>String interpolation <span class="pager">(1/10)</span></h3>
   <p class="fragment">
     Use string interpolation instead of concatenation with <em>template literals</em
     ><sup class="es-version">ES2015</sup>:
@@ -28,7 +28,7 @@
 </section>
 
 <section>
-  <h3>Object literals <span class="pager">(2/9)</span></h3>
+  <h3>Object literals <span class="pager">(2/10)</span></h3>
   <p>In objects…</p>
   <ul>
     <li>
@@ -77,7 +77,7 @@
 </section>
 
 <section>
-  <h3>Default values <span class="pager">(3/9)</span></h3>
+  <h3>Default values <span class="pager">(3/10)</span></h3>
   <ul>
     <li>
       Functions can have <em>default parameters</em><sup class="es-version">ES2015</sup>:
@@ -114,7 +114,7 @@
 </section>
 
 <section>
-  <h3>Destructuring <span class="pager">(4/9)</span></h3>
+  <h3>Destructuring <span class="pager">(4/10)</span></h3>
   <ul>
     <li>
       It's possible to <em>destructure</em><sup class="es-version">ES2015</sup> properties from objects:
@@ -168,7 +168,7 @@
 </section>
 
 <section>
-  <h3>Rest/spread operator <span class="pager">(5/9)</span></h3>
+  <h3>Rest/spread operator <span class="pager">(5/10)</span></h3>
   <ul>
     <li>
       With <em>rest parameters</em><sup class="es-version">ES2015</sup> any number of arguments are stored in an array:
@@ -200,50 +200,85 @@
 </section>
 
 <section>
-  <h3>Object spread <span class="pager">(6/9)</span></h3>
-  <p>
-    The spread operator also works with objects<sup class="es-version">ES2018</sup>:
-    <div class="row">
-      <pre class="col fragment"><code data-trim data-line-numbers="1-6|1-12|all" class="js">
-        // copy object
-        const o1 = {
-          a: 1,
-          b: { c: 3 },
-        };
-        const o2 = { ...o1 };
-
-        o2;     // {
-                //    a: 1,
-                //    b: { c: 3 }
-                // }
-        o1 === o2;      // false
-
-        // no deep copy:
-        o1.b === o2.b;  // true
+  <h3>Object rest and spread <span class="pager">(6/10)</span></h3>
+  <ul>
+    <li>
+      The rest operator can be used in object destructuring<sup class="es-version">ES2018</sup>:
+      <pre class="fragment"><code data-trim class="js">
+        const o = { a: 1, b: 2, c: 3 };
+        const { a, ...rest } = o;
+        a;    // 1
+        rest; // { b: 2, c: 3 }
       </code></pre>
-      <pre class="col fragment"><code data-trim data-line-numbers="1-10|all" class="js">
-        // merge objects
-        const o1 = {
-          a: 1,
-          b: 2,
-        };
-        const o2 = {
-          ...o1,
-          a: 3,
-          c: 4,
-        };
-        o2; // {
-            //    a: 3,
-            //    b: 2,
-            //    c: 4,
-            // }
-      </code></pre>
-    </div>
-  </p>
+    </li>
+    <li class="fragment">
+      The spread operator also works with objects<sup class="es-version">ES2018</sup>:
+      <div class="row">
+        <pre class="col fragment"><code data-trim data-line-numbers="1-6|1-12|all" class="js">
+          // copy object
+          const o1 = {
+            a: 1,
+            b: { c: 3 },
+          };
+          const o2 = { ...o1 };
+
+          o2;         // {
+                      //    a: 1,
+                      //    b: { c: 3 }
+                      // }
+          o1 === o2;  // false
+
+          // no deep copy:
+          o1.b === o2.b;  // true
+        </code></pre>
+        <pre class="col fragment"><code data-trim data-line-numbers="1-10|all" class="js">
+          // merge objects
+          const o1 = {
+            a: 1,
+            b: 2,
+          };
+          const o2 = {
+            ...o1,
+            a: 3,
+            c: 4,
+          };
+          o2; // {
+              //    a: 3,
+              //    b: 2,
+              //    c: 4,
+              // }
+        </code></pre>
+      </div>
+    </li>
+  </ul>
 </section>
 
 <section>
-  <h3><code>Array.prototype</code> <span class="pager">(7/9)</span></h3>
+  <h3>Object "iteration" <span class="pager">(7/10)</span></h3>
+  <ul>
+    <li>
+      It's possible to iterate over object properties by converting to an array:
+      <pre class="fragment"><code data-trim data-noescape class="js">
+        const o = { a: 1, b: 2, c: 3 };
+
+        Object.keys(o);     // ['a', 'b', 'c']
+        Object.values(o);   // [1, 2, 3]
+        Object.entries(o);  // [['a', 1], ['b', 2], ['c', 3]]
+        <span class="es-version glow" style="position: absolute; transform: translate(-110%, -1.5em) rotate(-35deg);">ES2017</span>
+      </code></pre>
+    </li>
+    <li class="fragment">
+      The result of <code>Object.entries()</code> can be converted back to an object:
+      <pre class="fragment"><code data-trim class="js">
+        const a = [['a', 1], ['b', 2], ['c', 3]];
+        Object.fromEntries(a);  // { a: 1, b: 2, c: 3 }
+      </code></pre>
+    </li>
+  </ul>
+</section>
+
+<section>
+  <h3><code>Array.prototype</code> <span class="pager">(8/10)</span></h3>
   <ul class="stretch">
     <li>
       Prefer <strong>declarative</strong> <code>Array.prototype</code> methods over <strong>imperative</strong> loops:
@@ -301,7 +336,7 @@
 </section>
 
 <section>
-  <h3>More <code>Array.prototype</code> <span class="pager">(8/9)</span></h3>
+  <h3>More <code>Array.prototype</code> <span class="pager">(9/10)</span></h3>
   <ul class="stretch">
     <li>
       <pre><code data-trim class="js">
@@ -356,7 +391,7 @@
 </section>
 
 <section>
-  <h3><code>Map</code> and <code>Set</code> <span class="pager">(9/9)</span></h3>
+  <h3><code>Map</code> and <code>Set</code> <span class="pager">(10/10)</span></h3>
   <div class="row">
     <div class="col">
       <p>A <code>Set</code><sup class="es-version">ES2015</sup> is similar to an <em>array</em>:</p>
