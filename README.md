@@ -7,6 +7,7 @@ This project is a clone of [reveal.js](https://github.com/hakimel/reveal.js) (be
 
 ## Backlog
 
+- [ ] CSS and SASS
 - [ ] Typescript
 - [ ] RxJS
   - [ ] common operators

@@ -5,9 +5,6 @@
 
 @import 'shared.scss';
 
-// Include theme-specific fonts
-@import url(../../lib/font/source-sans-pro/source-sans-pro.css);
-
 // Override theme settings (see ../template/settings.scss)
 $backgroundColor: $yellow;
 $heading1Size: 4em;
@@ -18,7 +15,6 @@ $headingMargin: 0;
 $linkColor: $grey-1;
 $linkColorHover: mix(#fff, $linkColor, 15%);
 $mainColor: $grey-0;
-$mainFont: 'Source Sans Pro', Helvetica, sans-serif;
 $selectionBackgroundColor: mix(#fff, $linkColor, 25%);
 
 // Theme template ------------------------------

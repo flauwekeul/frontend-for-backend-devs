@@ -9,8 +9,13 @@ $grey-5: #c1c1be;
 $red: #dc3545;
 $yellow: #f3df49;
 
+@import url(../../lib/font/andale-mono/andale-mono.css);
+@import url(../../lib/font/josefin-sans/josefin-sans.css);
+@import url(../../lib/font/source-sans-pro/source-sans-pro.css);
+
 $codeFont: 'Andale Mono', monospace;
-$headingFont: 'Neutraface 2 Text', Futura, sans-serif;
+$headingFont: 'Neutraface 2 Text', 'Josefin Sans', sans-serif;
 $headingFontWeight: bold;
 $headingLetterSpacing: -1px;
 $headingTextTransform: uppercase;
+$mainFont: 'Source Sans Pro', Helvetica, sans-serif;

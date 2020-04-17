@@ -5,9 +5,6 @@
 
 @import 'shared.scss';
 
-// Include theme-specific fonts
-@import url(../../lib/font/source-sans-pro/source-sans-pro.css);
-
 // Override theme settings (see ../template/settings.scss)
 $backgroundColor: $black;
 $heading1Size: 2.4em;
@@ -19,7 +16,6 @@ $headingTextShadow: none;
 $linkColor: $grey-4;
 $linkColorHover: $grey-5;
 $mainColor: #fff;
-$mainFont: 'Source Sans Pro', Helvetica, sans-serif;
 $mainFontSize: 36px;
 $selectionBackgroundColor: $yellow;
 $selectionColor: $backgroundColor;
