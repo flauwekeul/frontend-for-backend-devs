@@ -272,10 +272,12 @@ body {
 
 .reveal p {
   text-align: left;
-  margin: 0; }
+  margin: 0;
+  line-height: 1.2; }
 
 .reveal ul {
-  margin-left: 0; }
+  margin-left: 0;
+  line-height: 1.2; }
   .reveal ul ul {
     font-size: 0.8em; }
 
@@ -290,6 +292,7 @@ body {
   .reveal pre code {
     box-sizing: border-box;
     height: 100%;
+    max-height: initial;
     padding: 0.6em 0.8em; }
 
 .reveal :not(pre) > code {
