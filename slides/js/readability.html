@@ -4,7 +4,7 @@
 </section>
 
 <section>
-  <h3>String interpolation <span class="pager">(1/7)</span></h3>
+  <h3>String interpolation <span class="pager">(1/9)</span></h3>
   <p class="fragment">
     Use string interpolation instead of concatenation with <em>template literals</em
     ><sup class="es-version">ES2015</sup>:
@@ -28,7 +28,7 @@
 </section>
 
 <section>
-  <h3>Object literals <span class="pager">(2/7)</span></h3>
+  <h3>Object literals <span class="pager">(2/9)</span></h3>
   <p>In objects…</p>
   <ul>
     <li>
@@ -77,7 +77,7 @@
 </section>
 
 <section>
-  <h3>Default values <span class="pager">(3/7)</span></h3>
+  <h3>Default values <span class="pager">(3/9)</span></h3>
   <ul>
     <li>
       Functions can have <em>default parameters</em><sup class="es-version">ES2015</sup>:
@@ -102,7 +102,7 @@
     </li>
     <li class="fragment">
       ⚠️ It only works with <code>undefined</code>:
-      <pre class="col"><code data-trim class="js">
+      <pre><code data-trim class="js">
         const a = (b = 1) => b
 
         a(0);         // 0
@@ -114,7 +114,7 @@
 </section>
 
 <section>
-  <h3>Destructuring <span class="pager">(4/7)</span></h3>
+  <h3>Destructuring <span class="pager">(4/9)</span></h3>
   <ul>
     <li>
       It's possible to <em>destructure</em><sup class="es-version">ES2015</sup> properties from objects:
@@ -168,7 +168,7 @@
 </section>
 
 <section>
-  <h3>Rest/spread operator <span class="pager">(5/7)</span></h3>
+  <h3>Rest/spread operator <span class="pager">(5/9)</span></h3>
   <ul>
     <li>
       With <em>rest parameters</em><sup class="es-version">ES2015</sup> any number of arguments are stored in an array:
@@ -200,7 +200,7 @@
 </section>
 
 <section>
-  <h3>Object spread <span class="pager">(6/7)</span></h3>
+  <h3>Object spread <span class="pager">(6/9)</span></h3>
   <p>
     The spread operator also works with objects<sup class="es-version">ES2018</sup>:
     <div class="row">
@@ -243,7 +243,7 @@
 </section>
 
 <section>
-  <h3><code>Array.prototype</code> <span class="pager">(7/7)</span></h3>
+  <h3><code>Array.prototype</code> <span class="pager">(7/9)</span></h3>
   <ul class="stretch">
     <li>
       Prefer <strong>declarative</strong> <code>Array.prototype</code> methods over <strong>imperative</strong> loops:
@@ -285,17 +285,115 @@
       <div class="row">
         <pre class="col fragment"><code data-trim class="js">
           const a = [1, 2, 3];
-          // check if all items satisfy a condition:
-          const b = a.every((item) => item > 2);
-          b;  // false;
+          // check if any item satisfies condition:
+          const b = a.some((item) => item > 2);
+          b;  // true;
         </code></pre>
         <pre class="col fragment"><code data-trim class="js">
           const a = [1, 2, 3];
-          // reduce to a single value:
-          const b = a.reduce((acc, item) => acc + item, 0);
-          b;  // 6;
+          // check if all items satisfy condition:
+          const b = a.every((item) => item > 2);
+          b;  // false;
         </code></pre>
       </div>
     </li>
   </ul>
+</section>
+
+<section>
+  <h3>More <code>Array.prototype</code> <span class="pager">(8/9)</span></h3>
+  <ul class="stretch">
+    <li>
+      <pre><code data-trim class="js">
+        const a = [1, 2, 3];
+        // check if primitive is present:
+        const b = a.includes(3);
+        b;  // true;
+      </code></pre>
+    </li>
+    <li class="fragment">
+      <pre><code data-trim class="js">
+        const a = [1, 2, 3];
+        // reduce to a single value:
+        const b = a.reduce((acc, item) => acc + item, 0);
+        b;  // 6;
+      </code></pre>
+    </li>
+    <li class="fragment">
+      <div class="row">
+        <div class="col">
+          <pre><code data-trim data-noescape class="js">
+            const a = [[1, 2], [[3], [4, 5]]];
+            <span class="fragment"><span class="es-version glow" style="position: absolute; transform: translate(-110%, 4em) rotate(-35deg);">ES2019</span>
+            // flatten array 1 level:
+            const b = a.flat();
+            b;  // [1, 2, [3], [4, 5]];</span>
+            <span class="fragment">
+            // flatten array 2 levels:
+            const c = a.flat(2);
+            c;  // [1, 2, 3, 4, 5];</span>
+          </code></pre>
+        </div>
+        <div class="col fragment">
+          <pre><code data-trim data-noescape class="js">
+            const a = [
+              { numbers: [1, 2, 3] },
+              { numbers: [4, 5] },
+            ];
+            <span class="fragment">
+            // get numbers with map:
+            const b = a.map((item) => item.numbers);
+            b;  // [[1, 2, 3], [4, 5]];</span>
+            <span class="fragment"><span class="es-version glow" style="position: absolute; transform: translate(-110%, 4em) rotate(-35deg);">ES2019</span>
+            // get numbers with flatMap:
+            const c = a.flatMap((item) => item.numbers);
+            c;  // [1, 2, 3, 4, 5];</span>
+          </code></pre>
+        </div>
+      </div>
+    </li>
+  </ul>
+</section>
+
+<section>
+  <h3><code>Map</code> and <code>Set</code> <span class="pager">(9/9)</span></h3>
+  <div class="row">
+    <div class="col">
+      <p>A <code>Set</code><sup class="es-version">ES2015</sup> is similar to an <em>array</em>:</p>
+      <pre class="fragment"><code data-trim data-line-numbers="1-2|1-8|all" class="js">
+        const a = new Set([1, 2, 3]);
+        a;            // Set(3) {1, 2, 3}
+
+        // different API than array:
+        a.size;       // 3
+        a.has(2);     // true
+        a.add(4);     // Set(4) {1, 2, 3, 4}
+        a.delete(4);
+
+        // items are unique:
+        const b = new Set(['a', 'a', 'b']);
+        b;            // Set(2) {'a', 'b'}
+      </code></pre>
+    </div>
+    <div class="col fragment">
+      <p>A <code>Map</code><sup class="es-version">ES2015</sup> is similar to an <em>object literal</em>:</p>
+      <pre class="fragment"><code data-trim data-line-numbers="1-2|1-9|all" class="js">
+        const a = new Map([['a', 1], ['b', 2]]);
+        a;  // Map(2) {'a' => 1, 'b' => 2}
+
+        // different API than object literal:
+        a.size;       // 2
+        a.has('a');   // true
+        a.get('b');   // 2
+        a.set('c', 3);
+        a.delete('c');
+
+        // keys can be any value:
+        const b = new Map();
+        b.set({ a: 1 }, 'a');
+        b.set([1, 2], 'b');
+      </code></pre>
+      <small class="fragment">Performs better when key/value pairs are frequently added/removed.</small>
+    </div>
+  </div>
 </section>
