@@ -4,7 +4,7 @@
 </section>
 
 <section>
-  <h3>String interpolation <span class="pager">(1/10)</span></h3>
+  <h3>String interpolation <span class="pager">(1/11)</span></h3>
   <p class="fragment">
     Use string interpolation instead of concatenation with <em>template literals</em
     ><sup class="es-version">ES2015</sup>:
@@ -28,7 +28,44 @@
 </section>
 
 <section>
-  <h3>Object literals <span class="pager">(2/10)</span></h3>
+  <h3>Default values <span class="pager">(2/11)</span></h3>
+  <ul>
+    <li>
+      Functions can have <em>default parameters</em><sup class="es-version">ES2015</sup>:
+      <div class="row">
+        <pre class="col border-bad fragment"><code data-trim class="js">
+          const a = (b) => {
+            b = b || 1;
+            return b;
+          }
+
+          a();  // 1
+        </code></pre>
+        <pre class="col border-good fragment"><code data-trim class="js">
+          const a = (b = 1) => b
+
+
+
+
+          a();  // 1
+        </code></pre>
+      </div>
+    </li>
+    <li class="fragment">
+      ⚠️ It only works with <code>undefined</code>:
+      <pre><code data-trim class="js">
+        const a = (b = 1) => b
+
+        a(0);         // 0
+        a(null);      // null
+        a(undefined); // 1
+      </code></pre>
+    </li>
+  </ul>
+</section>
+
+<section>
+  <h3>Object literals <span class="pager">(3/11)</span></h3>
   <p>In objects…</p>
   <ul>
     <li>
@@ -77,44 +114,38 @@
 </section>
 
 <section>
-  <h3>Default values <span class="pager">(3/10)</span></h3>
-  <ul>
-    <li>
-      Functions can have <em>default parameters</em><sup class="es-version">ES2015</sup>:
-      <div class="row">
-        <pre class="col border-bad fragment"><code data-trim class="js">
-          const a = (b) => {
-            b = b || 1;
-            return b;
-          }
+  <h3>Nested property lookup <span class="pager">(4/11)</span></h3>
+  <p>When you have an object with possibly nested properties, use <em>optional chaining</em><sup class="es-version glow">ES2020</sup>:</p>
+  <div class="row">
+    <pre class="col fragment border-bad"><code data-trim data-line-numbers="1-3|1-7|all" class="js">
+      const findProp = (o) => {
+        return o && o.a && o.a.b && o.a.b.c;
+      }
 
-          a();  // 1
-        </code></pre>
-        <pre class="col border-good fragment"><code data-trim class="js">
-          const a = (b = 1) => b
+      findProp();           // undefined
+      findProp({ a: {} });  // undefined
+      findProp({ a: { b: { c: 1 } } }); // 1
 
+      // works with falsy values:
+      findProp({ a: 0 });   // 0
+    </code></pre>
+    <pre class="col fragment border-good"><code data-trim data-line-numbers="1-3|1-7|all" class="js">
+      const findProp = (o) => {
+        return o?.a?.b?.c;
+      }
 
+      findProp();           // undefined
+      findProp({ a: {} });  // undefined
+      findProp({ a: { b: { c: 1 } } }); // 1
 
-
-          a();  // 1
-        </code></pre>
-      </div>
-    </li>
-    <li class="fragment">
-      ⚠️ It only works with <code>undefined</code>:
-      <pre><code data-trim class="js">
-        const a = (b = 1) => b
-
-        a(0);         // 0
-        a(null);      // null
-        a(undefined); // 1
-      </code></pre>
-    </li>
-  </ul>
+      // ⚠️ only works with null and undefined:
+      findProp({ a: 0 });   // undefined
+    </code></pre>
+  </div>
 </section>
 
 <section>
-  <h3>Destructuring <span class="pager">(4/10)</span></h3>
+  <h3>Destructuring <span class="pager">(5/11)</span></h3>
   <ul>
     <li>
       It's possible to <em>destructure</em><sup class="es-version">ES2015</sup> properties from objects:
@@ -168,7 +199,7 @@
 </section>
 
 <section>
-  <h3>Rest/spread operator <span class="pager">(5/10)</span></h3>
+  <h3>Rest/spread operator <span class="pager">(6/11)</span></h3>
   <ul>
     <li>
       With <em>rest parameters</em><sup class="es-version">ES2015</sup> any number of arguments are stored in an array:
@@ -200,7 +231,7 @@
 </section>
 
 <section>
-  <h3>Object rest and spread <span class="pager">(6/10)</span></h3>
+  <h3>Object rest and spread <span class="pager">(7/11)</span></h3>
   <ul>
     <li>
       The rest operator can be used in object destructuring<sup class="es-version">ES2018</sup>:
@@ -254,7 +285,7 @@
 </section>
 
 <section>
-  <h3>Object "iteration" <span class="pager">(7/10)</span></h3>
+  <h3>Object "iteration" <span class="pager">(8/11)</span></h3>
   <ul>
     <li>
       It's possible to iterate over object properties by converting to an array:
@@ -278,7 +309,7 @@
 </section>
 
 <section>
-  <h3><code>Array.prototype</code> <span class="pager">(8/10)</span></h3>
+  <h3><code>Array.prototype</code> <span class="pager">(9/11)</span></h3>
   <ul class="stretch">
     <li>
       Prefer <strong>declarative</strong> <code>Array.prototype</code> methods over <strong>imperative</strong> loops:
@@ -336,7 +367,7 @@
 </section>
 
 <section>
-  <h3>More <code>Array.prototype</code> <span class="pager">(9/10)</span></h3>
+  <h3>More <code>Array.prototype</code> <span class="pager">(10/11)</span></h3>
   <ul class="stretch">
     <li>
       <pre><code data-trim class="js">
@@ -391,7 +422,7 @@
 </section>
 
 <section>
-  <h3><code>Map</code> and <code>Set</code> <span class="pager">(10/10)</span></h3>
+  <h3><code>Map</code> and <code>Set</code> <span class="pager">(11/11)</span></h3>
   <div class="row">
     <div class="col">
       <p>A <code>Set</code><sup class="es-version">ES2015</sup> is similar to an <em>array</em>:</p>
