@@ -102,8 +102,8 @@
     function(s) have returned:
   </p>
   <div class="row">
-    <pre class="col fragment"><code data-trim data-line-numbers="1-4,10|1-7,9-10|1-10|1-12|all" class="js">
-      const a = 1;
+    <pre class="col fragment"><code data-trim data-line-numbers="1-4,10|1-7,9-10|1-10|1-13|all" class="js">
+      let a = 1;
 
       const parent = () => {
         const b = 2;
@@ -116,6 +116,9 @@
 
       const child = parent();
       child();  // [1, 2, 3]
+
+      a = 4;
+      child();  // [4, 2, 3]
     </code></pre>
     <div class="col fragment">
       <p>Closures enable:</p>

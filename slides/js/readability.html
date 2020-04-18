@@ -312,7 +312,7 @@
   <h3><code>Array.prototype</code> <span class="pager">(9/11)</span></h3>
   <ul class="stretch">
     <li>
-      Prefer <strong>declarative</strong> <code>Array.prototype</code> methods over <strong>imperative</strong> loops:
+      <span style="font-size: 0.9em;">Prefer <strong>declarative</strong> <code>Array.prototype</code> methods over <strong>imperative</strong> loops:</span>
       <div class="row">
         <pre class="col fragment border-bad"><code data-trim class="js">
           const a = [1, 2, 3];
@@ -333,34 +333,41 @@
       </div>
     </li>
     <li class="fragment">
-      More examples:
       <div class="row">
-        <pre class="col"><code data-trim class="js">
-          const a = [1, 2, 3];
-          // filter items:
-          const b = a.filter((item) => item > 2);
-          b;  // [3];
-        </code></pre>
-        <pre class="col fragment"><code data-trim class="js">
-          const a = [1, 2, 3];
-          // find item:
-          const b = a.find((item) => item === 2);
-          b;  // 2;
-        </code></pre>
+        <div class="col">
+          <small>Filter items:</small>
+          <pre><code data-trim class="js">
+            const a = [1, 2, 3];
+            const b = a.filter((item) => item > 2);
+            b;  // [3];
+          </code></pre>
+          </div>
+        <div class="col fragment">
+          <small>Find (first) item:</small>
+          <pre><code data-trim class="js">
+            const a = [1, 2, 3];
+            const b = a.find((item) => item === 2);
+            b;  // 2;
+          </code></pre>
+          </div>
       </div>
       <div class="row">
-        <pre class="col fragment"><code data-trim class="js">
-          const a = [1, 2, 3];
-          // check if any item satisfies condition:
-          const b = a.some((item) => item > 2);
-          b;  // true;
-        </code></pre>
-        <pre class="col fragment"><code data-trim class="js">
-          const a = [1, 2, 3];
-          // check if all items satisfy condition:
-          const b = a.every((item) => item > 2);
-          b;  // false;
-        </code></pre>
+        <div class="col fragment">
+          <small>Check if <em>any</em> item satisfies a condition:</small>
+          <pre><code data-trim class="js">
+            const a = [1, 2, 3];
+            const b = a.some((item) => item > 2);
+            b;  // true;
+          </code></pre>
+        </div>
+        <div class="col fragment">
+          <small>Check if <em>all</em> items satisfy condition:</small>
+          <pre><code data-trim class="js">
+            const a = [1, 2, 3];
+            const b = a.every((item) => item > 2);
+            b;  // false;
+          </code></pre>
+        </div>
       </div>
     </li>
   </ul>
@@ -370,24 +377,29 @@
   <h3>More <code>Array.prototype</code> <span class="pager">(10/11)</span></h3>
   <ul class="stretch">
     <li>
-      <pre><code data-trim class="js">
-        const a = [1, 2, 3];
-        // check if primitive is present:
-        const b = a.includes(3);
-        b;  // true;
-      </code></pre>
-    </li>
-    <li class="fragment">
-      <pre><code data-trim class="js">
-        const a = [1, 2, 3];
-        // reduce to a single value:
-        const b = a.reduce((acc, item) => acc + item, 0);
-        b;  // 6;
-      </code></pre>
+      <div class="row">
+        <div class="col" style="width: 33%;">
+          <small>Check if primitive is present:</small>
+          <pre><code data-trim class="js">
+            const a = [1, 2, 3];
+            const b = a.includes(3);
+            b;  // true;
+          </code></pre>
+        </div>
+        <div class="col fragment" style="width: auto;">
+          <small>Reduce to a single value:</small>
+          <pre><code data-trim class="js">
+            const a = [1, 2, 3];
+            const b = a.reduce((acc, item) => acc + item, 0);
+            b;  // 6;
+          </code></pre>
+        </div>
+      </div>
     </li>
     <li class="fragment">
       <div class="row">
-        <div class="col">
+        <div class="col" style="width: 45%;">
+          <small>Flatten array:</small>
           <pre><code data-trim data-noescape class="js">
             const a = [[1, 2], [[3], [4, 5]]];
             <span class="fragment"><span class="es-version glow" style="position: absolute; transform: translate(-110%, 4em) rotate(-35deg);">ES2019</span>
@@ -400,7 +412,8 @@
             c;  // [1, 2, 3, 4, 5];</span>
           </code></pre>
         </div>
-        <div class="col fragment">
+        <div class="col fragment" style="width: auto;">
+          <small>Map and flatten array:</small>
           <pre><code data-trim data-noescape class="js">
             const a = [
               { numbers: [1, 2, 3] },
@@ -459,7 +472,9 @@
         b.set({ a: 1 }, 'a');
         b.set([1, 2], 'b');
       </code></pre>
-      <small class="fragment">Performs better when key/value pairs are frequently added/removed.</small>
+      <p>
+        <small class="fragment">Performs better when key/value pairs are frequently added/removed.</small>
+      </p>
     </div>
   </div>
 </section>

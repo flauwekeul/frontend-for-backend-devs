@@ -63,7 +63,7 @@
           <small>Except with <code>var</code>:</small>
           <pre><code data-trim class="js">
             { var a = 1 };
-            a;              // 1
+            a;  // 1
           </code></pre>
         </div>
         <div class="col fragment">
@@ -75,6 +75,15 @@
         </div>
       </div>
     </li>
+    <li class="fragment">
+      Both <code>const</code> and <code>let</code> forbid access before declaration:
+      <pre><code data-trim class="js">
+        {
+          a;  // Uncaught ReferenceError: Cannot access 'a' before initialization
+          const a = 1;
+        };
+      </code></pre>
+    </li>
   </ul>
 </section>
 
@@ -84,12 +93,12 @@
     <li>
       <code>const</code> declares a variable that <em>can't</em> be reassigned
       <small>(like <code>final</code> in Java)</small>:
-      <pre class="fragment"><code data-trim data-noescape class="js">
+      <pre class="fragment"><code data-trim class="js">
         const a = 1;
-        a = 2;        <small>// Uncaught TypeError: Assignment to constant variable.</small>
+        a = 2;  // Uncaught TypeError: Assignment to constant variable.
       </code></pre>
       <div class="fragment">
-        <small>⚠️ Not to be confused with immutability! Object properties can still be mutated:</small>
+        ⚠️ Not to be confused with immutability! Object properties can still be mutated:
         <pre><code data-trim class="js">
           const o = { a: 1 };
           o.a = 2;      // 2
