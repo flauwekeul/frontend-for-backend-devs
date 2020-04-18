@@ -1,0 +1,33 @@
+// Default mixins and settings -----------------
+@import "../template/mixins";
+@import "../template/settings";
+// ---------------------------------------------
+
+@import 'shared.scss';
+
+// Override theme settings (see ../template/settings.scss)
+$backgroundColor: $ts-blue;
+$heading1Size: 4em;
+$heading2Size: 2em;
+$headingColor: #fff;
+$headingLineHeight: 1.1;
+$headingMargin: 0;
+$linkColor: $grey-5;
+$linkColorHover: mix(#000, $linkColor, 15%);
+$mainColor: #fff;
+$selectionBackgroundColor: mix(#000, $linkColor, 25%);
+
+// Theme template ------------------------------
+@import "../template/theme";
+// ---------------------------------------------
+
+.reveal {
+  h2 {
+    color: $grey-6;
+  }
+
+  &:not(.overview) section:not(.stack) {
+    text-align: right;
+    margin-top: 15%;
+  }
+}

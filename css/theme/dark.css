@@ -15,7 +15,8 @@
   --js-yellow: #f3df49;
   --red: #dc3545;
   --rx-pink: #E01D84;
-  --rx-purple: #5D2F88; }
+  --rx-purple: #5D2F88;
+  --ts-blue: #007acc; }
 
 @keyframes glow {
   0% {

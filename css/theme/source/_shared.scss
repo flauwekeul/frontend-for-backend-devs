@@ -12,6 +12,7 @@ $js-yellow: #f3df49;
 $red: #dc3545;
 $rx-pink: #E01D84;
 $rx-purple: #5D2F88;
+$ts-blue: #007acc;
 
 :root {
   --black: #{$black};
@@ -28,6 +29,7 @@ $rx-purple: #5D2F88;
   --red: #{$red};
   --rx-pink: #{$rx-pink};
   --rx-purple: #{$rx-purple};
+  --ts-blue: #{$ts-blue};
 }
 
 @import url(../../lib/font/andale-mono/andale-mono.css);
