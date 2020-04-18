@@ -17,7 +17,7 @@ $linkColor: $grey-4;
 $linkColorHover: $grey-5;
 $mainColor: #fff;
 $mainFontSize: 36px;
-$selectionBackgroundColor: $yellow;
+$selectionBackgroundColor: $js-yellow;
 $selectionColor: $backgroundColor;
 
 // Theme template ------------------------------
@@ -98,7 +98,7 @@ $selectionColor: $backgroundColor;
   }
 
   .progress {
-    color: $yellow;
+    color: $js-yellow;
   }
 
   .pager {
@@ -137,7 +137,7 @@ $selectionColor: $backgroundColor;
     line-height: 1;
     letter-spacing: -.1em;
     background-color: $grey-1;
-    color: $yellow;
+    color: $js-yellow;
     padding: 2px 4px;
     border-radius: 999px;
   }
@@ -161,9 +161,9 @@ $selectionColor: $backgroundColor;
 
 @keyframes glow {
   0% {
-    box-shadow: 0 0 1px $yellow;
+    box-shadow: 0 0 1px $js-yellow;
   }
   100% {
-    box-shadow: 0 0 10px $yellow;
+    box-shadow: 0 0 10px $js-yellow;
   }
 }
