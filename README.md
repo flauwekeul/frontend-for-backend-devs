@@ -13,13 +13,17 @@ This project is a clone of [reveal.js](https://github.com/hakimel/reveal.js) (be
   - [x] functions (regular and arrow, closures)
   - [x] readability
   - [ ] context (`this`)
-  - [ ] prototypal inheritance and classes
+  - [ ] prototypal inheritance and classes (https://medium.com/front-end-weekly/typescript-class-vs-interface-99c0ae1c2136)
   - [ ] asynchrony (event loop, callbacks, promises, async/await)
   - [ ] iterators and generators? (`Set` and `Map`)
   - [ ] proxies?
   - [ ] functional programming
 - [ ] CSS and SASS
 - [ ] Typescript
+  - [ ] new types (interface, tuple, enum)
+  - [ ] generics
+  - [ ] ["advances" types](https://www.typescriptlang.org/docs/handbook/advanced-types.html)
+  - [ ] best-practices (interfaces over classes, type inference, build-in types)
 - [ ] RxJS
   - [ ] common operators
   - [ ] subscriptions
@@ -35,5 +39,6 @@ This project is a clone of [reveal.js](https://github.com/hakimel/reveal.js) (be
 - [ ] NX
 - [ ] Node.js
 - [ ] (Generated) TOC
-- [ ] Add logo? Slide about me? Favicon
+- [x] Slide about me
+- [ ] Add favicon?
 - [ ] Migrate to [eagle.js](https://zulko.github.io/eaglejs-demo/#/)?

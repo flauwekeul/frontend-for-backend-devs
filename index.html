@@ -25,17 +25,7 @@
   <body>
     <div class="reveal">
       <div class="slides">
-        <section data-theme="javascript">
-          <h1>Frontend</h1>
-          <h2>for backend devs</h2>
-        </section>
-
         <section data-external-replace="slides/"></section>
-
-        <section data-theme="javascript">
-          <h1>The end</h1>
-          <h2>for now…</h2>
-        </section>
       </div>
     </div>
 
@@ -58,7 +48,7 @@
             src: 'plugin/external/external.js',
             condition: () => document.querySelector('[data-external],[data-external-replace]'),
           },
-          { src: 'plugin/switch-theme/switch-theme.js', condition: () => document.querySelector('[data-theme]') },
+          { src: 'plugin/switch-theme/switch-theme.js' },
         ],
       })
     </script>

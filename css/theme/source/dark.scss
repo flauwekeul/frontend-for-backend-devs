@@ -1,6 +1,6 @@
 // Default mixins and settings -----------------
-@import "../template/mixins";
-@import "../template/settings";
+@import '../template/mixins';
+@import '../template/settings';
 // ---------------------------------------------
 
 @import 'shared.scss';
@@ -21,7 +21,7 @@ $selectionBackgroundColor: $js-yellow;
 $selectionColor: $backgroundColor;
 
 // Theme template ------------------------------
-@import "../template/theme";
+@import '../template/theme';
 // ---------------------------------------------
 
 .reveal {
@@ -36,6 +36,10 @@ $selectionColor: $backgroundColor;
     box-shadow:
       inset 0 -0.17em $backgroundColor,
       inset 0 -0.2em $linkColor;
+
+    &.encrypted-mail:after {
+      content: attr(data-name) '@' attr(data-domain) '.' attr(data-tld);
+    }
   }
 
   p {
@@ -51,6 +55,13 @@ $selectionColor: $backgroundColor;
     ul {
       font-size: 0.8em;
     }
+  }
+
+  section img {
+    margin: 0;
+    background: none;
+    border: none;
+    box-shadow: none;
   }
 
   small {
