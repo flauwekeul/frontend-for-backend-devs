@@ -1,0 +1,115 @@
+<section data-theme="rxjs">
+  <img src="assets/logo-rx.svg" alt="Logo RX" style="width: 6em;" />
+  <h1>RxJS</h1>
+  <h2>Concepts</h2>
+</section>
+
+<section data-theme="rxjs">
+  <h3>Limitations of Promises <span class="pager">(1/5)</span></h3>
+  <p style="text-align: left; font-weight: bold;">Promises…</p>
+  <ul style="display: block; margin-bottom: 1em;">
+    <li class="fragment">can only resolve once; they handle a <em>single event</em></li>
+    <li class="fragment">cannot be <em>canceled</em></li>
+    <li class="fragment">are always <em>asynchronous</em></li>
+    <li class="fragment">execute on <em>creation</em>.</li>
+  </ul>
+  <p style="text-align: left; font-weight: bold;" class="fragment">Observables…</p>
+  <ul style="display: block;">
+    <li class="fragment">handle <em>0 or more</em> events</li>
+    <li class="fragment">can be <em>canceled</em></li>
+    <li class="fragment">can be <em>synchronous</em> or <em>asynchronous</em></li>
+    <li class="fragment">execute when <em>subscribed</em>.</li>
+  </ul>
+</section>
+
+<section data-theme="rxjs">
+  <h3>Observable <span class="pager">(2/5)</span></h3>
+  <p class="fragment">A stream of (future) values or events:</p>
+  <pre class="fragment"><code data-trim data-line-numbers="1-3|1-4|1-7|all" class="ts">
+    import { from, fromEvent, interval, of } from 'rxjs';
+
+    of('a');
+    from([1, 2, 3]);
+
+    const button = document.getElementById('someButton');
+    fromEvent(button, 'click');
+
+    interval(1000);
+  </code></pre>
+</section>
+
+<section data-theme="rxjs">
+  <h3>Subscription <span class="pager">(3/5)</span></h3>
+  <ul>
+    <li>
+      Only when an observable is <em>subscribed</em>, it starts doing things:
+      <pre class="fragment"><code data-trim class="ts">
+        import { interval } from 'rxjs';
+
+        interval(1000).subscribe();
+      </code></pre>
+    </li>
+    <li class="fragment">
+      A subscription is commonly used to stop the observable later:
+      <pre class="fragment"><code data-trim data-line-numbers="1-3|all" class="ts">
+        import { interval } from 'rxjs';
+
+        const subscription = interval(1000).subscribe();
+        // later:
+        subscription.unsubscribe();
+      </code></pre>
+    </li>
+  </ul>
+</section>
+
+<section data-theme="rxjs">
+  <h3>Observer <span class="pager">(4/5)</span></h3>
+  <ul>
+    <li>
+      The <code>subscribe()</code> method accepts an <em>observer</em>:
+      <pre class="fragment"><code data-trim class="ts">
+        of('a').subscribe((value) => {
+          console.log(value);
+        });
+        // 'a'
+      </code></pre>
+    </li>
+    <li class="fragment">
+      Which can also be an object:
+      <pre class="fragment"><code data-trim data-line-numbers="1,5|1,2,5|1,3,5|1,4,5|all" class="ts">
+        of('a', new Error('derp')).subscribe({
+          next:     (value) =>  { console.log(value);       },
+          error:    (error) =>  { console.log(error);       },
+          complete: ()      =>  { console.log('complete');  },
+        });
+        // 'a'
+        // 'Error: derp'
+        // 'complete'
+      </code></pre>
+    </li>
+  </ul>
+</section>
+
+<section data-theme="rxjs">
+  <h3>Operators <span class="pager">(5/5)</span></h3>
+  <p>Values in an observable can be altered using operators:</p>
+  <pre class="fragment" data-fragment-index="1"><code data-trim data-noescape class="ts">
+    import { of } from 'rxjs';<span class="fragment" data-fragment-index="2">
+    import { filter<span class="fragment" data-fragment-index="3">, map</span> } from 'rxjs/operators';</span>
+
+    of(1, 2, 3)
+      <span class="fragment" data-fragment-index="2">.pipe(
+        filter((nr) => nr > 1),
+        <span class="fragment" data-fragment-index="3">map((nr) => nr * 10),</span>
+      )</span>
+      .subscribe((value) => {
+        console.log(value);
+      });
+
+    <span class="fragment replace" data-fragment-index="1">// 1
+    // 2
+    // 3</span><span class="fragment replace" data-fragment-index="2">// 2
+    // 3</span><span class="fragment" data-fragment-index="3">// 20
+    // 30</span>
+  </code></pre>
+</section>

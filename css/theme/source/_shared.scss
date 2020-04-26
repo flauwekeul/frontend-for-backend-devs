@@ -6,8 +6,12 @@ $grey-2: #5e5e5a;
 $grey-3: #7d7d78;
 $grey-4: #a0a09c;
 $grey-5: #c1c1be;
+$grey-6: #e1e1e0;
+$grey-7: #fafafa;
 $js-yellow: #f3df49;
 $red: #dc3545;
+$rx-pink: #E01D84;
+$rx-purple: #5D2F88;
 
 :root {
   --black: #191919;
@@ -20,11 +24,22 @@ $red: #dc3545;
   --grey-5: #c1c1be;
   --js-yellow: #f3df49;
   --red: #dc3545;
+  --rx-pink: #E01D84;
+  --rx-purple: #5D2F88;
 }
 
 @import url(../../lib/font/andale-mono/andale-mono.css);
 @import url(../../lib/font/josefin-sans/josefin-sans.css);
 @import url(../../lib/font/source-sans-pro/source-sans-pro.css);
+
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 1px $js-yellow;
+  }
+  100% {
+    box-shadow: 0 0 10px $js-yellow;
+  }
+}
 
 $codeFont: 'Andale Mono', monospace;
 $headingFont: 'Neutraface 2 Text', 'Josefin Sans', sans-serif;
@@ -32,3 +47,53 @@ $headingFontWeight: bold;
 $headingLetterSpacing: -1px;
 $headingTextTransform: uppercase;
 $mainFont: 'Source Sans Pro', Helvetica, sans-serif;
+
+.pager {
+  color: $grey-3;
+  font-weight: 300;
+  margin-left: 0.4em;
+}
+
+.row {
+  $gutter: 1em;
+  display: flex;
+
+  .col {
+    width: calc(50% - #{$gutter});
+    margin: {
+      left: $gutter / 2;
+      right: $gutter / 2;
+    }
+  }
+
+  .col:first-child {
+    width: calc(50% - #{$gutter / 2});
+    margin-left: 0;
+  }
+
+  .col:last-child {
+    width: calc(50% - #{$gutter / 2});
+    margin-right: 0;
+  }
+}
+
+.border-bad {
+  border: 2px solid $red;
+}
+
+.border-good {
+  border: 2px solid $green;
+}
+
+.glow {
+  animation: glow 1s infinite alternate-reverse;
+}
+
+.fragment.replace {
+	opacity: 0;
+  display: none;
+}
+.fragment.replace.current-fragment {
+	opacity: 1;
+  display: initial;
+}

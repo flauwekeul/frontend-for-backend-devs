@@ -3,7 +3,7 @@
 @import '../template/settings';
 // ---------------------------------------------
 
-@import 'shared.scss';
+@import 'shared';
 
 // Override theme settings (see ../template/settings.scss)
 $backgroundColor: $black;
@@ -44,55 +44,10 @@ $selectionColor: $backgroundColor;
 
   p {
     text-align: left;
-    margin: 0;
-    line-height: 1.2;
-  }
-
-  ul {
-    margin-left: 0;
-    line-height: 1.2;
-
-    ul {
-      font-size: 0.8em;
-    }
-  }
-
-  section img {
-    margin: 0;
-    background: none;
-    border: none;
-    box-shadow: none;
-  }
-
-  small {
-    font-size: 0.7em;
-    vertical-align: initial;
-    text-decoration: inherit;
-  }
-
-  pre {
-    width: 100%;
-    margin: 10px auto;
-
-    code {
-      box-sizing: border-box;
-      height: 100%;
-      max-height: initial;
-      padding: 0.6em 0.8em;
-    }
   }
 
   :not(pre) > code {
-    font-size: 0.9em;
-    text-decoration: inherit;
-    vertical-align: baseline;
     background-color: $grey-0;
-    border-radius: 0.1em;
-    padding: 0 0.1em 0.1em;
-  }
-
-  code {
-    letter-spacing: -.05em;
   }
 
   mark {
@@ -104,41 +59,8 @@ $selectionColor: $backgroundColor;
     }
   }
 
-  .hljs.has-highlights tr:not(.highlight-line) {
-    opacity: 0.2;
-  }
-
   .progress {
     color: $js-yellow;
-  }
-
-  .pager {
-    color: $grey-3;
-    font-weight: 300;
-    margin-left: 0.4em;
-  }
-
-  .row {
-    $gutter: 1em;
-    display: flex;
-
-    .col {
-      width: calc(50% - #{$gutter});
-      margin: {
-        left: $gutter / 2;
-        right: $gutter / 2;
-      }
-    }
-
-    .col:first-child {
-      width: calc(50% - #{$gutter / 2});
-      margin-left: 0;
-    }
-
-    .col:last-child {
-      width: calc(50% - #{$gutter / 2});
-      margin-right: 0;
-    }
   }
 
   .es-version {
@@ -152,29 +74,6 @@ $selectionColor: $backgroundColor;
     padding: 2px 4px;
     border-radius: 999px;
   }
-
-  .glow {
-    animation: glow 1s infinite alternate-reverse;
-  }
-
-  .border-bad {
-    border: 2px solid $red;
-  }
-
-  .border-good {
-    border: 2px solid $green;
-  }
 }
 
-.hljs-comment {
-  font-style: normal !important;
-}
-
-@keyframes glow {
-  0% {
-    box-shadow: 0 0 1px $js-yellow;
-  }
-  100% {
-    box-shadow: 0 0 10px $js-yellow;
-  }
-}
+@import 'overrides'

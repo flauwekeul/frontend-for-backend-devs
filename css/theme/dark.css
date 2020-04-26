@@ -11,7 +11,50 @@
   --grey-4: #a0a09c;
   --grey-5: #c1c1be;
   --js-yellow: #f3df49;
-  --red: #dc3545; }
+  --red: #dc3545;
+  --rx-pink: #E01D84;
+  --rx-purple: #5D2F88; }
+
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 1px #f3df49; }
+  100% {
+    box-shadow: 0 0 10px #f3df49; } }
+
+.pager {
+  color: #7d7d78;
+  font-weight: 300;
+  margin-left: 0.4em; }
+
+.row {
+  display: flex; }
+  .row .col {
+    width: calc(50% - 1em);
+    margin-left: 0.5em;
+    margin-right: 0.5em; }
+  .row .col:first-child {
+    width: calc(50% - 0.5em);
+    margin-left: 0; }
+  .row .col:last-child {
+    width: calc(50% - 0.5em);
+    margin-right: 0; }
+
+.border-bad {
+  border: 2px solid #dc3545; }
+
+.border-good {
+  border: 2px solid #28a745; }
+
+.glow {
+  animation: glow 1s infinite alternate-reverse; }
+
+.fragment.replace {
+  opacity: 0;
+  display: none; }
+
+.fragment.replace.current-fragment {
+  opacity: 1;
+  display: initial; }
 
 /*********************************************
  * GLOBAL STYLES
@@ -288,9 +331,30 @@ body {
     content: attr(data-name) "@" attr(data-domain) "." attr(data-tld); }
 
 .reveal p {
-  text-align: left;
-  margin: 0;
-  line-height: 1.2; }
+  text-align: left; }
+
+.reveal :not(pre) > code {
+  background-color: #2e2e2c; }
+
+.reveal mark {
+  background-color: #f3df49;
+  color: #191919; }
+  .reveal mark > * {
+    color: inherit; }
+
+.reveal .progress {
+  color: #f3df49; }
+
+.reveal .es-version {
+  font-size: 1rem;
+  font-family: "Andale Mono", monospace;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -.1em;
+  background-color: #444441;
+  color: #f3df49;
+  padding: 2px 4px;
+  border-radius: 999px; }
 
 .reveal ul {
   margin-left: 0;
@@ -303,6 +367,10 @@ body {
   background: none;
   border: none;
   box-shadow: none; }
+
+.reveal p {
+  margin: 0;
+  line-height: 1.2; }
 
 .reveal small {
   font-size: 0.7em;
@@ -322,68 +390,15 @@ body {
   font-size: 0.9em;
   text-decoration: inherit;
   vertical-align: baseline;
-  background-color: #2e2e2c;
   border-radius: 0.1em;
   padding: 0 0.1em 0.1em; }
 
 .reveal code {
-  letter-spacing: -.05em; }
-
-.reveal mark {
-  background-color: #f3df49;
-  color: #191919; }
-  .reveal mark > * {
-    color: inherit; }
+  letter-spacing: -.05em;
+  border-radius: 4px; }
 
 .reveal .hljs.has-highlights tr:not(.highlight-line) {
   opacity: 0.2; }
 
-.reveal .progress {
-  color: #f3df49; }
-
-.reveal .pager {
-  color: #7d7d78;
-  font-weight: 300;
-  margin-left: 0.4em; }
-
-.reveal .row {
-  display: flex; }
-  .reveal .row .col {
-    width: calc(50% - 1em);
-    margin-left: 0.5em;
-    margin-right: 0.5em; }
-  .reveal .row .col:first-child {
-    width: calc(50% - 0.5em);
-    margin-left: 0; }
-  .reveal .row .col:last-child {
-    width: calc(50% - 0.5em);
-    margin-right: 0; }
-
-.reveal .es-version {
-  font-size: 1rem;
-  font-family: "Andale Mono", monospace;
-  font-weight: 600;
-  line-height: 1;
-  letter-spacing: -.1em;
-  background-color: #444441;
-  color: #f3df49;
-  padding: 2px 4px;
-  border-radius: 999px; }
-
-.reveal .glow {
-  animation: glow 1s infinite alternate-reverse; }
-
-.reveal .border-bad {
-  border: 2px solid #dc3545; }
-
-.reveal .border-good {
-  border: 2px solid #28a745; }
-
 .hljs-comment {
   font-style: normal !important; }
-
-@keyframes glow {
-  0% {
-    box-shadow: 0 0 1px #f3df49; }
-  100% {
-    box-shadow: 0 0 10px #f3df49; } }

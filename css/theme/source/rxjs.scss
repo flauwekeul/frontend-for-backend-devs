@@ -6,16 +6,16 @@
 @import 'shared';
 
 // Override theme settings (see ../template/settings.scss)
-$backgroundColor: $js-yellow;
+$backgroundColor: $grey-7;
 $heading1Size: 4em;
 $heading2Size: 2em;
-$headingColor: $grey-0;
+$headingColor: $rx-pink;
 $headingLineHeight: 1.1;
-$headingMargin: 0;
-$linkColor: $grey-1;
-$linkColorHover: mix(#fff, $linkColor, 15%);
+$headingTextTransform: initial;
+$linkColor: $grey-5;
+$linkColorHover: $grey-4;
 $mainColor: $grey-0;
-$selectionBackgroundColor: mix(#fff, $linkColor, 25%);
+$selectionBackgroundColor: $rx-purple;
 
 // Theme template ------------------------------
 @import "../template/theme";
@@ -23,11 +23,16 @@ $selectionBackgroundColor: mix(#fff, $linkColor, 25%);
 
 .reveal {
   h2 {
-    color: $grey-1;
+    color: $grey-3;
   }
 
-  &:not(.overview) section:not(.stack) {
-    text-align: right;
-    margin-top: 15%;
+  :not(pre) > code {
+    background-color: $grey-6;
+  }
+
+  .progress {
+    color: $rx-pink;
   }
 }
+
+@import 'overrides';

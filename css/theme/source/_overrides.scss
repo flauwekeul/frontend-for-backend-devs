@@ -1,0 +1,61 @@
+.reveal {
+  ul {
+    margin-left: 0;
+    line-height: 1.2;
+
+    ul {
+      font-size: 0.8em;
+    }
+  }
+
+  section img {
+    margin: 0;
+    background: none;
+    border: none;
+    box-shadow: none;
+  }
+
+  p {
+    margin: 0;
+    line-height: 1.2;
+  }
+
+  small {
+    font-size: 0.7em;
+    vertical-align: initial;
+    text-decoration: inherit;
+  }
+
+  pre {
+    width: 100%;
+    margin: 10px auto;
+
+    code {
+      box-sizing: border-box;
+      height: 100%;
+      max-height: initial;
+      padding: 0.6em 0.8em;
+    }
+  }
+
+  :not(pre) > code {
+    font-size: 0.9em;
+    text-decoration: inherit;
+    vertical-align: baseline;
+    border-radius: 0.1em;
+    padding: 0 0.1em 0.1em;
+  }
+
+  code {
+    letter-spacing: -.05em;
+    border-radius: 4px;
+  }
+
+  .hljs.has-highlights tr:not(.highlight-line) {
+    opacity: 0.2;
+  }
+}
+
+.hljs-comment {
+  font-style: normal !important;
+}
