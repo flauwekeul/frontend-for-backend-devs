@@ -1,0 +1,126 @@
+<section data-theme="rxjs">
+  <img src="assets/logo-rx.svg" alt="Logo RX" style="width: 6em;" />
+  <h1>RxJS</h1>
+  <h2>Values and events</h2>
+</section>
+
+<section data-theme="rxjs">
+  <h3>Two dimensions <span class="pager">(1/4)</span></h3>
+  <div style="text-align: left;">
+    <p>Reactive programming works in two <em>"dimensions"</em>:</p>
+    <ul style="margin-bottom: 0.5em;">
+      <li class="fragment">spatial (values in space/memory)</li>
+      <li class="fragment">temporal (events over time)</li>
+    </ul>
+    <p class="fragment">This is achieved by wrapping values in a container <small>(<code>Observable</code>)</small>.</p>
+  </div>
+</section>
+
+<section data-theme="rxjs">
+  <h3>Array comparison <span class="pager">(2/4)</span></h3>
+  <div class="stretch">
+    <p>An observable is similar to a plain JS <code>Array</code>:</p>
+    <div class="row fragment" data-fragment-index="1">
+      <pre class="col"><code data-trim data-noescape class="js">
+        of(1, 2, 3).pipe(
+          <span class="fragment" data-fragment-index="2">filter((nr) => nr > 1),</span>
+          <span class="fragment" data-fragment-index="3">map((nr) => nr * 10),</span>
+          <span class="fragment" data-fragment-index="4">scan((acc, nr) => acc + nr, 0)</span>
+        )
+        .subscribe((result) => {
+          console.log(result);
+        });
+        <span class="fragment replace" data-fragment-index="1">// 1
+        // 2
+        // 3</span><span class="fragment replace" data-fragment-index="2">// 2
+        // 3</span><span class="fragment replace" data-fragment-index="3">// 20
+        // 30</span><span class="fragment" data-fragment-index="4">// 20
+        // 50</span>
+      </code></pre>
+      <pre class="col"><code data-trim data-noescape class="js">
+        const result = [1, 2, 3]
+          <span class="fragment" data-fragment-index="2">.filter((nr) => nr > 1)</span>
+          <span class="fragment" data-fragment-index="3">.map((nr) => nr * 10)</span>
+          <span class="fragment" data-fragment-index="4">.reduce((acc, nr) => acc + nr, 0);</span>
+
+
+        console.log(result);
+
+        <span class="fragment replace" data-fragment-index="1">// [1, 2, 3]</span><span class="fragment replace" data-fragment-index="2">// [2, 3]</span><span class="fragment replace" data-fragment-index="3">// [20, 30]</span><span class="fragment" data-fragment-index="4">// 50</span>
+      </code></pre>
+    </div>
+    <div class="row" style="font-size: 0.8em;">
+      <ol class="col" style="margin-left: 1em; font-size: 0.9em;">
+        <li class="fragment" data-fragment-index="5">Operators work on <em>individual values</em></li>
+        <li class="fragment" data-fragment-index="7">Values may appear <em>over time</em></li>
+        <li class="fragment" data-fragment-index="9">Operators always return an <code>Observable</code></li>
+        <li class="fragment" data-fragment-index="11">Functionality is <em>composed</em></li>
+      </ol>
+      <ol class="col" style="margin-left: 1em; font-size: 0.9em;">
+        <li class="fragment" data-fragment-index="6">Methods work on the <em>array</em></li>
+        <li class="fragment" data-fragment-index="8">Values are always <em>static</em></li>
+        <li class="fragment" data-fragment-index="10">Methods may not return an <code>Array</code><br /><br /></li>
+        <li class="fragment" data-fragment-index="12">Functionality is <em>chained</em></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section data-theme="rxjs">
+  <h3>Inner observables <span class="pager">(3/4)</span></h3>
+  <p>It's possible to get nested observables:</p>
+  <div class="row fragment">
+    <pre class="col" style="width: auto;"><code data-trim data-line-numbers="1-2|1-4|1-5|1-10|all" class="js">
+      const fetchData = (param) =>
+        timer(1000).pipe(mapTo(param));
+
+      of(1, 2, 3).pipe(
+        map(val => fetchData(val)),
+      ).subscribe(outer => {
+        outer.subscribe(inner => {
+          console.log(inner);
+        });
+      });
+
+      // 1
+      // 2
+      // 3
+    </code></pre>
+    <div class="col" style="width: 60%; text-align: left; padding: 0.5em 0;">
+      <p class="fragment">Don't nest <code>subscribe()</code> calls:</p>
+      <ul style="margin-left: 1em;">
+        <li class="fragment">It's harder to manage subscriptions</li>
+        <li class="fragment">
+          It's harder to read <small style="overflow-wrap: break-word;">(redundant indentation)</small>
+        </li>
+        <li class="fragment">There's probably an operator you should use</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section data-theme="rxjs">
+  <div class="stretch">
+    <h3>Common transformations <span class="pager">(4/4)</span></h3>
+    <ul>
+      <li class="fragment">
+        <pre style="margin-top: 0;"><code data-trim data-noescape class="js">
+          of(1, 2, 3).pipe(<mark>mergeMap</mark>(val => fetchData(val))).subscribe();
+        </code></pre>
+        <img src="assets/rxjs/mergeMap.png" alt="mergeMap()" class="fragment" />
+      </li>
+      <li class="fragment">
+        <pre style="margin-top: 0;"><code data-trim data-noescape class="js">
+          of(1, 2, 3).pipe(<mark>switchMap</mark>(val => fetchData(val))).subscribe();
+        </code></pre>
+        <img src="assets/rxjs/switchMap.png" alt="mergeMap()" class="fragment" />
+      </li>
+      <li class="fragment">
+        <pre style="margin-top: 0;"><code data-trim data-noescape class="js">
+          of(1, 2, 3).pipe(<mark>concatMap</mark>(val => fetchData(val))).subscribe();
+        </code></pre>
+        <img src="assets/rxjs/concatMap.png" alt="mergeMap()" class="fragment" />
+      </li>
+    </ul>
+  </div>
+</section>

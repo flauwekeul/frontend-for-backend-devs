@@ -51,7 +51,7 @@ This project is a clone of [reveal.js](https://github.com/hakimel/reveal.js) (be
 - [ ] RxJS
   - [x] differences with promises
   - [x] concepts
-  - [ ] common operators
+  - [x] values and events
   - [ ] subjects
   - [ ] hot/cold observables
 - [ ] Angular

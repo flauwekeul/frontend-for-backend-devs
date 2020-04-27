@@ -38,7 +38,8 @@
     }
   }
 
-  :not(pre) > code {
+  :not(pre) > code,
+  mark {
     font-size: 0.9em;
     text-decoration: inherit;
     vertical-align: baseline;

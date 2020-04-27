@@ -386,7 +386,8 @@ body {
     max-height: initial;
     padding: 0.6em 0.8em; }
 
-.reveal :not(pre) > code {
+.reveal :not(pre) > code,
+.reveal mark {
   font-size: 0.9em;
   text-decoration: inherit;
   vertical-align: baseline;

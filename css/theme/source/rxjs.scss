@@ -33,6 +33,15 @@ $selectionBackgroundColor: $rx-purple;
   .progress {
     color: $rx-pink;
   }
+
+  mark {
+    background-color: $rx-pink;
+    color: $selectionColor;
+
+    > * {
+      color: inherit;
+    }
+  }
 }
 
 @import 'overrides';
