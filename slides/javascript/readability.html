@@ -4,323 +4,18 @@
 </section>
 
 <section>
-  <h3>String interpolation <span class="pager">(1/11)</span></h3>
-  <p class="fragment">
-    Use string interpolation instead of concatenation with <em>template literals</em
-    ><sup class="es-version">ES2015</sup>:
-    <div class="row fragment">
-      <pre class="col border-bad"><code data-trim class="js">
-        // concatenation
-        const a = 1;
-        const b = 'a equals ' + a + '.';
-
-        b;  // 'a equals 1.'
-      </code></pre>
-      <pre class="col border-good"><code data-trim class="js">
-        // interpolation
-        const a = 1;
-        const b = `a equals ${a}.`;
-
-        b;  // 'a equals 1.'
-      </code></pre>
-    </div>
-  </p>
-</section>
-
-<section>
-  <h3>Default values <span class="pager">(2/11)</span></h3>
-  <ul>
-    <li>
-      Functions can have <em>default parameters</em><sup class="es-version">ES2015</sup>:
-      <div class="row">
-        <pre class="col border-bad fragment"><code data-trim class="js">
-          const a = (b) => {
-            b = b || 1;
-            return b;
-          }
-
-          a();  // 1
-        </code></pre>
-        <pre class="col border-good fragment"><code data-trim class="js">
-          const a = (b = 1) => b
-
-
-
-
-          a();  // 1
-        </code></pre>
-      </div>
-    </li>
-    <li class="fragment">
-      ⚠️ It only works with <code>undefined</code>:
-      <pre><code data-trim class="js">
-        const a = (b = 1) => b
-
-        a(0);         // 0
-        a(null);      // null
-        a(undefined); // 1
-      </code></pre>
-    </li>
-  </ul>
-</section>
-
-<section>
-  <h3>Object literals <span class="pager">(3/11)</span></h3>
-  <p>In objects…</p>
-  <ul>
-    <li>
-      when key and value have the same name, use <em>property shorthand</em><sup class="es-version">ES2015</sup>:
-      <div class="row">
-        <pre class="col border-bad fragment"><code data-trim class="js">
-          const a = 1, b = 2;
-          const o = { a: a, b: b };
-        </code></pre>
-        <pre class="col border-good fragment"><code data-trim class="js">
-          const a = 1, b = 2;
-          const o = { a, b };
-        </code></pre>
-      </div>
-    </li>
-    <li class="fragment">
-      use <em>method shorthand</em><sup class="es-version">ES2015</sup>:
-      <div class="row">
-        <pre class="col border-bad fragment"><code data-trim class="js">
-          const o = {
-            a: function(b, c) {}
-          };
-        </code></pre>
-        <pre class="col border-good fragment"><code data-trim class="js">
-          const o = {
-            a(b, c) {}
-          };
-        </code></pre>
-      </div>
-    </li>
-    <li class="fragment">
-      when needed, use <em>computed property names</em><sup class="es-version">ES2015</sup>:
-      <div class="row">
-        <pre class="col border-bad fragment"><code data-trim class="js">
-          const a = 'computed';
-          const o = {};
-          o[a] = 1;
-          </code></pre>
-        <pre class="col border-good fragment"><code data-trim class="js">
-          const a = 'computed';
-          const o = { [a]: 1 };
-          </code></pre>
-      </div>
-    </li>
-  </ul>
-</section>
-
-<section>
-  <h3>Nested property lookup <span class="pager">(4/11)</span></h3>
-  <p>When you have an object with possibly nested properties, use <em>optional chaining</em><sup class="es-version glow">ES2020</sup>:</p>
-  <div class="row">
-    <pre class="col fragment border-bad"><code data-trim data-line-numbers="1-3|1-7|all" class="js">
-      const findProp = (o) => {
-        return o && o.a && o.a.b && o.a.b.c;
-      }
-
-      findProp();           // undefined
-      findProp({ a: {} });  // undefined
-      findProp({ a: { b: { c: 1 } } }); // 1
-
-      // works with falsy values:
-      findProp({ a: 0 });   // 0
-    </code></pre>
-    <pre class="col fragment border-good"><code data-trim data-line-numbers="1-3|1-7|all" class="js">
-      const findProp = (o) => {
-        return o?.a?.b?.c;
-      }
-
-      findProp();           // undefined
-      findProp({ a: {} });  // undefined
-      findProp({ a: { b: { c: 1 } } }); // 1
-
-      // ⚠️ only works with null and undefined:
-      findProp({ a: 0 });   // undefined
-    </code></pre>
-  </div>
-</section>
-
-<section>
-  <h3>Destructuring <span class="pager">(5/11)</span></h3>
-  <ul>
-    <li>
-      It's possible to <em>destructure</em><sup class="es-version">ES2015</sup> properties from objects:
-      <div class="row">
-        <pre class="col fragment border-bad"><code data-trim class="js">
-          const o = { a: 1, nested: { b: 2 } };
-          const a = o.a;
-          const b = o.nested.b;
-          a;  // 1
-          b;  // 2
-        </code></pre>
-        <pre class="col fragment"><code data-trim class="js">
-          const o = { a: 1, nested: { b: 2 } };
-          const { a, nested: { b } } = o;
-
-          a;  // 1
-          b;  // 2
-        </code></pre>
-      </div>
-    </li>
-    <li class="fragment">
-      <div class="row">
-        <div class="col">
-          With default values:
-          <pre><code data-trim class="js">
-            const o = { a: 1 };
-            const { a, b = 2 } = o;
-            a;  // 1
-            b;  // 2
-          </code></pre>
-        </div>
-        <div class="col fragment">
-          With arrays:
-          <pre><code data-trim class="js">
-            const arr = [1, 2];
-            const [a, b] = arr;
-            a;  // 1
-            b;  // 2
-          </code></pre>
-        </div>
-      </div>
-    </li>
-    <li class="fragment">
-      With function parameters <small>(and default values)</small>:
-      <pre><code data-trim class="js">
-        const fn = ({ a, b, c = 3 }) => ({ a, b, c });
-        fn({ a: 1, b: 2 }); // { a: 1, b: 2, c: 3 }
-      </code></pre>
-    </li>
-  </ul>
-</section>
-
-<section>
-  <h3>Rest/spread operator <span class="pager">(6/11)</span></h3>
-  <ul>
-    <li>
-      With <em>rest parameters</em><sup class="es-version">ES2015</sup> any number of arguments are stored in an array:
-      <pre class="fragment"><code data-trim class="js">
-        const a = (...args) => args;
-        a();      // []
-        a(1, 2);  // [1, 2]
-      </code></pre>
-    </li>
-    <li class="fragment">
-      With the <em>spread operator</em><sup class="es-version">ES2015</sup> any <em>iterable</em><sup class="es-version">ES2015</sup> <small>(arrays, strings and more)</small> can be "spread" into its distinct values:
-      <div class="row">
-        <pre class="col fragment"><code data-trim class="js">
-          // copy array
-          const a = [1, 2, 3];
-          const b = [...a];
-          b;        // [1, 2, 3]
-          a === b;  // false
-        </code></pre>
-        <pre class="col fragment"><code data-trim class="js">
-          // concat arrays
-          const a = [2, 3];
-          const b = [1, ...a, 4];
-          b;  // [1, 2, 3, 4]
-        </code></pre>
-      </div>
-    </li>
-  </ul>
-</section>
-
-<section>
-  <h3>Object rest and spread <span class="pager">(7/11)</span></h3>
-  <ul>
-    <li>
-      The rest operator can be used in object destructuring<sup class="es-version">ES2018</sup>:
-      <pre class="fragment"><code data-trim class="js">
-        const o = { a: 1, b: 2, c: 3 };
-        const { a, ...rest } = o;
-        a;    // 1
-        rest; // { b: 2, c: 3 }
-      </code></pre>
-    </li>
-    <li class="fragment">
-      The spread operator also works with objects<sup class="es-version">ES2018</sup>:
-      <div class="row">
-        <pre class="col fragment"><code data-trim data-line-numbers="1-6|1-12|all" class="js">
-          // copy object
-          const o1 = {
-            a: 1,
-            b: { c: 3 },
-          };
-          const o2 = { ...o1 };
-
-          o2;         // {
-                      //    a: 1,
-                      //    b: { c: 3 }
-                      // }
-          o1 === o2;  // false
-
-          // no deep copy:
-          o1.b === o2.b;  // true
-        </code></pre>
-        <pre class="col fragment"><code data-trim data-line-numbers="1-10|all" class="js">
-          // merge objects
-          const o1 = {
-            a: 1,
-            b: 2,
-          };
-          const o2 = {
-            ...o1,
-            a: 3,
-            c: 4,
-          };
-          o2; // {
-              //    a: 3,
-              //    b: 2,
-              //    c: 4,
-              // }
-        </code></pre>
-      </div>
-    </li>
-  </ul>
-</section>
-
-<section>
-  <h3>Object "iteration" <span class="pager">(8/11)</span></h3>
-  <ul>
-    <li>
-      It's possible to iterate over object properties by converting to an array:
-      <pre class="fragment"><code data-trim data-noescape class="js">
-        const o = { a: 1, b: 2, c: 3 };
-
-        Object.keys(o);     // ['a', 'b', 'c']
-        Object.values(o);   // [1, 2, 3]
-        Object.entries(o);  // [['a', 1], ['b', 2], ['c', 3]]
-        <span class="es-version glow" style="position: absolute; transform: translate(-110%, -1.5em) rotate(-35deg);">ES2017</span>
-      </code></pre>
-    </li>
-    <li class="fragment">
-      The result of <code>Object.entries()</code> can be converted back to an object:
-      <pre class="fragment"><code data-trim class="js">
-        const a = [['a', 1], ['b', 2], ['c', 3]];
-        Object.fromEntries(a);  // { a: 1, b: 2, c: 3 }
-      </code></pre>
-    </li>
-  </ul>
-</section>
-
-<section>
-  <h3><code>Array.prototype</code> <span class="pager">(9/11)</span></h3>
+  <h3><code>Array.prototype</code> <span class="pager">(1/11)</span></h3>
   <ul class="stretch">
     <li>
       <span style="font-size: 0.9em;">Prefer <strong>declarative</strong> <code>Array.prototype</code> methods over <strong>imperative</strong> loops:</span>
       <div class="row">
-        <pre class="col fragment border-bad"><code data-trim class="js">
+        <pre class="col fragment border-bad"><code data-trim data-line-numbers="1-2|all" class="js">
           const a = [1, 2, 3];
-          let b = [];
+          let result = [];
           for (const i = 0; i < a.length; i++) {
-            b[i] = a[i] * 2;
+            result[i] = a[i] * 2;
           }
-          b;  // [2, 4, 6]
+          result;  // [2, 4, 6]
         </code></pre>
         <pre class="col fragment border-good"><code data-trim class="js">
           const a = [1, 2, 3];
@@ -374,15 +69,15 @@
 </section>
 
 <section>
-  <h3>More <code>Array.prototype</code> <span class="pager">(10/11)</span></h3>
+  <h3>More <code>Array.prototype</code> <span class="pager">(2/11)</span></h3>
   <ul class="stretch">
     <li>
       <div class="row">
         <div class="col" style="width: 33%;">
           <small>Check if primitive is present:</small>
-          <pre><code data-trim class="js">
+          <pre><code data-trim data-noescape="" class="js">
             const a = [1, 2, 3];
-            const b = a.includes(3);
+            <span class="es-version" style="position: absolute; transform: translate(-110%, 0) rotate(-35deg);">ES2016</span>const b = a.includes(3);
             b;  // true;
           </code></pre>
         </div>
@@ -430,6 +125,315 @@
           </code></pre>
         </div>
       </div>
+    </li>
+  </ul>
+</section>
+
+<section>
+  <h3>String interpolation <span class="pager">(3/11)</span></h3>
+  <p class="fragment">
+    Use string interpolation instead of concatenation with <em>template literals</em
+    ><sup class="es-version">ES2015</sup>:
+    <div class="row">
+      <pre class="col border-bad fragment"><code data-trim class="js">
+        // concatenation
+        const a = 1;
+        const b = 'a equals ' + a + '.';
+
+        b;  // 'a equals 1.'
+      </code></pre>
+      <pre class="col border-good fragment"><code data-trim class="js">
+        // interpolation
+        const a = 1;
+        const b = `a equals ${a}.`;
+
+        b;  // 'a equals 1.'
+      </code></pre>
+    </div>
+  </p>
+</section>
+
+<section>
+  <h3>Default values <span class="pager">(4/11)</span></h3>
+  <ul>
+    <li>
+      Functions can have <em>default parameters</em><sup class="es-version">ES2015</sup>:
+      <div class="row">
+        <pre class="col border-bad fragment"><code data-trim class="js">
+          const a = (b) => {
+            b = b || 1;
+            return b;
+          }
+
+          a();  // 1
+        </code></pre>
+        <pre class="col border-good fragment"><code data-trim class="js">
+          const a = (b = 1) => b
+
+
+
+
+          a();  // 1
+        </code></pre>
+      </div>
+    </li>
+    <li class="fragment">
+      ⚠️ It only works with <code>undefined</code>:
+      <pre><code data-trim class="js">
+        const a = (b = 1) => b
+
+        a(0);         // 0
+        a(null);      // null
+        a(undefined); // 1
+      </code></pre>
+    </li>
+  </ul>
+</section>
+
+<section>
+  <h3>Object literals <span class="pager">(5/11)</span></h3>
+  <p>In objects…</p>
+  <ul>
+    <li>
+      when key and value have the same name, use <em>property shorthand</em><sup class="es-version">ES2015</sup>:
+      <div class="row">
+        <pre class="col border-bad fragment"><code data-trim class="js">
+          const a = 1;
+          const b = 2;
+          const o = { a: a, b: b };
+        </code></pre>
+        <pre class="col border-good fragment"><code data-trim class="js">
+          const a = 1;
+          const b = 2;
+          const o = { a, b };
+        </code></pre>
+      </div>
+    </li>
+    <li class="fragment">
+      use <em>method shorthand</em><sup class="es-version">ES2015</sup>:
+      <div class="row">
+        <pre class="col border-bad fragment"><code data-trim class="js">
+          const o = {
+            a: function(b, c) {}
+          };
+        </code></pre>
+        <pre class="col border-good fragment"><code data-trim class="js">
+          const o = {
+            a(b, c) {}
+          };
+        </code></pre>
+      </div>
+    </li>
+    <li class="fragment">
+      when needed, use <em>computed property names</em><sup class="es-version">ES2015</sup>:
+      <div class="row">
+        <pre class="col border-bad fragment"><code data-trim class="js">
+          const a = () => 'computed';
+          const o = {};
+          o[a()] = 1;
+          </code></pre>
+        <pre class="col border-good fragment"><code data-trim class="js">
+          const a = () => 'computed';
+          const o = { [a()]: 1 };
+          </code></pre>
+      </div>
+    </li>
+  </ul>
+</section>
+
+<section>
+  <h3>Nested property lookup <span class="pager">(6/11)</span></h3>
+  <p>When you have an object with possibly nested properties, use <em>optional chaining</em><sup class="es-version glow">ES2020</sup>:</p>
+  <div class="row">
+    <pre class="col fragment border-bad"><code data-trim data-line-numbers="1-2|1-6|all" class="js">
+      const findC = (o) =>
+        o && o.a && o.a.b && o.a.b.c;
+
+      findC();           // undefined
+      findC({ a: {} });  // undefined
+      findC({ a: { b: { c: 1 } } }); // 1
+
+      // works with falsy values:
+      findC({ a: 0 });   // 0
+    </code></pre>
+    <pre class="col fragment border-good"><code data-trim data-line-numbers="1|1-6|all" class="js">
+      const findC = (o) => o?.a?.b?.c;
+
+
+      findC();           // undefined
+      findC({ a: {} });  // undefined
+      findC({ a: { b: { c: 1 } } }); // 1
+
+      // ⚠️ only works with null and undefined:
+      findC({ a: 0 });   // undefined
+    </code></pre>
+  </div>
+</section>
+
+<section>
+  <h3>Destructuring <span class="pager">(7/11)</span></h3>
+  <ul>
+    <li>
+      It's possible to <em>destructure</em><sup class="es-version">ES2015</sup> properties from objects:
+      <div class="row">
+        <pre class="col fragment border-bad"><code data-trim class="js">
+          const o = { a: 1, nested: { b: 2 } };
+          const a = o.a;
+          const b = o.nested.b;
+          a;  // 1
+          b;  // 2
+        </code></pre>
+        <pre class="col fragment"><code data-trim class="js">
+          const o = { a: 1, nested: { b: 2 } };
+          const { a, nested: { b } } = o;
+
+          a;  // 1
+          b;  // 2
+        </code></pre>
+      </div>
+    </li>
+    <li class="fragment">
+      <div class="row">
+        <div class="col">
+          With default values:
+          <pre><code data-trim class="js">
+            const o = { a: 1 };
+            const { a, b = 2 } = o;
+            a;  // 1
+            b;  // 2
+          </code></pre>
+        </div>
+        <div class="col fragment">
+          With arrays:
+          <pre><code data-trim class="js">
+            const arr = [1, 2];
+            const [a, b] = arr;
+            a;  // 1
+            b;  // 2
+          </code></pre>
+        </div>
+      </div>
+    </li>
+    <li class="fragment">
+      With function parameters <small>(and default values)</small>:
+      <pre><code data-trim class="js">
+        const fn = ({ a, b, c = 3 }) => ({ a, b, c });
+        fn({ a: 1, b: 2 }); // { a: 1, b: 2, c: 3 }
+      </code></pre>
+    </li>
+  </ul>
+</section>
+
+<section>
+  <h3>Rest/spread operator <span class="pager">(8/11)</span></h3>
+  <ul>
+    <li>
+      With <em>rest parameters</em><sup class="es-version">ES2015</sup> any number of arguments is stored in an array:
+      <pre class="fragment"><code data-trim class="js">
+        const a = (...args) => args;
+        a();        // []
+        a(1, 2, 3); // [1, 2, 3]
+      </code></pre>
+    </li>
+    <li class="fragment">
+      With the <em>spread operator</em><sup class="es-version">ES2015</sup> any <em>iterable</em><sup class="es-version">ES2015</sup> <small>(arrays, strings and more)</small> can be "spread" into its distinct values:
+      <div class="row">
+        <pre class="col fragment"><code data-trim data-line-numbers="1|1-4|all" class="js">
+          const a = [1, 2, 3];
+
+          // copy array:
+          const b = [...a];
+
+          b;        // [1, 2, 3]
+          a === b;  // false
+        </code></pre>
+        <pre class="col fragment"><code data-trim data-line-numbers="1|1-4|all" class="js">
+          const a = [2, 3];
+
+          // splice into array:
+          const b = [1, ...a, 4];
+
+          b;  // [1, 2, 3, 4]
+        </code></pre>
+      </div>
+    </li>
+  </ul>
+</section>
+
+<section>
+  <h3>Object rest and spread <span class="pager">(9/11)</span></h3>
+  <ul>
+    <li>
+      The rest operator can be used in <em>object destructuring</em><sup class="es-version">ES2018</sup>:
+      <pre class="fragment"><code data-trim data-line-numbers="1|1,2|all" class="js">
+        const o = { a: 1, b: 2, c: 3 };
+        const { a, ...rest } = o;
+        a;    // 1
+        rest; // { b: 2, c: 3 }
+      </code></pre>
+    </li>
+    <li class="fragment">
+      The spread operator also works with objects<sup class="es-version">ES2018</sup>:
+      <div class="row">
+        <pre class="col fragment"><code data-trim data-line-numbers="1-4|1-6|1-12|all" class="js">
+          const o1 = {
+            a: 1,
+            b: { c: 3 },
+          };
+          // copy object:
+          const o2 = { ...o1 };
+
+          o2;         // {
+                      //    a: 1,
+                      //    b: { c: 3 }
+                      // }
+          o1 === o2;  // false
+
+          // no deep copy:
+          o1.b === o2.b;  // true
+        </code></pre>
+        <pre class="col fragment"><code data-trim data-line-numbers="1-4|1-10|all" class="js">
+          const o1 = {
+            a: 1,
+            b: 2,
+          };
+          // merge objects:
+          const o2 = {
+            ...o1,
+            a: 3,
+            c: 4,
+          };
+          o2; // {
+              //    a: 3,
+              //    b: 2,
+              //    c: 4,
+              // }
+        </code></pre>
+      </div>
+    </li>
+  </ul>
+</section>
+
+<section>
+  <h3>Object "iteration" <span class="pager">(10/11)</span></h3>
+  <ul>
+    <li>
+      It's possible to iterate over object properties by converting to an array:
+      <pre class="fragment"><code data-trim data-noescape class="js">
+        const o = { a: 1, b: 2, c: 3 };
+
+        Object.keys(o);     // ['a', 'b', 'c']
+        Object.values(o);   // [1, 2, 3]
+        Object.entries(o);  // [['a', 1], ['b', 2], ['c', 3]]
+        <span class="es-version glow" style="position: absolute; transform: translate(-110%, -1.5em) rotate(-35deg);">ES2017</span>
+      </code></pre>
+    </li>
+    <li class="fragment">
+      The result of <code>Object.entries()</code> can be converted back to an object:
+      <pre class="fragment"><code data-trim class="js">
+        const a = [['a', 1], ['b', 2], ['c', 3]];
+        Object.fromEntries(a);  // { a: 1, b: 2, c: 3 }
+      </code></pre>
     </li>
   </ul>
 </section>

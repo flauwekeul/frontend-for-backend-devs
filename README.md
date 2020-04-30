@@ -15,7 +15,7 @@ This project is a clone of [reveal.js](https://github.com/hakimel/reveal.js) (be
   - [ ] context (`this`)
   - [ ] prototypal inheritance and classes (https://medium.com/front-end-weekly/typescript-class-vs-interface-99c0ae1c2136)
   - [ ] asynchrony (event loop, callbacks, promises, async/await)
-  - [ ] iterators and generators? (`Set` and `Map`)
+  - [ ] iterators and generators?
   - [ ] proxies?
   - [ ] functional programming
 - [ ] CSS and SASS

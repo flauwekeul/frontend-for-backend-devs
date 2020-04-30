@@ -96,9 +96,9 @@
             0 || 1;         // 1 <span class="fragment" data-fragment-index="6">⚠️</span>
             0 ? 1 : 2       // 2 <span class="fragment" data-fragment-index="6">⚠️</span></span>
             <span class="fragment"><span class="es-version glow" style="position: absolute; transform: translate(-120%, 4em) rotate(-35deg);">ES2020</span>
-            0 ?? 1;         // 0
             null ?? 1;      // 1
-            undefined ?? 1; // 1</span>
+            undefined ?? 1; // 1
+            0 ?? 1;         // 0</span>
           </code></pre>
         </div>
         <div class="col fragment">
@@ -177,12 +177,19 @@
     <li class="fragment">
       Any type → boolean: implicit coercion <small>(embrace <em>truthy</em> and <em>falsy</em>)</small>.
     </li>
-    <li class="fragment">Any type → string: implicit coercion <small>(template literals)</small>.</li>
+    <li class="fragment">
+      Any type → string: implicit coercion <small>(template literals <code>`${1}`</code>)</small>.
+    </li>
     <li class="fragment">
       String → number: explicit coercion
       <small>(<code>Number.parseInt()</code> and <code>Number.parseFloat()</code>)</small>.
     </li>
-    <li class="fragment">Use the <em>strict (in)equality operator</em> (<code>===</code> or <code>!==</code>)</li>
-    <li class="fragment">Use <a href="https://www.typescriptlang.org/" target="_blank">TypeScript</a> 😉.</li>
+    <li class="fragment">
+      Use the <em>strict (in)equality operator</em> <small>(<code>===</code> or <code>!==</code>)</small>.
+    </li>
+    <li class="fragment">
+      Use a <a href="https://eslint.org/" target="_blank">linter</a> and
+      <a href="https://www.typescriptlang.org/" target="_blank">TypeScript</a> 😉.
+    </li>
   </ul>
 </section>
