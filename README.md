@@ -48,12 +48,12 @@ This project is a clone of [reveal.js](https://github.com/hakimel/reveal.js) (be
   - [ ] generics
   - [ ] ["advances" types](https://www.typescriptlang.org/docs/handbook/advanced-types.html)
   - [ ] best-practices (interfaces over classes, type inference, build-in types)
-- [ ] RxJS
+- [x] RxJS
   - [x] differences with promises
   - [x] concepts
   - [x] values and events
-  - [ ] subjects
-  - [ ] hot/cold observables
+  - [x] subjects
+  - [x] hot/cold observables
 - [ ] Angular
   - [ ] concepts (components, services, modules, routing)
   - [ ] components (inputs/outputs, lifecycle hooks, templates)
