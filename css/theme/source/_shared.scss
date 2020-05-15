@@ -14,18 +14,20 @@ $rx-pink: #E01D84;
 $rx-purple: #5D2F88;
 
 :root {
-  --black: #191919;
-  --green: #28a745;
-  --grey-0: #2e2e2c;
-  --grey-1: #444441;
-  --grey-2: #5e5e5a;
-  --grey-3: #7d7d78;
-  --grey-4: #a0a09c;
-  --grey-5: #c1c1be;
-  --js-yellow: #f3df49;
-  --red: #dc3545;
-  --rx-pink: #E01D84;
-  --rx-purple: #5D2F88;
+  --black: #{$black};
+  --green: #{$green};
+  --grey-0: #{$grey-0};
+  --grey-1: #{$grey-1};
+  --grey-2: #{$grey-2};
+  --grey-3: #{$grey-3};
+  --grey-4: #{$grey-4};
+  --grey-5: #{$grey-5};
+  --grey-6: #{$grey-6};
+  --grey-7: #{$grey-7};
+  --js-yellow: #{$js-yellow};
+  --red: #{$red};
+  --rx-pink: #{$rx-pink};
+  --rx-purple: #{$rx-purple};
 }
 
 @import url(../../lib/font/andale-mono/andale-mono.css);
