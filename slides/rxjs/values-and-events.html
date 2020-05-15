@@ -5,7 +5,7 @@
 </section>
 
 <section data-theme="rxjs">
-  <h3>Two dimensions <span class="pager">(1/4)</span></h3>
+  <h3>Two dimensions <span class="pager">(1/5)</span></h3>
   <div style="text-align: left;">
     <p>Reactive programming works in two <em>"dimensions"</em>:</p>
     <ul style="margin-bottom: 0.5em;">
@@ -17,7 +17,7 @@
 </section>
 
 <section data-theme="rxjs">
-  <h3>Array comparison <span class="pager">(2/4)</span></h3>
+  <h3>Array comparison <span class="pager">(2/5)</span></h3>
   <div class="stretch">
     <p>An observable is similar to a plain JS <code>Array</code>:</p>
     <div class="row fragment" data-fragment-index="1">
@@ -49,14 +49,14 @@
         <span class="fragment replace" data-fragment-index="1">// [1, 2, 3]</span><span class="fragment replace" data-fragment-index="2">// [2, 3]</span><span class="fragment replace" data-fragment-index="3">// [20, 30]</span><span class="fragment" data-fragment-index="4">// 50</span>
       </code></pre>
     </div>
-    <div class="row" style="font-size: 0.8em;">
-      <ol class="col" style="margin-left: 1em; font-size: 0.9em;">
+    <div class="row" style="font-size: 0.7em;">
+      <ol class="col" style="margin-left: 1em;">
         <li class="fragment" data-fragment-index="5">Operators work on <em>individual values</em></li>
         <li class="fragment" data-fragment-index="7">Values may appear <em>over time</em></li>
         <li class="fragment" data-fragment-index="9">Operators always return an <code>Observable</code></li>
         <li class="fragment" data-fragment-index="11">Functionality is <em>composed</em></li>
       </ol>
-      <ol class="col" style="margin-left: 1em; font-size: 0.9em;">
+      <ol class="col" style="margin-left: 1em;">
         <li class="fragment" data-fragment-index="6">Methods work on the <em>array</em></li>
         <li class="fragment" data-fragment-index="8">Values are always <em>static</em></li>
         <li class="fragment" data-fragment-index="10">Methods may not return an <code>Array</code><br /><br /></li>
@@ -67,7 +67,7 @@
 </section>
 
 <section data-theme="rxjs">
-  <h3>Inner observables <span class="pager">(3/4)</span></h3>
+  <h3>Inner observables <span class="pager">(3/5)</span></h3>
   <p>It's possible to get nested observables:</p>
   <div class="row fragment">
     <pre class="col" style="width: auto;"><code data-trim data-line-numbers="1-2|1-4|1-5|1-10|all" class="js">
@@ -101,7 +101,7 @@
 
 <section data-theme="rxjs">
   <div class="stretch">
-    <h3>Common transformations <span class="pager">(4/4)</span></h3>
+    <h3>Common transformations <span class="pager">(4/5)</span></h3>
     <ul>
       <li class="fragment">
         <pre style="margin-top: 0;"><code data-trim data-noescape class="js">
@@ -122,5 +122,55 @@
         <img src="assets/rxjs/concatMap.png" alt="mergeMap()" class="fragment" />
       </li>
     </ul>
+  </div>
+</section>
+
+<section data-theme="rxjs">
+  <div class="stretch">
+    <h3>Hot and cold <span class="pager">(5/5)</span></h3>
+    <div class="row">
+      <div class="col">
+        <small> A <em>unicast</em> (<em>cold</em>) Observables emits <em>unique</em> values to each observer: </small>
+        <pre class="fragment"><code data-trim data-line-numbers="1-5|1-12|all" class="js">
+          const source$ = new Observable(
+            (observer) => {
+              observer.next(Math.random());
+            }
+          );
+
+          source$.subscribe((value) => {
+            console.log(`A: ${value}`);
+          });
+          source$.subscribe((value) => {
+            console.log(`B: ${value}`);
+          });
+
+          // A: 0.1550557468411759
+          // B: 0.9825865904791049
+        </code></pre>
+        <small class="fragment"><code>of()</code> and <code>from()</code> are cold ❄️</small>
+      </div>
+      <div class="col fragment">
+        <small> A <em>multicast</em> (<em>hot</em>) Observables emits <em>shared</em> values to each observer: </small>
+        <pre class="fragment"><code data-trim data-line-numbers="1|1-6|1-12|all" class="js">
+          const value = Math.random();
+          const source$ = new Observable(
+            (observer) => {
+              observer.next(value);
+            }
+          );
+          source$.subscribe((value) => {
+            console.log(`C: ${value}`);
+          });
+          source$.subscribe((value) => {
+            console.log(`D: ${value}`);
+          });
+
+          // C: 0.8150484796264084
+          // D: 0.8150484796264084
+        </code></pre>
+        <small class="fragment"><code>fromEvent()</code> is hot 🔥</small>
+      </div>
+    </div>
   </div>
 </section>

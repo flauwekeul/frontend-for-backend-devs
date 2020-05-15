@@ -1,15 +1,3 @@
-<!--
-  - Subjects are both an Observable (read) and an Observer (write)
-    - This means a Subject can be passed to subscribe()
-  - http://willtaylor.blog/rxjs-observables-hot-cold-explained/
-    - Observables are unicast by default: each subscribed Observer receives their own values
-    - Subjects are multicast: all subscribed observers share the same values
-  - Specialized Subjects:
-    - BehaviorSubject: sends "current" value to subscribers
-    - ReplaySubject: sends most recent n values to subscribers
-    - AsyncSubject: sends last value before stream completes to subscribers
--->
-
 <section data-theme="rxjs">
   <img src="assets/logo-rx.svg" alt="Logo RX" style="width: 6em;" />
   <h1>RxJS</h1>
@@ -17,7 +5,7 @@
 </section>
 
 <section data-theme="rxjs">
-  <h3>Read and write <span class="pager">(1/5)</span></h3>
+  <h3>Read and write <span class="pager">(1/4)</span></h3>
   <p class="fragment" data-fragment-index="1">
     A Subject is both an <em>Observable</em>
     <span class="fragment" data-fragment-index="3">and an <em>observer</em>:</span>
@@ -36,92 +24,22 @@
     <span class="fragment" data-fragment-index="4">subject.next(2);     // 2</span>
     <span class="fragment" data-fragment-index="5">subject.complete();  // 'complete'</span>
   </code></pre>
+  <p class="fragment">Subjects are always multicast (hot 🔥).</p>
 </section>
 
 <section data-theme="rxjs">
   <div class="stretch">
-    <h3>Unicast vs multicast <span class="pager">(2/5)</span></h3>
-    <div class="row">
-      <div class="col">
-        <p style="font-size: 0.75em;">
-          A <em>unicast</em> (<em>cold</em>) Observables emits <em>unique</em> values to each observer:
-        </p>
-        <pre class="fragment"><code data-trim data-line-numbers="1-5|1-12|all" class="js">
-          const source$ = new Observable(
-            (observer) => {
-              observer.next(Math.random());
-            }
-          );
-
-          source$.subscribe((value) => {
-            console.log(`A: ${value}`);
-          });
-          source$.subscribe((value) => {
-            console.log(`B: ${value}`);
-          });
-
-          // A: 0.1550557468411759
-          // B: 0.9825865904791049
-        </code></pre>
-      </div>
-      <div class="col fragment">
-        <p style="font-size: 0.75em;">
-          A <em>multicast</em> (<em>hot</em>) Observables emits <em>shared</em> values to each observer:
-        </p>
-        <pre class="fragment"><code data-trim data-line-numbers="1|1-6|1-12|all" class="js">
-          const value = Math.random();
-          const source$ = new Observable(
-            (observer) => {
-              observer.next(value);
-            }
-          );
-          source$.subscribe((value) => {
-            console.log(`C: ${value}`);
-          });
-          source$.subscribe((value) => {
-            console.log(`D: ${value}`);
-          });
-
-          // C: 0.8150484796264084
-          // D: 0.8150484796264084
-        </code></pre>
-        <!-- <pre class="fragment"><code data-trim data-line-numbers="1|1-8|1-10|all" class="js">
-          const source$ = new Subject();
-
-          source$.subscribe((r) => {
-            console.log(`C: ${r}`);
-          });
-          source$.subscribe((r) => {
-            console.log(`D: ${r}`);
-          });
-
-          multicast$.next(Math.random());
-
-
-          // C: 0.8150484796264084
-          // D: 0.8150484796264084
-        </code></pre> -->
-      </div>
-    </div>
-    <p class="fragment">A subject is always multicast (hot).</p>
-  </div>
-</section>
-
-<section data-theme="rxjs">
-  <div class="stretch">
-    <h3>BehaviorSubjects <span class="pager">(3/5)</span></h3>
+    <h3>BehaviorSubjects <span class="pager">(2/4)</span></h3>
     <p>A <code>BehaviorSubject</code> sends the "current" value to subscribers:</p>
     <pre class="fragment" data-fragment-index="1"><code data-trim data-noescape class="js">
       const subject = new BehaviorSubject(0);
       <span class="fragment" data-fragment-index="2">
       subject.subscribe((value) => { console.log(`A: ${value}`); });</span>
-      <span class="fragment" data-fragment-index="3">
-      subject.next(1);
+      <span class="fragment" data-fragment-index="3">subject.next(1);
       subject.next(2);</span>
       <span class="fragment" data-fragment-index="4">
       subject.subscribe((value) => { console.log(`B: ${value}`); });</span>
-      <span class="fragment" data-fragment-index="5">
-      subject.next(3);</span>
+      <span class="fragment" data-fragment-index="5">subject.next(3);</span>
 
       <span class="fragment" data-fragment-index="2">// A: 0</span>
       <span class="fragment" data-fragment-index="3">// A: 1</span>
@@ -135,8 +53,10 @@
 
 <section data-theme="rxjs">
   <div class="stretch">
-    <h3>ReplaySubjects <span class="pager">(4/5)</span></h3>
-    <p>A <code>ReplaySubject</code> sends the most recent <em>n</em> values to subscribers:</p>
+    <h3>ReplaySubjects <span class="pager">(3/4)</span></h3>
+    <p style="font-size: 0.9em;">
+      A <code>ReplaySubject</code> sends the most recent <em>n</em> values to subscribers:
+    </p>
     <pre class="fragment" data-fragment-index="1"><code data-trim data-noescape class="js">
       const subject = new ReplaySubject(2);
       <span class="fragment" data-fragment-index="2">
@@ -161,7 +81,7 @@
 
 <section data-theme="rxjs">
   <div class="stretch">
-    <h3>AsyncSubjects <span class="pager">(5/5)</span></h3>
+    <h3>AsyncSubjects <span class="pager">(4/4)</span></h3>
     <p>An <code>AsyncSubject</code> sends the last value before completion to subscribers:</p>
     <pre class="fragment" data-fragment-index="1"><code data-trim data-noescape class="js">
       const subject = new AsyncSubject();
