@@ -13,7 +13,7 @@ This project is a clone of [reveal.js](https://github.com/hakimel/reveal.js) (be
   - [x] functions (regular and arrow, closures)
   - [x] readability
   - [ ] context (`this`)
-  - [ ] prototypal inheritance and classes (https://medium.com/front-end-weekly/typescript-class-vs-interface-99c0ae1c2136)
+  - [ ] prototypal inheritance and classes
   - [ ] asynchrony (event loop, callbacks, promises, async/await)
   - [ ] ecosystem and tooling (package managers, bundlers, FE frameworks, libraries, data layers, testing, caniuse.com, [other tools](https://2019.stateofjs.com/other-tools/))
   - [ ] [Web APIs](https://developer.mozilla.org/en-US/docs/Web/API)

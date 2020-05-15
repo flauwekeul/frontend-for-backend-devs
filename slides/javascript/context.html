@@ -1,0 +1,26 @@
+<!--
+  https://2ality.com/2017/12/alternate-this.html
+  - regular functions have their own context which is set when they're called
+  - arrow functions inherit their context from their surrounding scope
+  - `this` can be set explicitly with call(), apply() and bind()
+  - determining `this`:
+    1. if the function is called as a constructor (new):
+      `this` refers to the object('s prototype chain) that's returned from the constructor
+    2. if the function is called with call() or apply() or bound with bind():
+      `this` refers to the explicitly specified object
+    3. if the function is called as an object property (method):
+      `this` refers to the object('s prototype chain) (also applies when function is set to prop later)
+    4. default:
+      `this` inside the function is undefined (strict mode) or the global object
+  - common pitfalls
+    - callbacks
+    - DOM event handlers (`this` is bound to the element that emits the event)
+  - advice:
+    - prefer arrow functions over regular functions
+
+-->
+
+<section data-theme="javascript">
+  <h1>JS</h1>
+  <h2>context (<code>this</code>)</h2>
+</section>
