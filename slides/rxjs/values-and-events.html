@@ -71,8 +71,8 @@
   <p>It's possible to get nested observables:</p>
   <div class="row fragment">
     <pre class="col" style="width: auto;"><code data-trim data-line-numbers="1-2|1-4|1-5|1-10|all" class="js">
-      const fetchData = (param) =>
-        timer(1000).pipe(mapTo(param));
+      const fetchData = (result) =>
+        timer(100).pipe(mapTo(result));
 
       of(1, 2, 3).pipe(
         map(val => fetchData(val)),

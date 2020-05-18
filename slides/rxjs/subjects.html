@@ -7,17 +7,17 @@
 <section data-theme="rxjs">
   <h3>Read and write <span class="pager">(1/4)</span></h3>
   <p class="fragment" data-fragment-index="1">
-    A Subject is both an <em>Observable</em>
+    A Subject <span class="fragment" data-fragment-index="2">is both an <em>Observable</em></span>
     <span class="fragment" data-fragment-index="3">and an <em>observer</em>:</span>
   </p>
-  <pre class="fragment" data-fragment-index="2"><code data-trim data-noescape class="js">
-    const subject = new Subject();
+  <pre class="fragment" data-fragment-index="1"><code data-trim data-noescape class="js">
+    const subject = new Subject();<span class="fragment" data-fragment-index="2">
 
     // Observable:
     subject.subscribe({
       next:     (value) =>  { console.log(value);       },
       complete: ()      =>  { console.log('complete');  },
-    });
+    });</span>
     <span class="fragment" data-fragment-index="3">
     // observer:
     subject.next(1);     // 1</span>
