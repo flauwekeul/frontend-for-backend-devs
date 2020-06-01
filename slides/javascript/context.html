@@ -1,26 +1,270 @@
-<!--
-  https://2ality.com/2017/12/alternate-this.html
-  - regular functions have their own context which is set when they're called
-  - arrow functions inherit their context from their surrounding scope
-  - `this` can be set explicitly with call(), apply() and bind()
-  - determining `this`:
-    1. if the function is called as a constructor (new):
-      `this` refers to the object('s prototype chain) that's returned from the constructor
-    2. if the function is called with call() or apply() or bound with bind():
-      `this` refers to the explicitly specified object
-    3. if the function is called as an object property (method):
-      `this` refers to the object('s prototype chain) (also applies when function is set to prop later)
-    4. default:
-      `this` inside the function is undefined (strict mode) or the global object
-  - common pitfalls
-    - callbacks
-    - DOM event handlers (`this` is bound to the element that emits the event)
-  - advice:
-    - prefer arrow functions over regular functions
-
--->
-
 <section data-theme="javascript">
   <h1>JS</h1>
   <h2>context (<code>this</code>)</h2>
+</section>
+
+<section>
+  <h3>Call-site <span class="pager">(1/4)</span></h3>
+  <ul>
+    <li>In arrow functions <code>this</code> always refers to its surrounding scope.</li>
+    <li class="fragment">
+      In regular functions <code>this</code> is determined at the <em>call-site</em>: the code that calls the code
+      containing <code>this</code>:
+      <pre class="fragment"><code data-trim data-line-numbers="1-4|1-11|all" class="js">
+        function derp() {
+          this;
+        }
+        derp();   // 👈 call-site
+
+        const object = {
+          derp() {
+            this;
+          },
+        };
+        object.derp(); // 👈 call-site
+
+        document.addEventListener('click', function () {
+          this;
+        });
+        // call-site?
+      </code></pre>
+    </li>
+  </ul>
+</section>
+
+<section>
+  <h3>4 ways how <code>this</code> is set <span class="pager">(2/4)</span></h3>
+  <div class="row">
+    <div class="col fragment">
+      <p>Regular function call:</p>
+      <pre><code data-trim data-noescape data-line-numbers="1-5|all" class="js">
+        'use strict';
+
+        function derp() {
+          return this;
+        }
+
+        <mark>derp()</mark>;  // undefined
+      </code></pre>
+    </div>
+    <div class="col fragment">
+      <p>As an object property <small>(method)</small>:</p>
+      <pre><code data-trim data-noescape data-line-numbers="1-6|all" class="js">
+        const object = {
+          a: 2,
+          derp() {
+            return this;
+          },
+        };
+        <mark>object.derp()</mark>.a;  // 2
+      </code></pre>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col fragment">
+      <p>Explicitly bound to a context:</p>
+      <pre><code data-trim data-noescape data-line-numbers="1-4|1-6|1-7|all" class="js">
+        function derp() {
+          return this;
+        }
+        const object = { a: 3 };
+
+        <mark>derp.call(object)</mark>.a;   // 3
+        <mark>derp.apply(object)</mark>.a;  // 3
+        const bound = derp.bind(object);
+        <mark>bound()</mark>.a;            // 3
+      </code></pre>
+    </div>
+    <div class="col fragment">
+      <p>
+        As a constructor <small>(with <code>new</code>)</small>:
+      </p>
+      <pre><code data-trim data-noescape data-line-numbers="1-3|1-5|all" class="js">
+        function Thing() {
+          this.a = 4;
+        }
+
+        const thing = <mark>new Thing()</mark>;
+
+
+
+        thing.a;  // 4
+      </code></pre>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h3>What's <code>this</code>? <span class="pager">(3/4)</span></h3>
+  <div class="stretch">
+    <p style="margin-bottom: 0.5em; font-size: 0.9em;"><code>this</code> is determined in this order:</p>
+    <div class="row">
+      <div class="col" style="width: 60%;">
+        <p class="fragment" data-fragment-index="1" style="font-size: 0.65em; color: #abb2bf;">
+          <span class="hljs-keyword">let</span> context;<br />
+          <br />
+          <span class="hljs-keyword">switch</span> (<span class="hljs-string">the function is called…</span>) {<br />
+          <span class="fragment" data-fragment-index="2">
+            <span style="margin-left: 2rem;"></span><span class="hljs-keyword">case</span>
+            <span class="hljs-string"
+              >…as a constructor <small>(<code>new</code> keyword)</small></span
+            >:<br />
+            <span style="margin-left: 4rem;">context = </span
+            ><span class="hljs-number">object returned from constructor</span>;<br />
+            <span style="margin-left: 4rem;"></span><span class="hljs-keyword">break</span>;<br />
+          </span>
+          <span class="fragment" data-fragment-index="3">
+            <span style="margin-left: 2rem;"></span><span class="hljs-keyword">case</span>
+            <span class="hljs-string"> …explicitly bound to a context</span>:<br />
+            <span style="margin-left: 4rem;">context = </span
+            ><span class="hljs-number">the specified context</span>;<br />
+            <span style="margin-left: 4rem;"></span><span class="hljs-keyword">break</span>;<br />
+          </span>
+          <span class="fragment" data-fragment-index="4">
+            <span style="margin-left: 2rem;"></span><span class="hljs-keyword">case</span>
+            <span class="hljs-string">…as an object property (method)</span>:<br />
+            <span style="margin-left: 4rem;">context = </span
+            ><span class="hljs-number">the containing object</span>;<br />
+            <span style="margin-left: 4rem;"></span><span class="hljs-keyword">break</span>;<br />
+          </span>
+          <span class="fragment" data-fragment-index="5">
+            <span style="margin-left: 2rem;"></span><span class="hljs-keyword">default</span>:<br />
+            <span style="margin-left: 4rem;">context = </span
+            ><span class="hljs-number"
+              ><code>undefined</code> <small>(in strict mode, <code>globalThis</code> otherwise)</small></span
+            >;<br />
+          </span>
+          }
+        </p>
+      </div>
+      <div class="col" style="width: 40%;">
+        <pre class="fragment replace" data-fragment-index="2"><code data-noescape data-trim class="js">
+          function Thing() {
+            this.a = 1;
+          }
+
+          const thing = <mark>new Thing()</mark>;
+
+          thing.a;  // 1
+        </code></pre>
+        <pre class="fragment replace" data-fragment-index="3"><code data-noescape data-trim class="js">
+          function derp() {
+            return this;
+          }
+
+          const context = {
+            a: 2
+          };
+
+          derp.<mark>call(context)</mark>.a;     // 2
+          derp.<mark>apply(context)</mark>.a;    // 2
+          derp.bind(context)<mark>()</mark>.a;  // 2
+        </code></pre>
+        <pre class="fragment replace" data-fragment-index="4"><code data-noescape data-trim class="js">
+          function derp() {
+            return this;
+          }
+
+          const context = {
+            a: 3,
+            derp
+          };
+
+          <mark>context.derp()</mark>.a; // 3
+        </code></pre>
+        <pre class="fragment replace" data-fragment-index="5"><code data-noescape data-trim class="js">
+          'use strict';
+
+          function derp() {
+            return this;
+          }
+
+          globalThis.a = 4;
+
+          <mark>derp()</mark>; // undefined
+        </code></pre>
+        <div class="fragment replace last-replace">
+          <p><small>First rule wins:</small></p>
+          <pre class="fragment"><code data-noescape data-trim class="js">
+            'use strict';
+
+            function derp() {
+              return this;
+            }
+
+            const context = {
+              a: 3,
+              derp
+            };
+            <span class="fragment">
+            derp(); // undefined</span><span class="fragment">
+            context.derp().a;     // 3</span><span class="fragment">
+            context.derp
+              .call({ a: 2 }).a;  // 2</span>
+            <span class="fragment">
+            const bound = context
+              .derp.bind({ a: 2 });
+            new bound().a;  // undefined</span>
+          </code></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h3>Unknown call-site <span class="pager">(4/4)</span></h3>
+  <p>Sometimes the call-site is obscured:</p>
+  <div class="row">
+    <pre class="col fragment"><code data-trim data-line-numbers="1-6|1-8|all" class="js">
+      const object = {
+        a: 1,
+        derp() {
+          return console.log(this.a);
+        }
+      };
+
+      setTimeout(object.derp, 100);
+
+      // after 100ms: undefined
+    </code></pre>
+    <div class="col fragment" style="margin-left: 0;">
+      <div class="row" style="height: 100%;">
+        <div class="col" style="flex: 0; align-self: center; margin-right: 0;">➡</div>
+        <pre class="col" style="flex: 1;"><code data-trim data-noescape class="js">
+          // internal (pseudo)code:
+
+          function setTimeout(fn, delay) {
+            // wait for delay ms
+            <mark>fn()</mark>; // 👈 call-site
+          }
+        </code></pre>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <pre class="col fragment"><code data-trim data-line-numbers="1-5|all" class="js">
+      button.addEventListener('click',
+        function() {
+          console.log(this === button);
+        }
+      );
+
+      // when button is clicked: true
+    </code></pre>
+    <div class="col fragment" style="margin-left: 0;">
+      <div class="row" style="height: 100%;">
+        <div class="col" style="flex: 0; align-self: center; margin-right: 0;">➡</div>
+        <pre class="col" style="flex: 1;"><code data-trim data-noescape class="js">
+          // internal (pseudo)code:
+
+          class ButtonElement {
+            addEventListener(eventName, fn) {
+              <mark>fn.call(this)</mark>; // 👈 call-site
+            }
+          }
+        </code></pre>
+      </div>
+    </div>
+  </div>
 </section>

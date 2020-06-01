@@ -53,10 +53,9 @@
 .fragment.replace {
   opacity: 0;
   display: none; }
-
-.fragment.replace.current-fragment {
-  opacity: 1;
-  display: initial; }
+  .fragment.replace.current-fragment, .fragment.replace.last-replace.visible {
+    opacity: 1;
+    display: initial; }
 
 /*********************************************
  * GLOBAL STYLES
@@ -401,7 +400,7 @@ body {
   border-radius: 4px; }
 
 .reveal .hljs.has-highlights tr:not(.highlight-line) {
-  opacity: 0.2; }
+  opacity: 0.1; }
 
 .hljs-comment {
   font-style: normal !important; }

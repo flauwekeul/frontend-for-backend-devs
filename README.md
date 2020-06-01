@@ -12,7 +12,7 @@ This project is a clone of [reveal.js](https://github.com/hakimel/reveal.js) (be
   - [x] scope (`const`, `let`)
   - [x] functions (regular and arrow, closures)
   - [x] readability
-  - [ ] context (`this`)
+  - [x] context (`this`)
   - [ ] prototypal inheritance and classes
   - [ ] asynchrony (event loop, callbacks, promises, async/await)
   - [ ] ecosystem and tooling (package managers, bundlers, FE frameworks, libraries, data layers, testing, caniuse.com, [other tools](https://2019.stateofjs.com/other-tools/))
