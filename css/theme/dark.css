@@ -355,7 +355,8 @@ body {
   background-color: #444441;
   color: #f3df49;
   padding: 2px 4px;
-  border-radius: 999px; }
+  border-radius: 999px;
+  text-transform: uppercase; }
 
 .reveal ul {
   margin-left: 0;
