@@ -32,14 +32,14 @@
 .row {
   display: flex; }
   .row .col {
-    width: calc(50% - 1em);
-    margin-left: 0.5em;
-    margin-right: 0.5em; }
-  .row .col:first-child {
     width: calc(50% - 0.5em);
+    margin-left: 0.25em;
+    margin-right: 0.25em; }
+  .row .col:first-child {
+    width: calc(50% - 0.25em);
     margin-left: 0; }
   .row .col:last-child {
-    width: calc(50% - 0.5em);
+    width: calc(50% - 0.25em);
     margin-right: 0; }
 
 .border-bad {
@@ -341,8 +341,8 @@ body {
 .reveal mark {
   background-color: #f3df49;
   color: #191919; }
-  .reveal mark > * {
-    color: inherit; }
+  .reveal mark * {
+    color: inherit !important; }
 
 .reveal .progress {
   color: #f3df49; }

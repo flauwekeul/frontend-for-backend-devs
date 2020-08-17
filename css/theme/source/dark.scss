@@ -54,8 +54,8 @@ $selectionColor: $backgroundColor;
     background-color: $selectionBackgroundColor;
     color: $selectionColor;
 
-    > * {
-      color: inherit;
+    * {
+      color: inherit !important;
     }
   }
 

@@ -1,0 +1,8 @@
+<svg width="300" height="200" xmlns="http://www.w3.org/2000/svg">
+  <g fill="none" fill-rule="evenodd">
+    <circle fill="#007ACC" cx="200" cy="100" r="100"/>
+    <circle fill="#007ACC" cx="100" cy="100" r="100"/>
+    <circle stroke="#FFF" stroke-width="10" cx="200" cy="100" r="95"/>
+    <circle stroke="#FFF" stroke-width="10" cx="100" cy="100" r="95"/>
+  </g>
+</svg>

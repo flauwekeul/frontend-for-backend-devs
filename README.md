@@ -43,11 +43,11 @@ This project is a clone of [reveal.js](https://github.com/hakimel/reveal.js) (be
     - [ ] best practices (BEM, ITCSS)
   - [ ] SASS
   - [ ] SVG (currentColor, SVG.js)
-- [ ] Typescript
-  - [ ] new types (interface, tuple, enum)
-  - [ ] generics
-  - [ ] ["advances" types](https://www.typescriptlang.org/docs/handbook/advanced-types.html)
-  - [ ] best-practices (interfaces over classes, type inference, build-in types)
+- [x] Typescript
+  - [x] new types (interface, tuple, enum)
+  - [x] type assertions
+  - [x] union / intersection types
+  - [x] generics
 - [x] RxJS
   - [x] differences with promises
   - [x] concepts

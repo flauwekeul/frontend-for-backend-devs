@@ -1,0 +1,334 @@
+<section data-theme="typescript">
+  <h1>TS</h1>
+  <h2>a typed superset</h2>
+</section>
+
+<section>
+  <h3>Comparison to Java/C# <span class="pager">(1/8)</span></h3>
+  <p style="margin-bottom: 0.5em;">In TypeScript…</p>
+  <ul class="stretch">
+    <li class="fragment">
+      a value can have <em>multiple types</em>:
+      <pre><code data-trim class="ts">
+        type someValue = string | number;
+      </code></pre>
+    </li>
+    <li class="fragment">
+      types are compared based on their <em>structure</em>:
+      <div class="row">
+        <div class="col">
+          <pre class="fragment"><code data-trim class="ts">
+            interface HasA {
+              a: number;
+            }
+            const fn = (value: HasA) => {};
+            const obj = { a: 1, b: 2 };
+            fn(obj);  // no error
+          </code></pre>
+        </div>
+        <div class="col">
+          <pre class="fragment"><code data-trim class="ts">
+            interface Empty {}
+
+            const fn = (value: Empty) => {};
+
+
+            fn({ a: 1 }); // no error
+          </code></pre>
+        </div>
+      </div>
+    </li>
+    <li class="fragment">
+      type information is lost after compilation to JS:
+      <pre><code data-trim class="ts">
+        class Thing {}
+        typeof new Thing(); // 'object'
+      </code></pre>
+    </li>
+  </ul>
+</section>
+
+<section>
+  <h3>Interfaces, tuples and enums <span class="pager">(2/8)</span></h3>
+  <div class="row">
+    <div class="col fragment">
+      <p>Interface:</p>
+      <pre><code data-trim data-noescape class="ts">
+        interface Thing {
+          a: number;
+          <span class="fragment">b?: string;          // optional</span>
+          <span class="fragment">readonly c: boolean;</span>
+          <span class="fragment">d(e: string): void;  // method</span>
+        }
+      </code></pre>
+    </div>
+    <div class="col">
+      <p class="fragment">
+        <small>Classes only implement instance properties:</small>
+      </p>
+      <pre class="fragment"><code data-trim data-noescape class="ts">
+        interface Human {
+          new(name: string): void; // constructor
+        }
+        <span class="fragment">class Developer implements Human {
+          constructor(name: string) {}
+        } // TS error</span>
+      </code></pre>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col fragment">
+      <p>Tuple:</p>
+      <pre><code data-trim data-noescape class="ts">
+        let a: [string, number];
+
+        a = ['b', 1];</span>
+
+        <span class="fragment">a = [1, 'b']; // TS error</span>
+        <span class="fragment">a[2];         // TS error</span>
+      </code></pre>
+    </div>
+    <div class="col fragment replace">
+      <p>Enum:</p>
+      <pre><code data-trim data-noescape class="ts">
+        enum Character {
+          Rick,
+          Morty,
+        }
+        Character.Morty; // 1
+        Character[1];    // 'Morty'
+      </code></pre>
+    </div>
+    <div class="col fragment replace last-replace">
+      <p>Enum:</p>
+      <pre><code data-trim data-noescape class="ts">
+        enum Character {
+          Rick = 'Rick',
+          Morty = 'Morty',
+        }
+        Character.Morty;     // 'Morty'
+        Character['Morty'];  // 'Morty'
+      </code></pre>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h3>Unsure types <span class="pager">(3/8)</span></h3>
+  <div class="row">
+    <div class="col fragment">
+      <p><code>any</code> lets you "opt-out" of TypeScript altogether:</p>
+      <pre class="fragment"><code data-trim data-noescape class="ts">
+        let a: any = 1;
+        a.derp; // no TS error <small>(JS error instead!)</small>
+      </code></pre>
+    </div>
+    <div class="col fragment">
+      <p><code>unknown</code> might be a better alternative:</p>
+      <pre class="fragment"><code data-trim data-noescape class="ts">
+        let a: unknown = 1;
+        <span class="fragment">a.toString();   // TS error</span>
+        <span class="fragment">
+        if (typeof a === 'number') {
+          a.toString(); // no error
+        }</span>
+      </code></pre>
+    </div>
+  </div>
+  <div class="fragment">
+    <p>Use <code>any</code> when…</p>
+    <ul style="display: block; margin-bottom: 1em;">
+      <li>a value can literally have any type</li>
+      <li class="fragment">you're migrating a JS codebase</li>
+    </ul>
+    <p class="fragment">Consider enabling the <code>noImplicitAny</code> option.</p>
+  </div>
+</section>
+
+<section>
+  <h3>Type assertions <span class="pager">(4/8)</span></h3>
+  <p>Type assertions are like type casts, but with less checks:</p>
+  <pre class="fragment"><code data-trim data-noescape="" class="ts">
+    interface Thing {
+      a: number;
+      b: string;
+    }
+
+    <span class="fragment">const thing1: Thing = { a: 1 };    // TS error</span>
+
+    <span class="fragment">const thing2 = { a: 1 } as Thing;  // no error</span>
+    <span class="fragment">const thing3 = &lt;Thing&gt;{ a: 1 };    // TS error when working with JSX</span>
+  </code></pre>
+  <p class="fragment">Use them sparingly.</p>
+</section>
+
+<section>
+  <h3>
+    Union <img src="assets/union.svg" style="height: 0.75em;"> and intersection <img src="assets/intersection.svg" style="height: 0.75em;"> types
+    <span class="pager">(5/8)</span>
+  </h3>
+  <div class="row" style="margin-bottom: 0.5em;">
+    <div class="col">
+      <p>A value with a union type…</p>
+      <ul class="fragment" data-fragment-index="1">
+        <li>is <em>either one</em> of its subtypes</li>
+        <li class="fragment" data-fragment-index="2">has properties that <em>all</em> subtypes have in common</li>
+      </ul>
+    </div>
+    <div class="col">
+      <pre class="fragment" data-fragment-index="1"><code data-trim data-noescape class="ts">
+        function union(a: string | number) {
+          <span class="fragment" data-fragment-index="2">a.toString();
+          a.length; // TS error</span>
+        }
+      </code></pre>
+    </div>
+  </div>
+  <div class="fragment" style="margin-bottom: 1.5em;">
+    <p>It can also be used as an enum <small>(that can't be iterated!)</small>:</p>
+    <pre><code data-trim data-noescape class="ts">
+      type state: 'success' | 'pending' | 'failed';
+    </code></pre>
+  </div>
+  <div class="row">
+    <div class="col fragment">
+      <p>A value with an intersection type…<span class="fragment">has <em>all</em> properties of its subtypes <small>(that's it)</small>.</span></p>
+    </div>
+    <div class="col">
+      <pre class="fragment"><code data-trim data-noescape class="ts" style="font-size: 0.95em;">
+        interface Data { values: number[]; }
+        interface MaybeError { errorMsg?: string; }
+        <span class="fragment">
+        function intersect(o: Data & MaybeError) {
+          if (o.errorMsg) { return o.errorMsg; }
+          return o.values;
+        }</span>
+      </code></pre>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h3>Classes <span class="pager">(6/8)</span></h3>
+  <div class="row">
+    <div class="col" style="width: 55%;">
+      <p style="font-size: 0.9em">
+        TypeScript supports class fields <sup class="es-version glow">Stage3</sup>
+        <span class="fragment" data-fragment-index="1">and adds <code>public</code>,</span>
+        <span class="fragment" data-fragment-index="2"><code>protected</code>,</span>
+        <span class="fragment" data-fragment-index="3"><code>private</code></span>
+        <span class="fragment" data-fragment-index="4">and <code>readonly</code> modifiers 👉</span>
+      </p>
+    </div>
+    <div class="col" style="width: 45%;">
+      <pre><code data-trim data-noescape class="ts">
+        class Thing {
+          a = 1;<span class="fragment" data-fragment-index="1">  // public by default</span>
+          <span class="fragment" data-fragment-index="2">protected b = 2;</span>
+          <span class="fragment" data-fragment-index="3">private c = 3;</span>
+          <span class="fragment" data-fragment-index="4">readonly d = 4;</span>
+        }
+      </code></pre>
+    </div>
+    <!-- consider private fields (ES stage3, TS v3.8) instead of private modifiers (if ES2015 is build target) -->
+  </div>
+  <p class="fragment">You can write less code with parameter properties 👇</p>
+  <div class="row">
+    <div class="col fragment">
+      <pre class="border-bad"><code data-trim class="ts">
+        class Thing {
+          a: string;
+
+          constructor(a: string) {
+            this.a = a;
+          }
+        }
+      </code></pre>
+    </div>
+    <div class="col fragment">
+      <pre class="border-good"><code data-trim class="ts">
+        class Thing {
+          constructor(public a: string) {}
+        }
+      </code></pre>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col fragment" style="align-self: center;">
+      <p>Abstract classes and methods are also possible 👉</p>
+    </div>
+    <div class="col fragment">
+      <pre><code data-trim class="ts">
+        abstract class Thing {
+          abstract implementMe(): void;
+        }
+      </code></pre>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h3>Generics <span class="pager">(7/8)</span></h3>
+  <p>With generics you use <em>type variables</em> to create <em>"parameterized types"</em>:</p>
+  <div class="row">
+    <div class="col">
+      <pre class="fragment"><code data-trim data-noescape class="ts">
+        function identity&lt;T&gt;(arg: T): T {
+          return arg;
+        }
+
+        identity(1);
+        identity('a');
+        <span class="fragment replace">
+        identity({ a: 1 });</span><span class="fragment replace last-replace">interface Thing { a: number; }
+        identity&lt;Thing&gt;({ a: 1 });</span>
+      </code></pre>
+    </div>
+    <div class="col">
+      <pre class="fragment"><code data-trim data-noescape class="ts">
+        interface Thing&lt;A, B = string&gt; {
+          lengthPlusOne(a: B): A;
+        }
+        <span class="fragment">const obj: Thing&lt;number&gt; = {
+          lengthPlusOne: (a) => a.length + 1,
+        };</span>
+
+        <span class="fragment">obj.lengthPlusOne('hi'); // 3</span>
+      </code></pre>
+    </div>
+  </div>
+  <p class="fragment" style="margin-top: 1em;">Generics can become pretty complex…</p>
+</section>
+
+<section>
+  <h3>Utility types <span class="pager">(8/8)</span></h3>
+  <p>TypeScript offers globally available utility types:</p>
+  <div class="row">
+    <div class="col fragment">
+      <pre><code data-trim class="ts">
+        interface Thing {
+          a: number;
+          b: string;
+        }
+        Partial&lt;Thing&gt;;
+
+        // interface Thing {
+        //   a?: number;
+        //   b?: string;
+        // }
+      </code></pre>
+    </div>
+    <div class="col fragment">
+      <pre><code data-trim class="ts">
+        type key = 'a' | 'b' | 'c';
+
+        const obj: Record&lt;key, number&gt; = {
+          a: 1,
+          b: 2,
+          c: 3,
+        };
+      </code></pre>
+    </div>
+  </div>
+  <p class="fragment" style="margin-top: 1em;">Find more in the <a href="https://www.typescriptlang.org/docs/handbook/utility-types.html#extracttype-union" target="_blank">TypeScript handbook</a>.</p>
+</section>
