@@ -15,10 +15,34 @@ This project is a clone of [reveal.js](https://github.com/hakimel/reveal.js) (be
   - [ ] context (`this`)
   - [ ] prototypal inheritance and classes (https://medium.com/front-end-weekly/typescript-class-vs-interface-99c0ae1c2136)
   - [ ] asynchrony (event loop, callbacks, promises, async/await)
+  - [ ] ecosystem and tooling (package managers, bundlers, FE frameworks, libraries, data layers, testing, caniuse.com, [other tools](https://2019.stateofjs.com/other-tools/))
+  - [ ] [Web APIs](https://developer.mozilla.org/en-US/docs/Web/API)
+    - [ ] DOM (Document, Element, Event, `document.cookie`)
+    - [ ] Fetch
+    - [ ] Storage (`localStorage`, `sessionStorage`)
+    - [ ] Web workers
+    - [ ] WebSockets?
   - [ ] iterators and generators?
   - [ ] proxies?
   - [ ] functional programming
-- [ ] CSS and SASS
+- [ ] Styling
+  - [ ] HTML5 (semantic tags (<article>, <section>, <picture>), accessibility)
+  - [ ] CSS (
+    - [ ] selectors (also pseudo elements/selectors and universal/child/adjacent selectors)
+    - [ ] specificity
+    - [ ] units
+    - [ ] colors
+    - [ ] text?
+    - [ ] [box model](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/The_box_model)
+    - [ ] floating and positioning
+    - [ ] flexbox
+    - [ ] @ rules
+    - [ ] responsiveness
+    - [ ] transitions/animations
+    - [ ] grid
+    - [ ] best practices (BEM, ITCSS)
+  - [ ] SASS
+  - [ ] SVG (currentColor, SVG.js)
 - [ ] Typescript
   - [ ] new types (interface, tuple, enum)
   - [ ] generics
@@ -30,15 +54,15 @@ This project is a clone of [reveal.js](https://github.com/hakimel/reveal.js) (be
   - [ ] subjects
   - [ ] hot/cold observables
 - [ ] Angular
-  - [ ] inputs/outputs
+  - [ ] concepts (components, services, modules, routing)
+  - [ ] components (inputs/outputs, lifecycle hooks, templates)
   - [ ] reactive forms
-  - [ ] testing with spectator and jest
+  - [ ] development (cli, testing with spectator and jest)
 - [ ] React
 - [ ] Vue
 - [ ] Redux
 - [ ] NX
 - [ ] Node.js
-- [ ] (Generated) TOC
 - [x] Slide about me
 - [ ] Add favicon?
-- [ ] Migrate to [eagle.js](https://zulko.github.io/eaglejs-demo/#/)?
+- [ ] Migrate to latest version of reveal.js or migrate to [eagle.js](https://zulko.github.io/eaglejs-demo/#/)?
