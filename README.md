@@ -14,7 +14,7 @@ This project is a clone of [reveal.js](https://github.com/hakimel/reveal.js) (be
   - [x] readability
   - [x] context (`this`)
   - [x] prototypal inheritance and classes
-  - [ ] asynchrony (event loop, callbacks, promises, async/await)
+  - [x] asynchrony (event loop, callbacks, promises, async/await)
   - [ ] ecosystem and tooling (package managers, bundlers, FE frameworks, libraries, data layers, testing, caniuse.com, [other tools](https://2019.stateofjs.com/other-tools/))
   - [ ] [Web APIs](https://developer.mozilla.org/en-US/docs/Web/API)
     - [ ] DOM (Document, Element, Event, `document.cookie`)

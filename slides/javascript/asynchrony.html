@@ -1,0 +1,207 @@
+<section data-theme="javascript">
+  <h1>JS</h1>
+  <h2>asynchrony</h2>
+</section>
+
+<section>
+  <h3>Single threaded <span class="pager">(1/3)</span></h3>
+  <p style="margin-bottom: 1em">
+    JS is <em>single-threaded</em> <span class="fragment">and functions always <em>run-to-completion</em></span
+    ><span class="fragment">, yet it's rarely <em>blocking</em>.</span>
+  </p>
+  <ul>
+    <li class="fragment"><em>Concurrency</em> is JS's solution to asynchrony.</li>
+    <li class="fragment">
+      <em>Parallel computing</em> can be achieved with
+      <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API" target="_blank">Web Workers</a>
+      <small>(in the browser)</small>.
+    </li>
+  </ul>
+</section>
+
+<section>
+  <h3>Callbacks <span class="pager">(2/3)</span></h3>
+  <p>Passing a function that's called <small>(back)</small> later:</p>
+  <pre class="fragment"><code data-trim data-noescape data-line-numbers="1-3|all" class="js">
+    console.log('before');
+    setTimeout(<mark>() => console.log('callback')</mark>, 1000);
+    console.log('after');
+
+    // 'before'
+    // 'after'
+    // 'callback'
+  </code></pre>
+  <p class="fragment">Callbacks become <a href="http://callbackhell.com/" target="_blank">messy</a> quickly:</p>
+  <pre class="fragment"><code data-trim data-line-numbers="1,10|1-3,9-10|1-5,8-10|all" class="js">
+    fetchUser('/path/to/user/1', (error, user) => {
+      if (error) { /* handle error */ }
+      fetchAvatar(`/path/to/avatar/${user.id}`, (error, avatar) => {
+        if (error) { /* handle error */ }
+        fetchComments(`/path/to/comments/${user.id}`, (error, comments) => {
+          if (error) { /* handle error */ }
+          // do something with avatar and comments
+        });
+      });
+    });
+  </code></pre>
+</section>
+
+<section>
+  <h3>The <code>Promise</code> <span class="pager">(3/3)</span></h3>
+  <pre><code data-trim data-noescape data-line-numbers="1,6|1-2,5-6|1-6|1-11|1-14|1-17|all" class="js">
+    const userPromise = new Promise((resolve, reject) => {
+      fetchUser('/path/to/user/1', (error, user) => {
+        if (error) { reject(error); }
+        resolve(user);
+      });
+    });
+
+    userPromise
+      .then((user) => {
+        // fulfilled: do something with user
+      })
+      .catch((error) => {
+        // rejected: handle error
+      })
+      .finally(() => {
+        <span class="es-version glow" style="font-size: 0.7em; position: absolute; transform: translate(-3.8em, 0.2em);">ES2018</span>// settled: cleanup
+      });
+
+    Promise.resolve('value'); // create promise that fulfills with 'value'
+    Promise.reject('error');  // create promise that rejects  with 'error'
+  </code></pre>
+  <p class="fragment">Promises<sup class="es-version">ES2015</sup> are similar to Java's <code>Future</code>.</p>
+</section>
+
+<section>
+  <h3>No need to nest <span class="pager">(4/3)</span></h3>
+  <p>When executing promises in order, you might think you need to nest them:</p>
+  <pre class="fragment border-bad"><code data-trim data-line-numbers="1,7|1-2,6-7|1-3,5-7|all" class="js">
+    fetchUser('/path/to/user/1').then((user) => {
+      return fetchAvatar(`/path/to/avatar/${user.id}`).then((avatar) => {
+        return fetchComments(`/path/to/comments/${user.id}`).then((comments) => {
+          // do something with comments (and/or avatar, and/or user)
+        });
+      });
+    });
+  </code></pre>
+  <p class="fragment">Fortunately, you don't have to:</p>
+  <pre class="fragment border-good"><code data-trim data-line-numbers="1|1-2|1-3|1-4,6|all" class="js">
+    fetchUser('/path/to/user/1')
+      .then((user) => fetchAvatar(`/path/to/avatar/${user.id}`)
+      .then((avatar) => fetchComments(`/path/to/comments/${user.id}`)
+      .then((comments) => {
+          // do something with comments (what about avatar and user?)
+      });
+  </code></pre>
+</section>
+
+<section>
+  <h3>Multiple promises <span class="pager">(5/3)</span></h3>
+  <div class="stretch" style="font-size: 0.9em">
+    <div class="row" style="margin-bottom: 0.5em">
+      <div class="col">
+        <p>
+          <small><code>Promise.all()</code> fulfills when all fulfill, rejects when 1 rejects:</small>
+        </p>
+        <pre class="fragment"><code data-trim data-line-numbers="1|1-4|all" class="js">
+          Promise.all([promise1, promise2, promise3])
+            .then((values) => {
+              // do something with all values
+            })
+            .catch((error) => {
+              // handle 1 error
+            });
+        </code></pre>
+      </div>
+      <div class="col fragment">
+        <p>
+          <small><code>Promise.race()</code> settles when 1 settles:<br /><br /></small>
+        </p>
+        <pre><code data-trim data-line-numbers="1|1-4|all" class="js">
+          Promise.race([promise1, promise2, promise3])
+            .then((value) => {
+              // do something with 1 value
+            })
+            .catch((error) => {
+              // handle 1 error
+            });
+        </code></pre>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col fragment" style="position: relative">
+        <p>
+          <small>
+            <code>Promise.allSettled()</code><sup class="es-version glow">ES2020</sup> settles when all settle
+            <small>(duh)</small>:
+          </small>
+        </p>
+        <pre><code data-trim data-line-numbers="1-4|1-10|all" class="js">
+          Promise.allSettled([
+            Promise.resolve(1),
+            Promise.reject(2)
+          ])
+            .then((results) => {
+              // [
+              //   { status: 'fulfilled', value: 1 },
+              //   { status: 'rejected', reason: 2 },
+              // ]
+            })
+            .catch(() => { /* never called! */ });
+        </code></pre>
+      </div>
+      <div class="col fragment" style="position: relative">
+        <p>
+          <small>
+            <code>Promise.any()</code><sup class="es-version glow">ES2021</sup> fulfills when 1 fulfills, rejects when
+            all reject:
+          </small>
+        </p>
+        <pre><code data-trim data-line-numbers="1|1-4|all" class="js">
+          Promise.any([promise1, promise2, promise3])
+            .then((value) => {
+              // do something with 1 value
+            })
+            .catch((aggregateError) => {
+              // handle all errors
+            });
+        </code></pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h3><code>async</code> and <code>await</code> <span class="pager">(6/3)</span></h3>
+  <p>
+    <span class="es-version" style="font-size: 0.8em">ES2017</span> introduced the <code>async</code> and
+    <code>await</code> keywords:
+  </p>
+  <pre><code data-trim data-line-numbers="1,10|1,3-6,10|all" class="js">
+    async function fetchStuff() {
+      try {
+        const user = await fetchUser('/path/to/user/1');
+        const avatar = await fetchAvatar(`/path/to/avatar/${user.id}`);
+        const comments = await fetchComments(`/path/to/comments/${user.id}`);
+        // do something with user, and/or avatar, and/or comments
+      } catch(error) {
+        // handle any error
+      }
+    }
+  </code></pre>
+  <p class="fragment" style="margin-top: 1em"><code>async</code> functions always return a promise:</p>
+  <div class="row fragment">
+    <pre class="col"><code data-trim class="js">
+      const a = async () => {
+        return 1;
+      }
+    </code></pre>
+    <div class="col" style="flex: 0; align-self: center">➡</div>
+    <pre class="col"><code data-trim class="js">
+      const a = () => {
+        return Promise.resolve(1);
+      }
+    </code></pre>
+  </div>
+</section>
