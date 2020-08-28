@@ -52,6 +52,10 @@ $headingLetterSpacing: -1px;
 $headingTextTransform: uppercase;
 $mainFont: 'Source Sans Pro', Helvetica, sans-serif;
 
+.encrypted-mail:after {
+  content: attr(data-name) '@' attr(data-domain) '.' attr(data-tld);
+}
+
 .pager {
   color: $grey-3;
   font-weight: 300;

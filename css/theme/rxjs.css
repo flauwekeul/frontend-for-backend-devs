@@ -24,6 +24,9 @@
   100% {
     box-shadow: 0 0 10px #f3df49; } }
 
+.encrypted-mail:after {
+  content: attr(data-name) "@" attr(data-domain) "." attr(data-tld); }
+
 .pager {
   color: #7d7d78;
   font-weight: 300;

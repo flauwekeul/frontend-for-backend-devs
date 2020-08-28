@@ -36,10 +36,6 @@ $selectionColor: $backgroundColor;
     box-shadow:
       inset 0 -0.17em $backgroundColor,
       inset 0 -0.2em $linkColor;
-
-    &.encrypted-mail:after {
-      content: attr(data-name) '@' attr(data-domain) '.' attr(data-tld);
-    }
   }
 
   p {
