@@ -4,7 +4,7 @@
 </section>
 
 <section>
-  <h3>Single threaded <span class="pager">(1/3)</span></h3>
+  <h3>Single threaded <span class="pager">(1/6)</span></h3>
   <p style="margin-bottom: 1em">
     JS is <em>single-threaded</em> <span class="fragment">and functions always <em>run-to-completion</em></span
     ><span class="fragment">, yet it's rarely <em>blocking</em>.</span>
@@ -20,7 +20,7 @@
 </section>
 
 <section>
-  <h3>Callbacks <span class="pager">(2/3)</span></h3>
+  <h3>Callbacks <span class="pager">(2/6)</span></h3>
   <p>Passing a function that's called <small>(back)</small> later:</p>
   <pre class="fragment"><code data-trim data-noescape data-line-numbers="1-3|all" class="js">
     console.log('before');
@@ -47,7 +47,7 @@
 </section>
 
 <section>
-  <h3>The <code>Promise</code> <span class="pager">(3/3)</span></h3>
+  <h3>The <code>Promise</code> <span class="pager">(3/6)</span></h3>
   <pre><code data-trim data-noescape data-line-numbers="1,6|1-2,5-6|1-6|1-11|1-14|1-17|all" class="js">
     const userPromise = new Promise((resolve, reject) => {
       fetchUser('/path/to/user/1', (error, user) => {
@@ -74,7 +74,7 @@
 </section>
 
 <section>
-  <h3>No need to nest <span class="pager">(4/3)</span></h3>
+  <h3>No need to nest <span class="pager">(4/6)</span></h3>
   <p>When executing promises in order, you might think you need to nest them:</p>
   <pre class="fragment border-bad"><code data-trim data-line-numbers="1,7|1-2,6-7|1-3,5-7|all" class="js">
     fetchUser('/path/to/user/1').then((user) => {
@@ -97,7 +97,7 @@
 </section>
 
 <section>
-  <h3>Multiple promises <span class="pager">(5/3)</span></h3>
+  <h3>Multiple promises <span class="pager">(5/6)</span></h3>
   <div class="stretch" style="font-size: 0.9em">
     <div class="row" style="margin-bottom: 0.5em">
       <div class="col">
@@ -173,7 +173,7 @@
 </section>
 
 <section>
-  <h3><code>async</code> and <code>await</code> <span class="pager">(6/3)</span></h3>
+  <h3><code>async</code> and <code>await</code> <span class="pager">(6/6)</span></h3>
   <p>
     <span class="es-version" style="font-size: 0.8em">ES2017</span> introduced the <code>async</code> and
     <code>await</code> keywords:
