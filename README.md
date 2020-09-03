@@ -43,6 +43,7 @@ This project is a clone of [reveal.js](https://github.com/hakimel/reveal.js) (be
     - [ ] best practices (BEM, ITCSS)
   - [ ] SASS
   - [ ] SVG (currentColor, SVG.js)
+  - [ ] Shadow DOM
 - [x] Typescript
   - [x] new types (interface, tuple, enum)
   - [x] type assertions
