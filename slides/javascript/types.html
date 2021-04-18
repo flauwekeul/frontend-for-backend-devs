@@ -1,10 +1,67 @@
 <section data-theme="javascript">
   <h1>JS</h1>
-  <h2>type coercion</h2>
+  <h2>types</h2>
 </section>
 
 <section>
-  <h3>Implicit conversion <span class="pager">(1/5)</span></h3>
+  <h3>Primitives and compounds <span class="pager">(1/7)</span></h3>
+  <div class="row">
+    <div class="col">
+      <h6>🦧</h6>
+      <ol style="margin-bottom: 1em">
+        <li class="fragment" data-fragment-index="1">
+          Number
+          <small style="display: inline; font-size: 0.62em"
+            >(integers, floats, <code>Infinity</code>, <code>NaN</code>)</small
+          >
+        </li>
+        <li class="fragment" data-fragment-index="2">String</li>
+        <li class="fragment" data-fragment-index="3">Boolean</li>
+        <li class="fragment" data-fragment-index="4"><code>null</code></li>
+        <li class="fragment" data-fragment-index="5"><code>undefined</code></li>
+        <li class="fragment" data-fragment-index="6">Symbol <sup class="es-version">ES2015</sup></li>
+        <li class="fragment" data-fragment-index="7">BigInt <sup class="es-version">ES2020</sup></li>
+      </ol>
+      <p class="fragment" data-fragment-index="9">Single value.</p>
+      <p class="fragment" data-fragment-index="11">Stored by <em>value</em>.</p>
+    </div>
+    <div class="col">
+      <h6>📦</h6>
+      <ol style="margin-bottom: 0.3em" start="8">
+        <li class="fragment" data-fragment-index="8">
+          Object
+          <ul>
+            <li><code>{…}</code></li>
+            <li>Arrays</li>
+            <li>Functions</li>
+            <li>Dates</li>
+            <li>Errors</li>
+            <li><small>(almost)</small> Anything made with <code>new</code></li>
+          </ul>
+        </li>
+      </ol>
+      <p class="fragment" data-fragment-index="10">Container of values.</p>
+      <p class="fragment" data-fragment-index="12">Stored by <em>reference</em> ⚠️.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h3><code>null</code> or <code>undefined</code>? <span class="pager">(2/7)</span></h3>
+  <img
+    src="assets/javascript/empty-values.png"
+    alt="Empty values in JavaScript"
+    class="fragment"
+    style="height: 12em; float: left; margin-right: 1em"
+  />
+  <p class="fragment" style="margin-bottom: 1em">
+    <code>undefined</code>: has no value <em>yet</em>. It's the default value.
+  </p>
+  <p class="fragment"><code>null</code>: <em>explicitly empty</em>.</p>
+</section>
+
+<section>
+  <h3>Implicit conversion <span class="pager">(3/7)</span></h3>
   <ul>
     <li class="fragment">
       Because JS is a loosely-typed language, implicit conversion of types is allowed:
@@ -32,7 +89,7 @@
 </section>
 
 <section>
-  <h3>String coercion <span class="pager">(2/5)</span></h3>
+  <h3>String coercion <span class="pager">(4/7)</span></h3>
   <ul>
     <li>
       When any operand is a string, the <code>+</code> operator triggers implicit type coercion:
@@ -58,7 +115,7 @@
 </section>
 
 <section>
-  <h3>Boolean coercion <span class="pager">(3/5)</span></h3>
+  <h3>Boolean coercion <span class="pager">(5/7)</span></h3>
   <ul>
     <li>
       <div class="row">
@@ -115,7 +172,7 @@
 </section>
 
 <section>
-  <h3>Number coercion <span class="pager">(4/5)</span></h3>
+  <h3>Number coercion <span class="pager">(6/7)</span></h3>
   <ul>
     <li>
       <div class="row">
@@ -171,7 +228,7 @@
 </section>
 
 <section>
-  <h3>Implicit or explicit? <span class="pager">(5/5)</span></h3>
+  <h3>Implicit or explicit? <span class="pager">(7/7)</span></h3>
   <p>My advice:</p>
   <ul>
     <li class="fragment">
@@ -188,7 +245,8 @@
       Use the <em>strict (in)equality operator</em> <small>(<code>===</code> or <code>!==</code>)</small>.
     </li>
     <li class="fragment">
-      Use a <a href="https://eslint.org/" target="_blank">linter</a> and
+      Use a <a href="https://eslint.org/" target="_blank">linter</a>,
+      <a href="https://prettier.io/" target="_blank">formatter</a> and
       <a href="https://www.typescriptlang.org/" target="_blank">TypeScript</a> 😉.
     </li>
   </ul>
