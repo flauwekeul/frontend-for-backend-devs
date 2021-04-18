@@ -17,7 +17,7 @@
       types are compared based on their <em>structure</em>:
       <div class="row">
         <div class="col">
-          <pre class="fragment"><code data-trim class="ts">
+          <pre class="fragment"><code data-trim data-line-numbers="1-3|1-4|all" class="ts">
             interface HasA {
               a: number;
             }
@@ -27,7 +27,7 @@
           </code></pre>
         </div>
         <div class="col">
-          <pre class="fragment"><code data-trim class="ts">
+          <pre class="fragment"><code data-trim data-line-numbers="1-3|all" class="ts">
             interface Empty {}
 
             const fn = (value: Empty) => {};
@@ -200,8 +200,8 @@
         interface MaybeError { errorMsg?: string; }
         <span class="fragment">
         function intersect(o: Data & MaybeError) {
-          if (o.errorMsg) { return o.errorMsg; }
-          return o.values;
+          <span class="fragment">if (o.errorMsg) { return o.errorMsg; }
+          return o.values;</span>
         }</span>
       </code></pre>
     </div>
@@ -211,22 +211,22 @@
 <section>
   <h3>Classes <span class="pager">(6/8)</span></h3>
   <div class="row">
-    <div class="col" style="width: 55%;">
+    <div class="col" style="width: calc(55% - 0.25em);">
       <p style="font-size: 0.9em">
         TypeScript supports class fields <sup class="es-version glow">Stage3</sup>
         <span class="fragment" data-fragment-index="1">and adds <code>public</code>,</span>
-        <span class="fragment" data-fragment-index="2"><code>protected</code>,</span>
-        <span class="fragment" data-fragment-index="3"><code>private</code></span>
-        <span class="fragment" data-fragment-index="4">and <code>readonly</code> modifiers 👉</span>
+        <span class="fragment" data-fragment-index="3"><code>protected</code>,</span>
+        <span class="fragment" data-fragment-index="4"><code>private</code></span>
+        <span class="fragment" data-fragment-index="5">and <code>readonly</code> modifiers 👉</span>
       </p>
     </div>
-    <div class="col" style="width: 45%;">
+    <div class="col" style="width: calc(45% - 0.25em);">
       <pre><code data-trim data-noescape class="ts">
         class Thing {
-          a = 1;<span class="fragment" data-fragment-index="1">  // public by default</span>
-          <span class="fragment" data-fragment-index="2">protected b = 2;</span>
-          <span class="fragment" data-fragment-index="3">private c = 3;</span>
-          <span class="fragment" data-fragment-index="4">readonly d = 4;</span>
+          <span class="fragment replace" data-fragment-index="1">public a = 1;</span><span class="fragment" data-fragment-index="2">a = 1;  // public by default</span>
+          <span class="fragment" data-fragment-index="3">protected b = 2;</span>
+          <span class="fragment" data-fragment-index="4">private c = 3;</span>
+          <span class="fragment" data-fragment-index="5">readonly d = 4;</span>
         }
       </code></pre>
     </div>
@@ -276,12 +276,12 @@
         function identity&lt;T&gt;(arg: T): T {
           return arg;
         }
-
-        identity(1);
-        identity('a');
-        <span class="fragment replace">
-        identity({ a: 1 });</span><span class="fragment replace last-replace">interface Thing { a: number; }
-        identity&lt;Thing&gt;({ a: 1 });</span>
+        <span class="fragment">
+        identity(1);    // number
+        identity('a');  // string</span>
+        <span class="fragment replace">identity({ a: 1 }); // { a: 1 }
+        </span><span class="fragment replace last-replace">interface Thing { a: number; }
+        identity&lt;Thing&gt;({ a: 1 });  // Thing</span>
       </code></pre>
     </div>
     <div class="col">
@@ -305,7 +305,7 @@
   <p>TypeScript offers globally available utility types:</p>
   <div class="row">
     <div class="col fragment">
-      <pre><code data-trim class="ts">
+      <pre><code data-trim data-line-numbers="1-4|1-5|all" class="ts">
         interface Thing {
           a: number;
           b: string;
@@ -319,7 +319,7 @@
       </code></pre>
     </div>
     <div class="col fragment">
-      <pre><code data-trim class="ts">
+      <pre><code data-trim data-line-numbers="1|1-3,7|all" class="ts">
         type key = 'a' | 'b' | 'c';
 
         const obj: Record&lt;key, number&gt; = {

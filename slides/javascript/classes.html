@@ -6,9 +6,9 @@
 <section>
   <h3>The <code>class</code> keyword <span class="pager">(1/3)</span></h3>
   <p><code>class</code> is <em>syntactic sugar</em> for a "constructor" function:</p>
-  <div class="row">
+  <div class="row fragment" data-fragment-index="1">
     <pre class="col"><code data-trim data-noescape class="js">
-      <span class="fragment" data-fragment-index="1">class Thing {
+      <span>class Thing {
         constructor(a) {
           this.a = a;
         }</span>
@@ -87,11 +87,11 @@
 <section>
   <div class="stretch">
     <h3>Alternatives to classes <span class="pager">(3/3)</span></h3>
-    <p style="margin-bottom: 1em;">
+    <p style="margin-bottom: 1em">
       You might tend to start with a class because it's familiar, but JS offers more simpler solutions:
     </p>
     <div class="row">
-      <div class="col" style="width: calc(33% - 0.5em);">
+      <div class="col" style="width: calc(33% - 0.5em)">
         <p class="fragment replace" data-fragment-index="1">Group data (and behavior) together?</p>
         <p class="fragment replace" data-fragment-index="2">Create multiple objects?</p>
         <p class="fragment replace" data-fragment-index="3">Share data and/or behavior?</p>
@@ -100,7 +100,7 @@
         <p class="fragment replace" data-fragment-index="6">My objects are using too much memory!</p>
         <p class="fragment replace last-replace" data-fragment-index="7">Want data privacy (encapsulation)?</p>
       </div>
-      <div class="col" style="width: calc(67% - 0.5em);">
+      <div class="col" style="width: calc(67% - 0.5em)">
         <div class="fragment replace" data-fragment-index="1">
           <p>Use a plain object:</p>
           <pre><code data-trim class="js">

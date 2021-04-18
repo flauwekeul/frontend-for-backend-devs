@@ -47,7 +47,7 @@
 </section>
 
 <section>
-  <h3>The <code>Promise</code> <span class="pager">(3/6)</span></h3>
+  <h3>The <code>Promise</code><sup class="es-version">ES2015</sup> <span class="pager">(3/6)</span></h3>
   <pre><code data-trim data-noescape data-line-numbers="1,6|1-2,5-6|1-6|1-11|1-14|1-17|all" class="js">
     const userPromise = new Promise((resolve, reject) => {
       fetchUser('/path/to/user/1', (error, user) => {
@@ -70,7 +70,7 @@
     Promise.resolve('value'); // create promise that fulfills with 'value'
     Promise.reject('error');  // create promise that rejects  with 'error'
   </code></pre>
-  <p class="fragment">Promises<sup class="es-version">ES2015</sup> are similar to Java's <code>Future</code>.</p>
+  <p class="fragment">Promises are similar to Java's <code>Future</code>.</p>
 </section>
 
 <section>
@@ -148,7 +148,7 @@
               //   { status: 'rejected', reason: 2 },
               // ]
             })
-            .catch(() => { /* never called! */ });
+            .catch(() => { /* never called ⚠️ */ });
         </code></pre>
       </div>
       <div class="col fragment" style="position: relative">

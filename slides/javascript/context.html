@@ -97,39 +97,39 @@
 <section>
   <h3>What's <code>this</code>? <span class="pager">(3/4)</span></h3>
   <div class="stretch">
-    <p style="margin-bottom: 0.5em; font-size: 0.9em;"><code>this</code> is determined in this order:</p>
+    <p style="margin-bottom: 0.5em; font-size: 0.9em"><code>this</code> is determined in this order:</p>
     <div class="row">
-      <div class="col" style="width: 60%;">
-        <p class="fragment" data-fragment-index="1" style="font-size: 0.65em; color: #abb2bf;">
+      <div class="col" style="width: 60%">
+        <p class="fragment" data-fragment-index="1" style="font-size: 0.65em; color: #abb2bf">
           <span class="hljs-keyword">let</span> context;<br />
           <br />
           <span class="hljs-keyword">switch</span> (<span class="hljs-string">the function is called…</span>) {<br />
           <span class="fragment" data-fragment-index="2">
-            <span style="margin-left: 2rem;"></span><span class="hljs-keyword">case</span>
+            <span style="margin-left: 2rem"></span><span class="hljs-keyword">case</span>
             <span class="hljs-string"
               >…as a constructor <small>(<code>new</code> keyword)</small></span
             >:<br />
-            <span style="margin-left: 4rem;">context = </span
+            <span style="margin-left: 4rem">context = </span
             ><span class="hljs-number">object returned from constructor</span>;<br />
-            <span style="margin-left: 4rem;"></span><span class="hljs-keyword">break</span>;<br />
+            <span style="margin-left: 4rem"></span><span class="hljs-keyword">break</span>;<br />
           </span>
           <span class="fragment" data-fragment-index="3">
-            <span style="margin-left: 2rem;"></span><span class="hljs-keyword">case</span>
+            <span style="margin-left: 2rem"></span><span class="hljs-keyword">case</span>
             <span class="hljs-string"> …explicitly bound to a context</span>:<br />
-            <span style="margin-left: 4rem;">context = </span
+            <span style="margin-left: 4rem">context = </span
             ><span class="hljs-number">the specified context</span>;<br />
-            <span style="margin-left: 4rem;"></span><span class="hljs-keyword">break</span>;<br />
+            <span style="margin-left: 4rem"></span><span class="hljs-keyword">break</span>;<br />
           </span>
           <span class="fragment" data-fragment-index="4">
-            <span style="margin-left: 2rem;"></span><span class="hljs-keyword">case</span>
+            <span style="margin-left: 2rem"></span><span class="hljs-keyword">case</span>
             <span class="hljs-string">…as an object property (method)</span>:<br />
-            <span style="margin-left: 4rem;">context = </span
+            <span style="margin-left: 4rem">context = </span
             ><span class="hljs-number">the containing object</span>;<br />
-            <span style="margin-left: 4rem;"></span><span class="hljs-keyword">break</span>;<br />
+            <span style="margin-left: 4rem"></span><span class="hljs-keyword">break</span>;<br />
           </span>
           <span class="fragment" data-fragment-index="5">
-            <span style="margin-left: 2rem;"></span><span class="hljs-keyword">default</span>:<br />
-            <span style="margin-left: 4rem;">context = </span
+            <span style="margin-left: 2rem"></span><span class="hljs-keyword">default</span>:<br />
+            <span style="margin-left: 4rem">context = </span
             ><span class="hljs-number"
               ><code>undefined</code> <small>(in strict mode, <code>globalThis</code> otherwise)</small></span
             >;<br />
@@ -137,7 +137,7 @@
           }
         </p>
       </div>
-      <div class="col" style="width: 40%;">
+      <div class="col" style="width: 40%">
         <pre class="fragment replace" data-fragment-index="2"><code data-noescape data-trim class="js">
           function Thing() {
             this.a = 1;
@@ -202,8 +202,8 @@
             context.derp
               .call({ a: 2 }).a;  // 2</span>
             <span class="fragment">
-            const bound = context
-              .derp.bind({ a: 2 });
+            const bound = context.derp
+              .bind({ a: 2 });
             new bound().a;  // undefined</span>
           </code></pre>
         </div>
@@ -224,14 +224,15 @@
         }
       };
 
-      setTimeout(object.derp, 100);
+      object.derp();  // 1
 
-      // after 100ms: undefined
+      setTimeout(object.derp, 100);
+      // after 100ms: undefined ⚠️
     </code></pre>
-    <div class="col fragment" style="margin-left: 0;">
-      <div class="row" style="height: 100%;">
-        <div class="col" style="flex: 0; align-self: center; margin-right: 0;">➡</div>
-        <pre class="col" style="flex: 1;"><code data-trim data-noescape class="js">
+    <div class="col fragment" style="margin-left: 0">
+      <div class="row" style="height: 100%">
+        <div class="col" style="flex: 0; align-self: center; margin-right: 0">➡</div>
+        <pre class="col" style="flex: 1"><code data-trim data-noescape class="js">
           // internal (pseudo)code:
 
           function setTimeout(fn, delay) {
@@ -252,10 +253,10 @@
 
       // when button is clicked: true
     </code></pre>
-    <div class="col fragment" style="margin-left: 0;">
-      <div class="row" style="height: 100%;">
-        <div class="col" style="flex: 0; align-self: center; margin-right: 0;">➡</div>
-        <pre class="col" style="flex: 1;"><code data-trim data-noescape class="js">
+    <div class="col fragment" style="margin-left: 0">
+      <div class="row" style="height: 100%">
+        <div class="col" style="flex: 0; align-self: center; margin-right: 0">➡</div>
+        <pre class="col" style="flex: 1"><code data-trim data-noescape class="js">
           // internal (pseudo)code:
 
           class ButtonElement {
