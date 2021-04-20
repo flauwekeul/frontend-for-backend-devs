@@ -4,7 +4,7 @@
 </section>
 
 <section>
-  <h3>2 kinds <span class="pager">(1/4)</span></h3>
+  <h3>2 kinds <span class="pager">(1/5)</span></h3>
   <ul>
     <li class="fragment">
       The "regular" function:
@@ -14,7 +14,7 @@
         }
       </code></pre>
       <span class="fragment"
-        >Use it when you need context <small>(the <code>this</code> keyword)</small>.</span
+        >Use it when you need <em>dynamic context</em> <small>(<code>this</code> is bound later)</small>.</span
       >
     </li>
     <li class="fragment">
@@ -24,12 +24,15 @@
           // ...
         }
       </code></pre>
+      <span class="fragment"
+        >Use it when you need <em>lexical context</em> <small>(<code>this</code> inherits from scope)</small>.</span
+      >
     </li>
   </ul>
 </section>
 
 <section>
-  <h3>Arrow functions <span class="pager">(2/4)</span></h3>
+  <h3>Arrow functions <span class="pager">(2/5)</span></h3>
   <ul>
     <li>
       When you need the return value of an arrow function, you can omit <code>{</code> and <code>}</code>:
@@ -59,7 +62,7 @@
 </section>
 
 <section>
-  <h3>First-class <span class="pager">(3/4)</span></h3>
+  <h3>First-class <span class="pager">(3/5)</span></h3>
   <ul>
     <li>
       JS functions are <em>first-class</em>. They can be:
@@ -96,7 +99,7 @@
 </section>
 
 <section>
-  <h3>Closures <span class="pager">(4/4)</span></h3>
+  <h3>Closures <span class="pager">(4/5)</span></h3>
   <p>
     A closure is when an inner function has access to its surrounding function(s) scope, even after the surrounding
     function(s) have returned:
@@ -136,4 +139,17 @@
       </ul>
     </div>
   </div>
+</section>
+
+<section>
+  <h3>Summary <span class="pager">(5/5)</span></h3>
+  <ul>
+    <li class="fragment">Prefer arrow functions for (small) inline <em>lambdas</em>.</li>
+    <li class="fragment">Use "regular" functions when you need <em>dynamic context</em>.</li>
+    <li class="fragment">
+      Functions can be <em>assigned</em> to variables, <em>passed</em> as arguments and <em>returned</em> from other
+      functions.
+    </li>
+    <li class="fragment">Closures enable <em>data privacy</em> and <em>partial application</em>.</li>
+  </ul>
 </section>
