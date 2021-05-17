@@ -4,7 +4,7 @@
 </section>
 
 <section>
-  <h3>Call-site <span class="pager">(1/4)</span></h3>
+  <h3>Call-site <span class="pager">(1/5)</span></h3>
   <ul>
     <li>In arrow functions <code>this</code> always refers to its surrounding scope.</li>
     <li class="fragment">
@@ -33,7 +33,7 @@
 </section>
 
 <section>
-  <h3>4 ways how <code>this</code> is set <span class="pager">(2/4)</span></h3>
+  <h3>4 ways how <code>this</code> is set <span class="pager">(2/5)</span></h3>
   <div class="row">
     <div class="col fragment">
       <p>Regular function call:</p>
@@ -95,7 +95,7 @@
 </section>
 
 <section>
-  <h3>What's <code>this</code>? <span class="pager">(3/4)</span></h3>
+  <h3>What's <code>this</code>? <span class="pager">(3/5)</span></h3>
   <div class="stretch">
     <p style="margin-bottom: 0.5em; font-size: 0.9em"><code>this</code> is determined in this order:</p>
     <div class="row">
@@ -213,7 +213,7 @@
 </section>
 
 <section>
-  <h3>Unknown call-site <span class="pager">(4/4)</span></h3>
+  <h3>Unknown call-site <span class="pager">(4/5)</span></h3>
   <p>Sometimes the call-site is obscured:</p>
   <div class="row">
     <pre class="col fragment"><code data-trim data-line-numbers="1-6|1-8|all" class="js">
@@ -268,4 +268,24 @@
       </div>
     </div>
   </div>
+</section>
+
+<section>
+  <h3>Summary <span class="pager">(5/5)</span></h3>
+  <ul>
+    <li class="fragment">In "regular" functions context (<code>this</code>) is set at the <em>call-site</em>.</li>
+    <li class="fragment">
+      Context is determined in this order:
+      <ol>
+        <li class="fragment">called as a constructor: object (created and) returned from <em>constructor</em></li>
+        <li class="fragment">
+          explicitly bound: object passed to <em><code>call()</code>, <code>apply()</code> or <code>bind()</code></em>
+        </li>
+        <li class="fragment">called as a <em>method</em>: object containing the method</li>
+        <li class="fragment">
+          else: <em><code>undefined</code></em>
+        </li>
+      </ol>
+    </li>
+  </ul>
 </section>
