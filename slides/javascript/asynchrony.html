@@ -4,23 +4,30 @@
 </section>
 
 <section>
-  <h3>Single threaded <span class="pager">(1/6)</span></h3>
+  <h3>Single threaded <span class="pager">(1/7)</span></h3>
   <p style="margin-bottom: 1em">
     JS is <em>single-threaded</em> <span class="fragment">and functions always <em>run-to-completion</em></span
     ><span class="fragment">, yet it's rarely <em>blocking</em>.</span>
   </p>
-  <ul>
-    <li class="fragment"><em>Concurrency</em> is JS's solution to asynchrony.</li>
-    <li class="fragment">
-      <em>Parallel computing</em> can be achieved with
-      <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API" target="_blank">Web Workers</a>
-      <small>(in the browser)</small>.
-    </li>
-  </ul>
+  <div class="row">
+    <div class="col">
+      <ul>
+        <li class="fragment"><em>Concurrency</em> is JS's solution to asynchrony.</li>
+        <li class="fragment">
+          <em>Parallel computing</em> can be achieved with
+          <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API" target="_blank">Web Workers</a>
+          <small>(in the browser)</small>.
+        </li>
+      </ul>
+    </div>
+    <div class="col fragment">
+      <img src="assets/javascript/concurrency.png" alt="Concurrency" style="background-color: #fff" />
+    </div>
+  </div>
 </section>
 
 <section>
-  <h3>Callbacks <span class="pager">(2/6)</span></h3>
+  <h3>Callbacks <span class="pager">(2/7)</span></h3>
   <p>Passing a function that's called <small>(back)</small> later:</p>
   <pre class="fragment"><code data-trim data-noescape data-line-numbers="1-3|all" class="js">
     console.log('before');
@@ -47,7 +54,7 @@
 </section>
 
 <section>
-  <h3>The <code>Promise</code><sup class="es-version">ES2015</sup> <span class="pager">(3/6)</span></h3>
+  <h3>The <code>Promise</code><sup class="es-version">ES2015</sup> <span class="pager">(3/7)</span></h3>
   <pre><code data-trim data-noescape data-line-numbers="1,6|1-2,5-6|1-6|1-11|1-14|1-17|all" class="js">
     const userPromise = new Promise((resolve, reject) => {
       fetchUser('/path/to/user/1', (error, user) => {
@@ -74,7 +81,7 @@
 </section>
 
 <section>
-  <h3>No need to nest <span class="pager">(4/6)</span></h3>
+  <h3>No need to nest <span class="pager">(4/7)</span></h3>
   <p>When executing promises in order, you might think you need to nest them:</p>
   <pre class="fragment border-bad"><code data-trim data-line-numbers="1,7|1-2,6-7|1-3,5-7|all" class="js">
     fetchUser('/path/to/user/1').then((user) => {
@@ -97,7 +104,7 @@
 </section>
 
 <section>
-  <h3>Multiple promises <span class="pager">(5/6)</span></h3>
+  <h3>Multiple promises <span class="pager">(5/7)</span></h3>
   <div class="stretch" style="font-size: 0.9em">
     <div class="row" style="margin-bottom: 0.5em">
       <div class="col">
@@ -173,7 +180,7 @@
 </section>
 
 <section>
-  <h3><code>async</code> and <code>await</code> <span class="pager">(6/6)</span></h3>
+  <h3><code>async</code> and <code>await</code> <span class="pager">(6/7)</span></h3>
   <p>
     <span class="es-version" style="font-size: 0.8em">ES2017</span> introduced the <code>async</code> and
     <code>await</code> keywords:
@@ -204,4 +211,16 @@
       }
     </code></pre>
   </div>
+</section>
+
+<section>
+  <h3>Summary <span class="pager">(7/7)</span></h3>
+  <ul>
+    <li class="fragment">JS uses <em>single-threaded concurrency</em> to enable asynchrony.</li>
+    <li class="fragment"><em>Callbacks</em> are simple, but can result in a pyramid of doom.</li>
+    <li class="fragment"><em>Promises</em> offer a more structured way of handling asynchrony.</li>
+    <li class="fragment">
+      <em><code>async</code>/<code>await</code></em> makes asynchronous code look synchronous.
+    </li>
+  </ul>
 </section>
