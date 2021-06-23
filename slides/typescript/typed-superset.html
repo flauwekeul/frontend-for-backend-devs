@@ -213,7 +213,7 @@
   <div class="row">
     <div class="col" style="width: calc(55% - 0.25em);">
       <p style="font-size: 0.9em">
-        TypeScript supports class fields <sup class="es-version glow">Stage3</sup>
+        TypeScript supports class fields <sup class="es-version glow">ES2022</sup>
         <span class="fragment" data-fragment-index="1">and adds <code>public</code>,</span>
         <span class="fragment" data-fragment-index="3"><code>protected</code>,</span>
         <span class="fragment" data-fragment-index="4"><code>private</code></span>
@@ -277,11 +277,11 @@
           return arg;
         }
         <span class="fragment">
-        identity(1);    // number
-        identity('a');  // string</span>
-        <span class="fragment replace">identity({ a: 1 }); // { a: 1 }
+        identity(1);        // T is a number
+        identity('a');      // T is a string</span>
+        <span class="fragment replace">identity({ a: 1 }); // T is { a: 1 }
         </span><span class="fragment replace last-replace">interface Thing { a: number; }
-        identity&lt;Thing&gt;({ a: 1 });  // Thing</span>
+        identity&lt;Thing&gt;({ a: 1 });  // T is Thing</span>
       </code></pre>
     </div>
     <div class="col">
