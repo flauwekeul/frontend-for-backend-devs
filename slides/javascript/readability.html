@@ -12,7 +12,7 @@
         <pre class="col fragment border-bad"><code data-trim data-line-numbers="1-2|all" class="js">
           const a = [1, 2, 3];
           let result = [];
-          for (const i = 0; i < a.length; i++) {
+          for (let i = 0; i < a.length; i++) {
             result[i] = a[i] * 2;
           }
           result;  // [2, 4, 6]
